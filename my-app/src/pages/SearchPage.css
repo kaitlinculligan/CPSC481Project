@@ -1,0 +1,12 @@
+.SearchBox{
+	text-align: center;
+}
+.container {
+	display: flex; /* Use flexbox */
+}
+
+.box {
+	width: 50%; /* Each box takes up 50% of the container */
+	border: 1px solid #000; /* Optional: Border for visualization */
+	box-sizing: border-box; /* Include border in width calculation */
+}
