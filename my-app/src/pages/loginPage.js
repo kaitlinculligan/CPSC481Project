@@ -2,8 +2,13 @@ import React from 'react';
 import profilePic from "./Photos/homePage.png";
  
 function LoginPage() {
+    const navigateToPage = (url) => {
+        // This will reload the page and navigate to the new URL.
+        window.location.href = url;
+      };
+
 return <div className='col justify-conent-center' style={{ height: '100vh', width: '100vw' }}>
-    <div className='row justify-content-center' style={{margin:"25px",width:"100px",height:"100px", backgroundImage: `url(${profilePic})`, backgroundSize: 'cover',backgroundPosition: 'center',backgroundRepeat: 'no-repeat'}}>
+    <div className='row justify-content-center' onClick={() => navigateToPage('/')} style={{cursor: 'pointer',margin:"25px",width:"100px",height:"100px", backgroundImage: `url(${profilePic})`, backgroundSize: 'cover',backgroundPosition: 'center',backgroundRepeat: 'no-repeat'}}>
     </div>
     <div className='row justify-content-center'>
         <div className='col-4' >

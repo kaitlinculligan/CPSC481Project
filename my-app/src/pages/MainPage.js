@@ -8,6 +8,7 @@ import house2 from "./Photos/house2.png";
 import house3 from "./Photos/house3.png";
 import house4 from "./Photos/house4.png";
 import profilePic from "./Photos/profileLogo.png";
+import favourites from "./Photos/favourites.png";
 
 
 
@@ -22,9 +23,9 @@ function MainPage() {
   <div className="row" style={{height:"250px"}}>
     <div className="col p-5" style={{maxWidth:"250px",height:"400px"}} >
         <strong><p1>Login</p1></strong>
-      <div className='row' onClick={() => navigateToPage('./login')} style={{cursor: 'pointer',marginBottom:"40px",padding: "20px",width:"100px",height:"100px", backgroundImage: `url(${profilePic})`, backgroundSize: 'cover',backgroundPosition: 'center',backgroundRepeat: 'no-repeat'}}></div>
+      <div className='row' onClick={() => navigateToPage('./login')} style={{cursor: 'pointer',marginLeft:"1px",marginBottom:"40px",padding: "20px",width:"100px",height:"100px", backgroundImage: `url(${profilePic})`, backgroundSize: 'cover',backgroundPosition: 'center',backgroundRepeat: 'no-repeat'}}></div>
       <strong><p1>View Favourites</p1></strong>
-      <div className='row' style={{backgroundColor:"#3d94db",padding: "20px",width:"100px",height:"100px",border: '10px solid black'}}>favourites</div>
+      <div className='row' onClick={() => navigateToPage('./favourites')} style={{cursor: 'pointer',marginLeft:"1px",padding: "20px",width:"100px",height:"100px",backgroundImage: `url(${favourites})`, backgroundSize: 'cover',backgroundPosition: 'center',backgroundRepeat: 'no-repeat'}}></div>
     </div>
     <div className='col justify-content-center' ></div>
     <div className='col justify-content-right m-5' style={{height:"175px",maxWidth:"250px",backgroundColor:"#ba6856",border: '10px solid black'}} >
@@ -35,7 +36,7 @@ function MainPage() {
           </div>
     </div>
   </div>
-  <div className='row justify-content-center' >
+  <div className='row justify-content-center' style={{paddingBottom:"50px"}} >
   <img src={hypeImage} className="img-fluid img-thumbnail rounded-circle" style={{width:"250px",height:"250px",borderColor:"black" }}></img>
   </div>
   <div className='row justify-content-center pb-5' >
