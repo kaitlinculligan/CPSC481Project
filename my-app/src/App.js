@@ -1,12 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
-import Test from './Test';
-import Homepage from './Homepage';
-import Button from 'react-bootstrap/Button'
-import 'bootstrap/dist/css/bootstrap.min.css'
+import React from 'react';
+import {Route, Routes } from 'react-router-dom';
+import MainPage from './pages/MainPage.js'; // Fix the casing of the import statement
 
 function App() {
-  return <div><Button>Test Button</Button></div>
+  return (
+    <Routes>
+      <Route path="/" element={<MainPage/>} />
+    </Routes>
+  );
 }
 
 export default App;
