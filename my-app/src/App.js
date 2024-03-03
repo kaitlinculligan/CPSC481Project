@@ -5,6 +5,11 @@ import Homepage from './Homepage';
 import Button from 'react-bootstrap/Button'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import hypeImage from "./Photos/hype.png";
+import house1 from "./Photos/house1.png";
+import house2 from "./Photos/house2.png";
+import house3 from "./Photos/house3.png";
+import house4 from "./Photos/house4.png";
+
 
 function App() {
   return <div style={{height:"700px",backgroundColor:"#10a690"}}>      
@@ -29,16 +34,16 @@ function App() {
     <Button style={{width:"200px"}}>Test Button</Button>
   </div>
   <div className='row justify-content-center' >
-    <div className='col-4' style={{maxWidth:"375px",height:"250px",backgroundColor:"#ba6856",border: '10px solid black'}} >
-      house 1
+    <div className='col-4 special' style={{maxWidth:"375px",height:"250px",backgroundColor:"#ba6856",border: '10px solid black',backgroundImage: `url(${house1})`, backgroundSize: 'cover',backgroundPosition: 'center',backgroundRepeat: 'no-repeat',}} >
+      
     </div>
-    <div className='col-4' style={{maxWidth:"375px",height:"250px",backgroundColor:"#ba6856",border: '10px solid black'}} >
+    <div className='col-4' style={{maxWidth:"375px",height:"250px",backgroundColor:"#ba6856",border: '10px solid black',backgroundImage: `url(${house2})`, backgroundSize: 'cover',backgroundPosition: 'center',backgroundRepeat: 'no-repeat'}} >
       house 2
     </div>
-    <div className='col-4' style={{maxWidth:"375px",height:"250px",backgroundColor:"#ba6856",border: '10px solid black'}} >
+    <div className='col-4' style={{maxWidth:"375px",height:"250px",backgroundColor:"#ba6856",border: '10px solid black',backgroundImage: `url(${house3})`, backgroundSize: 'cover',backgroundPosition: 'center',backgroundRepeat: 'no-repeat'}} >
       house 3
     </div>
-    <div className='col-4' style={{maxWidth:"375px",height:"250px",backgroundColor:"#ba6856",border: '10px solid black'}} >
+    <div className='col-4' style={{maxWidth:"375px",height:"250px",backgroundColor:"#ba6856",border: '10px solid black',backgroundImage: `url(${house4})`, backgroundSize: 'cover',backgroundPosition: 'center',backgroundRepeat: 'no-repeat'}} >
       house 4
     </div>
   </div>
