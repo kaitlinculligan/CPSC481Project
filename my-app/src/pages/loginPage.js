@@ -21,7 +21,7 @@ return <div className='col justify-conent-center' style={{ height: '100vh', widt
                         <input type='password' className='form-control' id='exampleInputPassword1' />
                     </div>
                     
-                    <button type='submit' className='btn btn-primary'style={{marginLeft:"50px",marginRight:"50px"}}>Submit</button>
+                    <button type='submit' className='btn btn-primary'style={{marginLeft:"150px",marginRight:"50px"}}>Submit</button>
                     <button type='submit' className='btn btn-success'>Create Account</button>
                 </form>
             </div>
