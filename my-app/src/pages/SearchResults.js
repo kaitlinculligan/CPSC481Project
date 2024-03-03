@@ -5,9 +5,14 @@ import Button from 'react-bootstrap/Button'
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
+import {Row, Col } from 'react-bootstrap';
 import favourites from "./Photos/favourites.png";
 import profilePic from "./Photos/homePage.png";
 import hypeImage from "./Photos/hype.png"
+import map from "./Photos/map.png"
+import house1 from "./Photos/house1.png"
+import house2 from "./Photos/house2.png"
+
 
 function SearchResults() {
 	return(
@@ -24,29 +29,63 @@ function SearchResults() {
 					</Nav>
 					</Navbar.Collapse>
 				</Container>
+				<Container>
+					<Nav className="justify-content-end" >
+						<Nav.Link >Search</Nav.Link>
+						<Nav.Link>Filters</Nav.Link>
+					</Nav>
+				</Container>
 			</Navbar>
-			<Card style={{ width: '35%',paddingTop:"5px" }}>
-				<Card.Img variant="top" src="holder.js/100px180" />
+			<div className='row'>
+
+			<div className='col'style={{paddingRight:"25px" }}>
+			<Card style={{ width: '100%',paddingTop:"10px" }}>
 				<Card.Body>
-					<Card.Title>Card Title</Card.Title>
+					<Row>
+					<Card.Title>123 Brookpark Ave.</Card.Title>
+					</Row>
+					<Row>
+						<Col>
+					<Card.Img variant="top" src={house1} />
+					</Col>
+					<Col>
 					<Card.Text>
-					Some quick example text to build on the card title and make up the
-					bulk of the card's content.
+					<ul>
+						<li>Price: $ 595,000</li>
+						<li>Bedrooms: 3</li>
+						<li>Bathrooms: 2</li>
+					</ul>
 					</Card.Text>
-					<Button variant="primary">Go somewhere</Button>
+					</Col>
+					</Row>
 				</Card.Body>
 				</Card>
-				<Card style={{ width: '35%',paddingTop:"5px" }}>
-				<Card.Img variant="top" src="holder.js/100px180" />
+				<Card style={{ width: '100%',paddingTop:"10px" }}>
 				<Card.Body>
-					<Card.Title>Card Title</Card.Title>
+				<Row>
+					<Card.Title>481 Main Street</Card.Title>
+					</Row>
+					<Row>
+						<Col>
+					<Card.Img variant="top" src={house2} />
+					</Col>
+					<Col>
 					<Card.Text>
-					Some quick example text to build on the card title and make up the
-					bulk of the card's content.
+					<ul>
+						<li>Price: $ 534,000</li>
+						<li>Bedrooms: 2</li>
+						<li>Bathrooms: 1</li>
+					</ul>
 					</Card.Text>
-					<Button variant="primary">Go somewhere</Button>
+					</Col>
+					</Row>
 				</Card.Body>
 				</Card>
+				</div>
+				<div className='col'>
+				<img src={map} style={{ width: '100%',height:"100%" }}></img>
+				</div>
+				</div>
 		</div>
 	)
 }
