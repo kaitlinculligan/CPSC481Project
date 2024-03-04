@@ -1,0 +1,41 @@
+/* Adjust the icon size and alignment */
+.icon {
+  height: 30px;
+  cursor: pointer;
+}
+
+/* Style for the navigation row */
+.navigation-row {
+  margin-bottom: 1rem;
+}
+
+/* Ensure the carousel images are responsive and have a max-height */
+.property-images-carousel .carousel-item img {
+  width: 100%;
+  max-height: 500px; /* Adjust this value as needed */
+  object-fit: cover;
+}
+
+/* Style for the property description area */
+.property-description {
+  padding: 1rem;
+}
+
+/* Style for the realtor info card */
+.realtor-info .card {
+  margin-top: 1rem;
+}
+
+/* Style for the realtor image on the card */
+.realtor-info .card-img-top {
+  max-height: 200px; /* Adjust this value as needed */
+  object-fit: cover;
+}
+
+/* Style for the buttons */
+.btn-primary {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+/* Add more styles as needed */

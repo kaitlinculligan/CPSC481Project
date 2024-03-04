@@ -6,6 +6,8 @@ import Favourites from './pages/Favourites.js'; // Fix the casing of the import 
 import SearchPage from './pages/SearchPage.js'; // Fix the casing of the import statement
 import SearchResults from './pages/SearchResults.js'; // Fix the casing of the import statement
 import Appointment from './pages/Appointment.js';
+import PropertyDetailPage from './pages/PropertyDetailpg.js';
+
 
 function App() {
   return (
@@ -15,7 +17,9 @@ function App() {
       <Route path="/favourites" element={<Favourites/>} />
       <Route path="/search" element={<SearchPage/>} />
       <Route path="/results" element={<SearchResults/>} />
+      <Route path='/details' element={<PropertyDetailPage/>} />
       <Route path='/appointment' element={<Appointment/>} />
+
     </Routes>
   );
 }
