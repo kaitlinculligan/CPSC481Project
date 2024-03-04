@@ -5,6 +5,8 @@ import LoginPage from './pages/loginPage.js'; // Fix the casing of the import st
 import Favourites from './pages/Favourites.js'; // Fix the casing of the import statement
 import SearchPage from './pages/SearchPage.js'; // Fix the casing of the import statement
 import SearchResults from './pages/SearchResults.js'; // Fix the casing of the import statement
+import Appointment from './pages/Appointment.js';
+
 function App() {
   return (
     <Routes>
@@ -13,6 +15,7 @@ function App() {
       <Route path="/favourites" element={<Favourites/>} />
       <Route path="/search" element={<SearchPage/>} />
       <Route path="/results" element={<SearchResults/>} />
+      <Route path='/appointment' element={<Appointment/>} />
     </Routes>
   );
 }
