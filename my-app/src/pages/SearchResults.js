@@ -31,8 +31,8 @@ function SearchResults() {
 				</Container>
 				<Container>
 					<Nav className="justify-content-end" >
-						<Nav.Link >Search</Nav.Link>
-						<Nav.Link>Filters</Nav.Link>
+						<input type="text" placeholder='Search' ></input>
+						<input type="text" placeholder='Filters' ></input>
 					</Nav>
 				</Container>
 			</Navbar>
