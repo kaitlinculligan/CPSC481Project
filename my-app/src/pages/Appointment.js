@@ -53,6 +53,7 @@ function Appointment() {
 					<input className='appointmentForm' type='text' placeholder='Email'></input>
 					<input className='appointmentForm' type='datetime-local'></input>
 					<input className='appointmentSubmit' type='submit'></input>
+
 				</form>
 			</div>
 			<div className='col'>
