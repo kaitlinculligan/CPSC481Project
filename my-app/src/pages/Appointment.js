@@ -8,6 +8,7 @@ import backArrow from "./Photos/backArrow.png"
 import homeButton from "./Photos/homePage.png"
 import emailIcon from "./Photos/emailLogopng.png"
 import phoneIcon from "./Photos/phoneLogo.png"
+import house1 from "./Photos/house1.png"
 
 function Appointment() {
 	return(
@@ -30,7 +31,10 @@ function Appointment() {
 			<div className='col'>
 				<h2>Contact Information</h2>
 			</div>
-			<div className='col'></div>
+			<div className='col'>
+			<h3>Booking a showing for:</h3>
+			<h3>123 Main Street</h3>
+			</div>
 		</div>
 		<div className='row'>
 			<div className='col'>
@@ -51,7 +55,9 @@ function Appointment() {
 					<input type='submit'></input>
 				</form>
 			</div>
-			<div className='col'></div>
+			<div className='col'>
+			<img src={house1} style={{width:"50%",height:"50%"}}></img>
+			</div>
 		</div>
 
 	</div>
