@@ -1,0 +1,45 @@
+/* Style inputs */
+
+  .appointmentForm, select {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+  }
+
+  /* Style the submit button */
+
+.appointmentSubmit {
+
+	width: 100%;
+	background-color: #04AA6D;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+  }
+
+  /* Add a background color to the submit button on mouse-over */
+  .appointmentSubmit:hover {
+	background-color: #45a049;
+  }
+
+.realtorInfo{
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+	height: 50%;
+	width: 50%;
+}
+
+.realtorName{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+	width: 50%;
+}
