@@ -1,0 +1,97 @@
+import profilePic from "./Photos/profileLogo.png";
+import homePic from "./Photos/homePage.png";
+import hypeImage from "./Photos/hype.png";
+import favourites from "./Photos/favourites.png";
+function ProfilePage() {
+  const navigateToPage = (url) => {
+    // This will reload the page and navigate to the new URL.
+    window.location.href = url;
+  };
+
+  return (
+    <div
+      className="col"
+      style={{
+        height: "100vh",
+        width: "100wv",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        justifyContent: "flex-start",
+      }}
+    >
+      {/* <div className='col' style={{ maxWidth: "100px", maxHeight: "100px" }}>
+        <img src={hypeImage} className="img-fluid" style={{borderBottom:"5px solid black", borderRight:"5px solid black", objectFit: 'cover', maxWidth: "100%", maxHeight: "100%" }} alt="description"></img>
+    </div> */}
+      <div className="row justify-content-center" style={{ marginTop: "25px", width: "1200px", marginLeft: "100px" }}>
+        <div
+          className="col-4"
+          onClick={() => navigateToPage("./")}
+          style={{
+            cursor: "pointer",
+            marginLeft: "40px",
+            width: "100px",
+            height: "100px",
+            backgroundImage: `url(${homePic})`,
+            backgroundSize: "contain",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        ></div>
+        <div
+          className="col-4"
+          onClick={() => navigateToPage("./favourites")}
+          style={{
+            cursor: "pointer",
+            marginLeft: "30px",
+            width: "100px",
+            height: "100px",
+            backgroundImage: `url(${favourites})`,
+            backgroundSize: "contain",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        ></div>
+        <div
+          className="col"
+          style={{
+            width: "100px",
+            maxHeight: "100px",
+            textAlign: "right",
+            marginLeft: "100px",
+          }}
+        >
+          <h1>Appointment History</h1>
+          <div
+            className="row justify-content-start"
+            style={{
+              border: "8px solid grey",
+              minHeight: "100px",
+              maxHeight: "300px",
+            }}
+          >
+            <p1 style={{ textAlign: "left" }}>You Have No Prior Appointments</p1>
+          </div>
+        </div>
+      </div>
+      <div style={{paddingLeft:"100px"}}>
+        <div className="row">
+          <div className="col justify-content-start" style={{ width: "200px", height: "200px" }}>
+            <img src={profilePic} className="img-fluid" style={{ width: "200px", height: "200px", objectFit: "contain" }} alt="description"></img>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col justify-content-start">
+            <p1>Email: UserEmail1@gmail.com</p1>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col justify-content-start">
+            <p1>Phone: 403-123-4567</p1>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+export default ProfilePage;
