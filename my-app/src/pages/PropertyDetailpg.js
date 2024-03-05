@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './PropertyDetailpg.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Carousel, Container, Row, Col, Button, Card } from 'react-bootstrap';
+import { Carousel, Container, Row, Col, Button, Card, Modal } from 'react-bootstrap';
 import backArrow from "./Photos/backArrow.png";
 import heartIcon from "./Photos/favourites.png";
 import homeIcon from "./Photos/homePage.png";
+import logoIcon from "./Photos/hype.png"; // Make sure to have your logo image in the Photos directory
 import realtorImage from "./Photos/shrek_realtor.png";
 import house1 from "./Photos/house1.png";
 import house2 from "./Photos/house2.png";
@@ -12,7 +12,9 @@ import house3 from "./Photos/house3.png";
 import house4 from "./Photos/house4.png";
 
 function PropertyDetailPage() {
-  // Dummy data for images and details
+  const [showModal, setShowModal] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   const propertyImages = [house1, house2, house3, house4];
   const propertyDetails = {
     address: '1234 Dream Lane, Imagination City, Fantasy 00000',
@@ -25,38 +27,61 @@ function PropertyDetailPage() {
     }
   };
 
+  const openModal = (index) => {
+    setCurrentIndex(index);
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
+  const goToPrevious = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? propertyImages.length - 1 : prevIndex - 1
+    );
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === propertyImages.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
   return (
-    <Container>
+    <Container fluid className="p-0">
       {/* Navigation and Favorites */}
-      <Row className="my-4">
+      <Row className="my-4 navigation-icons">
         <Col xs={4} className="text-start">
-          <img src={backArrow} alt="Back" className="icon" /> Back to Search
+          <img src={logoIcon} alt="Logo" className="icon logo-icon" />
+          <img src={backArrow} alt="Back" className="icon back-icon" />
+          <span className="align-middle">Back to Search</span>
         </Col>
         <Col xs={4} className="text-center">
-          <img src={homeIcon} alt="Home" className="icon" /> Homepage
+          <img src={homeIcon} alt="Home" className="icon home-icon" />
         </Col>
         <Col xs={4} className="text-end">
-          <img src={heartIcon} alt="Add to Favorites" className="icon" /> Add to Favorites
+          <img src={heartIcon} alt="Add to Favorites" className="icon favorites-icon" />
         </Col>
       </Row>
 
       {/* Property Images Carousel */}
       <Carousel className="property-images-carousel">
         {propertyImages.map((src, index) => (
-          <Carousel.Item key={index}>
+          <Carousel.Item key={index} onClick={() => openModal(index)}>
             <img className="d-block w-100" src={src} alt={`Slide ${index}`} />
           </Carousel.Item>
         ))}
       </Carousel>
 
       {/* Property Description and Realtor Info */}
-      <Row className="my-4">
-        <Col md={8} className="property-description">
+      <Row className="my-4 property-details-row">
+        <Col lg={8} className="property-description">
           <h3>{propertyDetails.address}</h3>
           <h4>{propertyDetails.price}</h4>
           <p>{propertyDetails.description}</p>
         </Col>
-        <Col md={4} className="realtor-info">
+        <Col lg={4} className="realtor-info">
           <Card>
             <Card.Img variant="top" src={realtorImage} alt="Realtor" />
             <Card.Body>
@@ -69,8 +94,26 @@ function PropertyDetailPage() {
           </Card>
         </Col>
       </Row>
+
+      {/* Modal for the enlarged image view */}
+      <Modal show={showModal} onHide={closeModal} size="lg" centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Property Image</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <img src={propertyImages[currentIndex]} alt="Property" className="w-100" />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={goToPrevious}>
+            Previous
+          </Button>
+          <Button variant="secondary" onClick={goToNext}>
+            Next
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
-  );
+   );
 }
 
 export default PropertyDetailPage;
