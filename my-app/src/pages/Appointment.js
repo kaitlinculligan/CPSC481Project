@@ -12,7 +12,7 @@ import house1 from "./Photos/house1.png"
 
 function Appointment() {
 	return(
-	<div>
+	<div style={{background: "linear-gradient(rgba(16, 166, 144, 0.5), white)" }}>
 		<div className='row'>
 			<div className='col'>
 			<Navbar expand="lg" >

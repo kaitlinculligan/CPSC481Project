@@ -1,5 +1,10 @@
 .SearchBox{
-	text-align: center;
+	height:"200px";
+	max-width:"500px";
+	border: '2px solid black';
+	padding:"5px";
+	background-color:"#10a690";
+	border-radius: 2px;
 }
 .container {
 	display: flex; /* Use flexbox */
@@ -14,4 +19,22 @@
 
 .searchButton:hover{
 	background-color: #45a049;
+  }
+
+.searchButton{
+	background-color: #04AA6D;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+  }
+  .searchForm, select {
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
   }
