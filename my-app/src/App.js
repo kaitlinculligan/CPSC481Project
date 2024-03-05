@@ -10,6 +10,7 @@ import ProfilePage from './pages/ProfilePage.js';
 import Appointment from './pages/Appointment.js';
 import PropertyDetailPage from './pages/PropertyDetailpg.js';
 import Fitlers from "./pages/Filters.js"
+import HouseCard from './pages/HouseCard.js';
 
 
 
@@ -28,6 +29,7 @@ function App() {
       <Route path='/details' element={<PropertyDetailPage/>} />
       <Route path='/appointment' element={<Appointment/>} />
       <Route path='/filters' element={<Fitlers/>}/>
+      <Route path='/housecard' element={<HouseCard/>}/>
 
     </Routes>
   );

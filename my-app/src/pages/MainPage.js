@@ -67,24 +67,21 @@ function MainPage() {
           <div className="d-flex flex-column align-items-stretch">
             <button
               type="button"
-              className="btn btn-primary vertical-btn-group"
-              style={{ height: "52px", width: "100%", marginBottom: "10px", backgroundColor: "transparent", border: "10px solid black" }}
+              className="btn vertical-btn-group"
+              style={{ height: "52px", width: "100%", marginBottom: "10px", backgroundColor: "transparent"}}
             >
-              Top
             </button>
             <button
               type="button"
-              className="btn btn-secondary vertical-btn-group "
-              style={{ height: "52px", width: "100%", marginBottom: "10px", backgroundColor: "transparent", border: "10px solid black" }}
+              className="btn vertical-btn-group "
+              style={{ height: "52px", width: "100%", marginBottom: "10px", backgroundColor: "transparent" }}
             >
-              Middle
             </button>
             <button
               type="button"
-              className="btn btn-success vertical-btn-group"
-              style={{ height: "52px", width: "100%", backgroundColor: "transparent", border: "10px solid black" }}
+              className="btn vertical-btn-group"
+              style={{ height: "52px", width: "100%", backgroundColor: "transparent",  }}
             >
-              Bottom
             </button>
           </div>
         </div>
@@ -93,7 +90,7 @@ function MainPage() {
         <img src={hypeImage} className="img-fluid img-thumbnail rounded-circle" style={{ width: "250px", height: "250px", borderColor: "black" }}></img>
       </div>
       <div className="row justify-content-center pb-5">
-        <Button style={{ width: "200px", backgroundColor:"green" }}>Discover You Future House!</Button>
+        <Button style={{ width: "200px", backgroundColor:"green" }}>Discover Your Future House!</Button>
       </div>
       <div className="row justify-content-center">
         <div className="col-4" style={{ maxWidth: "375px", height: "40px", border: " 10px solid black", backgroundColor: "black" }}>

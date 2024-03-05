@@ -47,7 +47,7 @@ function ProfilePage() {
             <span>Email: UserEmail1@gmail.com</span>
             <span>Phone: 123-456-7890</span>
           </div>
-          <Button className=" ms-1 w-50" style={{height:"50px"}}>Edit Profile</Button>
+          <Button className=" ms-3 w-50" style={{height:"50px"}}>Edit Profile</Button>
         </div>
       </div>
       <div className="w-75 flex-column d-flex align-items-center pt-5">
