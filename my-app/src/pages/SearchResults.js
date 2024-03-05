@@ -39,48 +39,52 @@ function SearchResults() {
 			<div className='row'>
 
 			<div className='col'style={{paddingRight:"25px" }}>
-			<Card style={{ width: '100%',paddingTop:"10px" }}>
-				<Card.Body>
+				<div className='card'>
+					<Card style={{ width: '100%',paddingTop:"10px" }}>
+						<Card.Body>
+							<Row>
+							<Card.Title>123 Brookpark Ave.</Card.Title>
+							</Row>
+							<Row>
+								<Col>
+							<Card.Img variant="top" src={house1} />
+							</Col>
+							<Col>
+							<Card.Text>
+							<ul>
+								<li>Price: $ 595,000</li>
+								<li>Bedrooms: 3</li>
+								<li>Bathrooms: 2</li>
+							</ul>
+							</Card.Text>
+							</Col>
+							</Row>
+						</Card.Body>
+						</Card>
+				</div>
+				<div className='card'>
+					<Card  style={{ width: '100%',paddingTop:"10px" }}>
+					<Card.Body>
 					<Row>
-					<Card.Title>123 Brookpark Ave.</Card.Title>
-					</Row>
-					<Row>
+						<Card.Title>481 Main Street</Card.Title>
+						</Row>
+						<Row>
+							<Col>
+						<Card.Img variant="top" src={house2} />
+						</Col>
 						<Col>
-					<Card.Img variant="top" src={house1} />
-					</Col>
-					<Col>
-					<Card.Text>
-					<ul>
-						<li>Price: $ 595,000</li>
-						<li>Bedrooms: 3</li>
-						<li>Bathrooms: 2</li>
-					</ul>
-					</Card.Text>
-					</Col>
-					</Row>
-				</Card.Body>
-				</Card>
-				<Card style={{ width: '100%',paddingTop:"10px" }}>
-				<Card.Body>
-				<Row>
-					<Card.Title>481 Main Street</Card.Title>
-					</Row>
-					<Row>
-						<Col>
-					<Card.Img variant="top" src={house2} />
-					</Col>
-					<Col>
-					<Card.Text>
-					<ul>
-						<li>Price: $ 534,000</li>
-						<li>Bedrooms: 2</li>
-						<li>Bathrooms: 1</li>
-					</ul>
-					</Card.Text>
-					</Col>
-					</Row>
-				</Card.Body>
-				</Card>
+						<Card.Text>
+						<ul>
+							<li>Price: $ 534,000</li>
+							<li>Bedrooms: 2</li>
+							<li>Bathrooms: 1</li>
+						</ul>
+						</Card.Text>
+						</Col>
+						</Row>
+					</Card.Body>
+					</Card>
+				</div>
 				</div>
 				<div className='col'>
 				<img src={map} style={{ width: '100%',height:"100%" }}></img>

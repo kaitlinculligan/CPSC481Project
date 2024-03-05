@@ -82,7 +82,7 @@ function SearchPage() {
 	<div className='row justify-content-center'>
 	<div className='col'></div>
 	<div className='col-2'>
-		<button classname='searchButton' style={{width:"200px"}}>Search</button>
+		<input type="submit" value="Search"classname='searchButton' style={{width:"200px"}}></input>
 		</div>
 		<div className='col-5'></div>
 	</div>

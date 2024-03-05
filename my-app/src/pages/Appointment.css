@@ -25,7 +25,7 @@
   }
 
   /* Add a background color to the submit button on mouse-over */
-  .appointmentSubmit :hover {
+  .appointmentSubmit:hover {
 	background-color: #45a049;
   }
 
