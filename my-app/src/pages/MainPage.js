@@ -93,7 +93,7 @@ function MainPage() {
         <img src={hypeImage} className="img-fluid img-thumbnail rounded-circle" style={{ width: "250px", height: "250px", borderColor: "black" }}></img>
       </div>
       <div className="row justify-content-center pb-5">
-        <Button style={{ width: "200px" }}>Discover You Future House!</Button>
+        <Button style={{ width: "200px", backgroundColor:"green" }}>Discover You Future House!</Button>
       </div>
       <div className="row justify-content-center">
         <div className="col-4" style={{ maxWidth: "375px", height: "40px", border: " 10px solid black", backgroundColor: "black" }}>

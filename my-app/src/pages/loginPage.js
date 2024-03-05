@@ -27,9 +27,11 @@ return <div className='col justify-conent-center' style={{ height: '100vh', widt
                         <label htmlFor='exampleInputPassword1'>Password</label>
                         <input type='password' className='form-control' id='exampleInputPassword1'style={{border:"3px solid grey"}} />
                     </div>
-
-                    <button type='submit' className='btn btn-primary' style={{ marginRight: "100px" }}>Login</button>
+                    <div className="felx-row d-flex justify-content-evenly ">
+                    <button type='submit' className='btn btn-primary w-25 bg-success'>Login</button>
+                    <button type='submit' className='btn btn-primary w-25 bg-success'>Register</button>
                     <p1 style={{ cursor: "pointer", textDecoration: 'underline', color: 'blue' }}>Forgot Password?</p1>
+                    </div>
                 </form>
             </div>
         </div>
