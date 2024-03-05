@@ -7,6 +7,7 @@ import SearchPage from './pages/SearchPage.js'; // Fix the casing of the import 
 import SearchResults from './pages/SearchResults.js'; // Fix the casing of the import statement
 import Appointment from './pages/Appointment.js';
 import PropertyDetailPage from './pages/PropertyDetailpg.js';
+import Fitlers from "./pages/Filters.js"
 
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
       <Route path="/results" element={<SearchResults/>} />
       <Route path='/details' element={<PropertyDetailPage/>} />
       <Route path='/appointment' element={<Appointment/>} />
-
+      <Route path='/filters' element={<Fitlers/>}/>
     </Routes>
   );
 }
