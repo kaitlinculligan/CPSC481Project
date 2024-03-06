@@ -7,11 +7,17 @@ import profilePic from "./pages/Photos/homePage.png";
 import help from "./pages/Photos/help_icon.png";
 import backArrow from "./pages/Photos/backArrow.png";
 const NavBar = () => {
+
+  const navigateToPage = (url) => {
+    // This will reload the page and navigate to the new URL.
+    window.location.href = url;
+  };
+
   return (
 <div>
       <header>
         <div className="back">
-          <img src={backArrow} alt="Back" />
+          <img src={backArrow} onClick={() => navigateToPage('./')} alt="Back" />
         </div>
         <div className="logo">
           <img src={logoAndTitle} alt="Logo" />
