@@ -2,6 +2,7 @@ import React from 'react';
 import './MainPage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import hypeImage from "./Photos/hype.png";
+import NavBar from './NavBar.js';
 
 function Favourites() {
 
@@ -20,6 +21,7 @@ function Favourites() {
 
   return (
     <div style={{height:"700px", backgroundColor:"#10a690"}}>
+      <NavBar/>
       <div className="row" style={{height:"25px", width:"100px", paddingLeft:"45px"}}>
         <h1>Favourites</h1>
       </div>
@@ -40,13 +42,13 @@ function Favourites() {
 
       {/* Advanced Filter Button */}
         <div className="col-auto">
-          <button>Advanced Filter + </button>
+          <button onClick={() => navigateToPage('./filters')}>Advanced Filter + </button>
         </div>
       </div>
 
       {/* Favorites Listings */}
       {favoriteListings.map((listing) => (
-        <div key={listing.id} className="row justify-content-center" style={{ margin: "10px 0", padding: "50px", backgroundColor: "grey", border: "2px solid black" }}>
+        <div key={listing.id} className="row justify-content-center" style={{ margin: "10px 0", padding: "50px", backgroundColor: "white", border: "2px solid black" }}>
           <div className="col" style={{ display: "flex", alignItems: "center" }}>
             {/* Image on the left side */}
             <div style={{ marginRight: "10px" }}>

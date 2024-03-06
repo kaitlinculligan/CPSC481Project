@@ -6,21 +6,15 @@ import Container from 'react-bootstrap/Container';
 import hypeImage from "./Photos/hype.png"
 import backArrow from "./Photos/backArrow.png"
 import homeButton from "./Photos/homePage.png"
+import NavBar from './NavBar.js';
 
 function Filters() {
 	return(
 		<div>
+			<NavBar />
 			<div className='row'>
 			<div className='col'>
-			<Navbar expand="lg" >
-      			<Container>
-        			<Navbar.Collapse id="basic-navbar-nav">
-					<Nav className="me-auto">
-						<Nav.Link href="#home"><img src={backArrow} style={{width:"50px",height:"50px",borderColor:"black" }}></img></Nav.Link>
-					</Nav>
-					</Navbar.Collapse>
-				</Container>
-			</Navbar>
+				
 			</div>
 		</div>
 		<div className="row">

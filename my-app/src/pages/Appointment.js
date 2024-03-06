@@ -9,24 +9,15 @@ import homeButton from "./Photos/homePage.png"
 import emailIcon from "./Photos/emailLogopng.png"
 import phoneIcon from "./Photos/phoneLogo.png"
 import house1 from "./Photos/house1.png"
+import NavBar from './NavBar.js';
 
 function Appointment() {
 	return(
 	<div style={{background: "linear-gradient(rgba(16, 166, 144, 0.5), white)" }}>
+		<NavBar/>
 		<div className='row'>
 			<div className='col'>
-			<Navbar expand="lg" >
-      			<Container>
-        			<Navbar.Brand href="#home"> <img src={hypeImage} style={{width:"50px",height:"50px",borderColor:"black" }}></img></Navbar.Brand>
-					<Navbar.Toggle aria-controls="basic-navbar-nav" />
-        			<Navbar.Collapse id="basic-navbar-nav">
-					<Nav className="me-auto">
-					<Nav.Link href="#home"><img src={homeButton} style={{width:"50px",height:"50px",borderColor:"black" }}></img></Nav.Link>
-						<Nav.Link href="#home"><img src={backArrow} style={{width:"50px",height:"50px",borderColor:"black" }}></img></Nav.Link>
-					</Nav>
-					</Navbar.Collapse>
-				</Container>
-			</Navbar>
+
 			</div>
 			<div className='col'>
 				<h2>Contact Information</h2>
@@ -52,6 +43,10 @@ function Appointment() {
 					<input className='appointmentForm' type='text' placeholder='Phone #'></input>
 					<input className='appointmentForm' type='text' placeholder='Email'></input>
 					<input className='appointmentForm' type='datetime-local'></input>
+					<input className='appointmentRadio' id='inperson'type='radio'name='viewingType' value='inperson'></input>
+					<label className='' for='inperson'>In-Person Viewing</label>
+					<input className='appointmentRadio' id='virtual'type='radio'name='viewingType' value='virtual'></input>
+					<label className='' for='virtual'>Virtual Viewing</label>
 					<input className='appointmentSubmit' type='submit'></input>
 
 				</form>

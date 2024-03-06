@@ -10,28 +10,30 @@ import ProfilePage from './pages/ProfilePage.js';
 import Appointment from './pages/Appointment.js';
 import PropertyDetailPage from './pages/PropertyDetailpg.js';
 import Fitlers from "./pages/Filters.js"
-import HouseCard from './pages/HouseCard.js';
 
+import HouseCard from './pages/HouseCard.js';
+import Test from './pages/Test.js';
 
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<MainPage/>} />
-      <Route path="/login" element={<LoginPage/>} />
-      <Route path="/favourites" element={<Favourites/>} />
-      <Route path="/search" element={<SearchPage/>} />
-      <Route path="/results" element={<SearchResults/>} />
 
-      <Route path="/profile" element={<ProfilePage/>} />
-      <Route path="*" element={<h1>Not Found</h1>} />
+    <div>
+      <Routes>
+        <Route path="/" element={<MainPage/>} />
+        <Route path="/login" element={<LoginPage/>} />
+        <Route path="/favourites" element={<Favourites/>} />
+        <Route path="/search" element={<SearchPage/>} />
+        <Route path="/results" element={<SearchResults/>} />
+        <Route path="/profile" element={<ProfilePage/>} />
+        <Route path="*" element={<h1>Not Found</h1>} />
+        <Route path='/details' element={<PropertyDetailPage/>} />
+        <Route path='/appointment' element={<Appointment/>} />
+        <Route path='/filters' element={<Fitlers/>}/>
+        <Route path='/test' element={<Test/>}/>
+      </Routes>
+    </div>
 
-      <Route path='/details' element={<PropertyDetailPage/>} />
-      <Route path='/appointment' element={<Appointment/>} />
-      <Route path='/filters' element={<Fitlers/>}/>
-      <Route path='/housecard' element={<HouseCard/>}/>
-
-    </Routes>
   );
 }
 

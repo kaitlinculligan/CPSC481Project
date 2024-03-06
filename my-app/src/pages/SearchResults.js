@@ -12,23 +12,15 @@ import hypeImage from "./Photos/hype.png"
 import map from "./Photos/map.png"
 import house1 from "./Photos/house1.png"
 import house2 from "./Photos/house2.png"
+import NavBar from './NavBar.js';
 
 
 function SearchResults() {
 	return(
 		<div style={{backgroundColor:"#10a690"}}>
+			<NavBar/>
 			<Navbar expand="lg" className="bg-body-tertiary">
-      			<Container>
-        			<Navbar.Brand href="#home"> <img src={hypeImage} style={{width:"50px",height:"50px",borderColor:"black" }}></img></Navbar.Brand>
-					<Navbar.Toggle aria-controls="basic-navbar-nav" />
-        			<Navbar.Collapse id="basic-navbar-nav">
-					<Nav className="me-auto">
-						<Nav.Link href="#home"><img src={profilePic} style={{width:"50px",height:"50px",borderColor:"black" }}></img></Nav.Link>
-						<Nav.Link href="#favourites"><img src={favourites} style={{width:"50px",height:"50px",borderColor:"black" }}></img></Nav.Link>
-
-					</Nav>
-					</Navbar.Collapse>
-				</Container>
+ 
 				<Container>
 					<Nav className="justify-content-end" >
 						<input type="text" placeholder='Search' ></input>
