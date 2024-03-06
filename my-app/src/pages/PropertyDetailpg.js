@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import './PropertyDetailpg.css';
-import { Carousel, Container, Row, Col, Button, Card, Modal } from 'react-bootstrap';
+import { Carousel, Container, Navbar, Nav, Card, Modal, Button, Tab, Tabs } from 'react-bootstrap';
 import backArrow from "./Photos/backArrow.png";
 import heartIcon from "./Photos/favourites.png";
-import homeIcon from "./Photos/homePage.png";
-import logoIcon from "./Photos/hype.png"; // Make sure to have your logo image in the Photos directory
-import realtorImage from "./Photos/shrek_realtor.png";
+import addIcon from "./Photos/addToFav.png"; 
+import logoIcon from "./Photos/hype.png";
+import realtorImage from "./Photos/profileLogo.png";
 import house1 from "./Photos/house1.png";
 import house2 from "./Photos/house2.png";
 import house3 from "./Photos/house3.png";
@@ -14,6 +14,7 @@ import house4 from "./Photos/house4.png";
 function PropertyDetailPage() {
   const [showModal, setShowModal] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [activeTab, setActiveTab] = useState('description');
 
   const propertyImages = [house1, house2, house3, house4];
   const propertyDetails = {
@@ -24,7 +25,9 @@ function PropertyDetailPage() {
       name: 'John Realtor',
       phone: '800-555-0199',
       email: 'john@dreamhomes.com'
-    }
+    },
+    bedrooms: 4,
+    bathrooms: 3
   };
 
   const openModal = (index) => {
@@ -37,83 +40,113 @@ function PropertyDetailPage() {
   };
 
   const goToPrevious = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? propertyImages.length - 1 : prevIndex - 1
-    );
+    setCurrentIndex(prevIndex => prevIndex === 0 ? propertyImages.length - 1 : prevIndex - 1);
   };
 
   const goToNext = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === propertyImages.length - 1 ? 0 : prevIndex + 1
-    );
+    setCurrentIndex(prevIndex => prevIndex === propertyImages.length - 1 ? 0 : prevIndex + 1);
+  };
+  const addToFavorites = () => {
+    // Placeholder function to mimic adding to favorites
+    console.log('Added to favorites!');
+  };
+  // Function to format bedroom and bathroom counts
+  const formatRooms = (bedrooms, bathrooms) => {
+    return `${bedrooms} Bedroom${bedrooms > 1 ? 's' : ''}, ${bathrooms} Bathroom${bathrooms > 1 ? 's' : ''}`;
   };
 
   return (
-    <Container fluid className="p-0">
-      {/* Navigation and Favorites */}
-      <Row className="my-4 navigation-icons">
-        <Col xs={4} className="text-start">
-          <img src={logoIcon} alt="Logo" className="icon logo-icon" />
-          <img src={backArrow} alt="Back" className="icon back-icon" />
-          <span className="align-middle">Back to Search</span>
-        </Col>
-        <Col xs={4} className="text-center">
-          <img src={homeIcon} alt="Home" className="icon home-icon" />
-        </Col>
-        <Col xs={4} className="text-end">
-          <img src={heartIcon} alt="Add to Favorites" className="icon favorites-icon" />
-        </Col>
-      </Row>
+    <div style={{ height: "700px", background: "linear-gradient(rgba(16, 166, 144, 0.5), white)" }}>
+      
+      {/* Navigation bar at the top */}
+      <Navbar expand="lg" className="bg-white">
+        <Container>
+          <Navbar.Brand href="#home">
+            <img src={logoIcon} alt="Home" title="Return to the homepage" style={{width: "50px", height: "50px"}} />
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link href="#back">
+                <img src={backArrow} alt="Back to Search" title="Return to search page" style={{width: "50px", height: "50px"}} />
+              </Nav.Link>
+              <Nav.Link href="#favorites">
+                <img src={heartIcon} alt="Favorites" title="Go to favorite page" style={{width: "50px", height: "50px"}} />
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+  
+      {/* Main container for carousel and details */}
+      <Container fluid className="p-0">
+        {/* Carousel for property images */}
+        {/* Carousel styling adjusted to match the desired layout */}
+        <Carousel className="property-images-carousel mx-auto my-4" style={{ maxWidth: "90%" }}>
+          {propertyImages.map((src, index) => (
+            <Carousel.Item key={index} onClick={() => openModal(index)}>
+              <img className="d-block w-100" src={src} alt={`Slide ${index}`} />
+            </Carousel.Item>
+          ))}
+        </Carousel>
 
-      {/* Property Images Carousel */}
-      <Carousel className="property-images-carousel">
-        {propertyImages.map((src, index) => (
-          <Carousel.Item key={index} onClick={() => openModal(index)}>
-            <img className="d-block w-100" src={src} alt={`Slide ${index}`} />
-          </Carousel.Item>
-        ))}
-      </Carousel>
+       {/* Property details and realtor information with adjusted layout */}
+       <div className="property-realtor-wrapper mx-auto" style={{ maxWidth: "90%" }}>
+          {/* Listing details taking up the majority of the width */}
+          <div className="property-details">
+            {/* Listing details with the favorites button at the top right */}
+          <div className="listing-header" style={{ flexGrow: 1, marginRight: '15px' }}>
+                {/* Add to Favorites Icon Button */}
+                <button className="favorite-btn" onClick={addToFavorites} title="Add to favorites">
+              <img src={addIcon} alt="Add to Favorites" />
+              </button>
+              <div>
+                <h3>{propertyDetails.address}</h3>
+                <h2>{propertyDetails.price}</h2>
+                <p>{formatRooms(propertyDetails.bedrooms, propertyDetails.bathrooms)}</p>
+              </div>
+            
+              </div>
+            {/* Tabs for property description and neighborhood information */}
+            <Tabs activeKey={activeTab} onSelect={(k) => setActiveTab(k)} className="mb-3">
+              <Tab eventKey="description" title="Description">
+                <p>{propertyDetails.description}</p>
+              </Tab>
+              <Tab eventKey="neighborhood" title="Neighborhood">
+                <p>Neighborhood info...</p>
+              </Tab>
+            </Tabs>
+          </div>
+          
+          {/* Realtor info taking up 30% of the width */}
+          <div className="realtor-card-wrapper">
+            <Card className="realtor-card">
+              <Card.Img variant="top" src={realtorImage} alt="Realtor" />
+              <Card.Body>
+                <Card.Title>{propertyDetails.realtor.name}</Card.Title>
+                <Card.Text>{propertyDetails.realtor.phone}</Card.Text>
+                <Card.Text>{propertyDetails.realtor.email}</Card.Text>
+                <Button variant="primary">Book Showing</Button>
+              </Card.Body>
+            </Card>
+          </div>
+        </div>
 
-      {/* Property Description and Realtor Info */}
-      <Row className="my-4 property-details-row">
-        <Col lg={8} className="property-description">
-          <h3>{propertyDetails.address}</h3>
-          <h4>{propertyDetails.price}</h4>
-          <p>{propertyDetails.description}</p>
-        </Col>
-        <Col lg={4} className="realtor-info">
-          <Card>
-            <Card.Img variant="top" src={realtorImage} alt="Realtor" />
-            <Card.Body>
-              <Card.Title>Realtor Information</Card.Title>
-              <Card.Text>{propertyDetails.realtor.name}</Card.Text>
-              <Card.Text>{propertyDetails.realtor.phone}</Card.Text>
-              <Card.Text>{propertyDetails.realtor.email}</Card.Text>
-              <Button variant="primary">Book Showing</Button>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-
-      {/* Modal for the enlarged image view */}
-      <Modal show={showModal} onHide={closeModal} size="lg" centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Property Image</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <img src={propertyImages[currentIndex]} alt="Property" className="w-100" />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={goToPrevious}>
-            Previous
-          </Button>
-          <Button variant="secondary" onClick={goToNext}>
-            Next
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </Container>
-   );
+        {/* Modal for enlarged image view */}
+        <Modal show={showModal} onHide={closeModal} size="lg" centered>
+          <Modal.Header closeButton>
+            <Modal.Title>Property Image</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <img src={propertyImages[currentIndex]} alt="Property" className="w-100" />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={goToPrevious}>Previous</Button>
+            <Button variant="secondary" onClick={goToNext}>Next</Button>
+          </Modal.Footer>
+        </Modal>
+      </Container>
+    </div>
+  );
 }
-
 export default PropertyDetailPage;

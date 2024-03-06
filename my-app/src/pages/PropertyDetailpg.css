@@ -1,122 +1,109 @@
-/* PropertyDetailpg.css */
-
 /* Global settings */
 * {
-  box-sizing: border-box;
+  box-sizing: border-box; /* Ensures padding and border are included in the total width and height */
 }
 
 body {
-  margin: 0;
+  margin: 0; /* Removes the default margin of the body */
 }
 
 /* Ensure full width for container and no side paddings */
 .container-fluid {
-  padding: 0;
-  margin: 0 auto;
-  width: 100%;
+  padding: 0; 
+  margin: 0 auto; /* Centers the container */
+  width: 100%; /* Full width */
 }
 
 /* Adjust the icons and their alignment */
 .icon {
-  height: 50px; /* Increased size for icons */
-  cursor: pointer;
-}
-
-/* Specific icon adjustments for better visibility */
-.logo-icon {
-  height: 60px; /* Logo should be prominent */
-}
-
-.back-icon {
-  height: 50px; /* Slightly smaller than the logo but still visible */
-}
-
-.home-icon {
-  height: 50px; /* Visible and central */
-}
-
-.favorites-icon {
-  height: 50px; /* Consistent with other icons */
+  height: auto; /* Allows the icon's height to scale with the width maintaining aspect ratio */
+  width: 3%; /* Icon width relative to the viewport width for responsiveness */
+  max-width: 50px; /* Maximum width to prevent icons from being too large */
+  cursor: pointer; /* Indicates an interactive element */
 }
 
 /* Style for the navigation icons */
 .navigation-icons {
-  margin-bottom: 1rem; /* Space below the icons row */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  margin-bottom: 1rem; /* Space below the navigation icons */
+  display: flex; /* Aligns children inline with spacing */
+  justify-content: space-between; /* Distributes space evenly between items */
+  align-items: center; /* Centers items vertically */
 }
 
 /* Carousel fitting and functionality */
 .property-images-carousel .carousel-item img {
-  width: 100%;
-  object-fit: cover; /* Cover ensures that the aspect ratio is maintained */
-  cursor: pointer; /* Indicates that the images are clickable */
+  object-fit: contain; /* Covers the element's box while maintaining aspect ratio */
+  cursor: pointer; /* Indicates that the item is interactive */
+  max-height: 50vh; /* Maximum height to ensure it does not push content out of the viewport */
 }
 
-/* Adjusting carousel height for different screen sizes */
-@media (min-width: 992px) {
-  .property-images-carousel .carousel-item img {
-    height: 65vh; /* Larger screens get a taller carousel */
-  }
-}
-
-@media (max-width: 991px) {
-  .property-images-carousel .carousel-item img {
-    height: 45vh; /* Smaller screens get a shorter carousel */
-  }
-}
-
-/* Property Description and Realtor Info */
-.property-details-row {
+/* Wrapping container for property details and realtor card */
+.property-realtor-wrapper {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start; /* Align items to the top */
 }
 
-.property-description {
-  padding: 1rem;
-  flex: 0 0 70%; /* Takes up 70% of the space on larger screens */
-  max-width: 70%;
+/* Property details styling */
+.property-details {
+  width: 70%; /* Set width to 70% of parent */
+  position: relative; /* For absolute positioning of the favorite button */
 }
 
-.realtor-info {
-  padding: 1rem;
-  flex: 0 0 30%; /* Takes up 30% of the space on larger screens */
-  max-width: 30%;
+/* Header of the listing details where the favorites button will be */
+.listing-header {
+  position: relative; /* For absolute positioning of the favorite button */
 }
 
-.realtor-info .card {
-  width: 100%; /* The card should be full width of the column */
+/* Realtor card wrapper styling */
+.realtor-card-wrapper {
+  width: 30%; /* Set width to 30% of parent */
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
 }
 
-/* Adjust image height for the realtor card */
-.realtor-info .card-img-top {
-  height: auto; /* Adjust height automatically based on aspect ratio */
-  object-fit: cover; /* Cover ensures that the aspect ratio is maintained */
+/* Realtor card styling */
+.realtor-card {
+  display: flex;
+  flex-direction: row; /* Place image and text side by side */
+  align-items: center; /* Center items vertically */
 }
 
+/* Adjust the realtor image to be 40% of the card */
+.realtor-card .card-img-top {
+  width: 30%;
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Adjust the card body to be 60% of the card */
+.realtor-card .card-body {
+  width: 50%;
+}
+
+/* Favorites button styling */
+.favorite-btn {
+  position: absolute;
+  top: -10px; /* Position above the listing details */
+  right: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* Ensure the button size is as small as the icon, plus a little padding */
+.favorite-btn img {
+  width: 50px; /* Icon width */
+  height: 50px; /* Icon height */
+  padding: 5px; /* Clickable area padding */
+}
+
+.favorite-btn:hover img {
+  transform: scale(1.1);
+}
 /* Style for the buttons */
 .btn-primary {
-  width: 100%; /* Full width button */
-  background-color: #0056b3;
-  border-color: #0056b3;
+  width: 100%; /* Full width button for better touch targets */
+  background-color: #0056b3; /* Bootstrap primary color for background */
+  border-color: #0056b3; /* Bootstrap primary color for border */
 }
-
-/* Responsive adjustments for layout and font sizes */
-@media (max-width: 991px) {
-  .property-description,
-  .realtor-info {
-    flex-basis: 100%; /* Full width on smaller screens */
-  }
-
-  /* Smaller text on smaller screens */
-  .property-description h3,
-  .property-description h4,
-  .property-description p,
-  .realtor-info .card-title,
-  .realtor-info .card-text {
-    font-size: smaller;
-  }
-}
-
-/* Additional responsive adjustments can be added as needed */
