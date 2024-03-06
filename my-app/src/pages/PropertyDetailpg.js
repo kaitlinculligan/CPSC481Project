@@ -50,20 +50,7 @@ function PropertyDetailPage() {
 
   return (
     <Container fluid className="p-0">
-      {/* Navigation and Favorites */}
-      <Row className="my-4 navigation-icons">
-        <Col xs={4} className="text-start">
-          <img src={logoIcon} alt="Logo" className="icon logo-icon" />
-          <img src={backArrow} alt="Back" className="icon back-icon" />
-          <span className="align-middle">Back to Search</span>
-        </Col>
-        <Col xs={4} className="text-center">
-          <img src={homeIcon} alt="Home" className="icon home-icon" />
-        </Col>
-        <Col xs={4} className="text-end">
-          <img src={heartIcon} alt="Add to Favorites" className="icon favorites-icon" />
-        </Col>
-      </Row>
+
 
       {/* Property Images Carousel */}
       <Carousel className="property-images-carousel">

@@ -12,22 +12,7 @@ import profilePic from "./Photos/homePage.png";
 
 function SearchPage() {
 	return <div style={{height:"700px",background: "linear-gradient(rgba(16, 166, 144, 0.5), white)" }}>
-	<div className="row" style={{height:"45px", width:"100%",backgroundColor:"white"}}>
-	<Navbar expand="lg" className="bg-body-tertiary">
-      			<Container>
-        			<Navbar.Brand href="#home"> <img src={hypeImage} style={{width:"50px",height:"50px",borderColor:"black" }}></img></Navbar.Brand>
-					<Navbar.Toggle aria-controls="basic-navbar-nav" />
-        			<Navbar.Collapse id="basic-navbar-nav">
-					<Nav className="me-auto">
-						<Nav.Link href="#home"><img src={profilePic} style={{width:"50px",height:"50px",borderColor:"black" }}></img></Nav.Link>
 
-						<Nav.Link href="#favourites"><img src={favourites} style={{width:"50px",height:"50px",borderColor:"black" }}></img></Nav.Link>
-
-					</Nav>
-					</Navbar.Collapse>
-				</Container>
-			</Navbar>
-	</div>
 	<br></br>
 	<br></br>
 	<div className="row w-100 px-2 flex-column d-flex align-items-center py-2 justify-content-start" style={{height:"25px",paddingLeft:"45px"}}>

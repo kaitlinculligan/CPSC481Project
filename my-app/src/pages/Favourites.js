@@ -46,7 +46,7 @@ function Favourites() {
 
       {/* Favorites Listings */}
       {favoriteListings.map((listing) => (
-        <div key={listing.id} className="row justify-content-center" style={{ margin: "10px 0", padding: "50px", backgroundColor: "grey", border: "2px solid black" }}>
+        <div key={listing.id} className="row justify-content-center" style={{ margin: "10px 0", padding: "50px", backgroundColor: "white", border: "2px solid black" }}>
           <div className="col" style={{ display: "flex", alignItems: "center" }}>
             {/* Image on the left side */}
             <div style={{ marginRight: "10px" }}>

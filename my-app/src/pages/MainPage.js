@@ -2,13 +2,14 @@ import React from "react";
 import "./MainPage.css";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
-import hypeImage from "./Photos/hype.png";
+import hypeImage from "./Photos/logoAndName.png";
 import house1 from "./Photos/house1.png";
 import house2 from "./Photos/house2.png";
 import house3 from "./Photos/house3.png";
 import house4 from "./Photos/house4.png";
 import profilePic from "./Photos/profileLogo.png";
 import favourites from "./Photos/favourites.png";
+import help from "./Photos/help_icon.png";
 
 function MainPage() {
   const navigateToPage = (url) => {
@@ -17,9 +18,9 @@ function MainPage() {
   };
 
   return (
-    <div style={{ backgroundColor: "#10a690" }}>
-      <div className="row" style={{ height: "250px" }}>
-        <div className="col p-5" style={{ maxWidth: "250px", height: "400px" }}>
+    <div style={{ background: "linear-gradient(rgba(16, 166, 144, 0.5), white)" }}>
+      <div className="row" style={{ height: "400px" }}>
+        <div className="col p-5" style={{ maxWidth: "250px", height: "600px" }}>
           <strong>
             <p1>Login</p1>
           </strong>
@@ -48,6 +49,7 @@ function MainPage() {
             style={{
               cursor: "pointer",
               marginLeft: "1px",
+              marginBottom: "40px",
               padding: "20px",
               width: "100px",
               height: "100px",
@@ -57,12 +59,27 @@ function MainPage() {
               backgroundRepeat: "no-repeat",
             }}
           ></div>
+          <strong>
+            <p1>Need Help?</p1>
+          </strong>
+          <div
+            className="row"
+            onClick={() => navigateToPage("./favourites")}
+            style={{
+              cursor: "pointer",
+              marginLeft: "1px",
+              marginBottom: "40px",
+              padding: "20px",
+              width: "100px",
+              height: "100px",
+              backgroundImage: `url(${help})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          ></div>
         </div>
-        <div className="col justify-content-center text-center">
-          <h1 className="justify-content-center" style={{ transform: "translateY(60px)", translate: "30px" }}>
-            CALGARY HOMES
-          </h1>
-        </div>
+
         <div className="col justify-content-right m-5" style={{ height: "175px", maxWidth: "250px" }}>
           <div className="d-flex flex-column align-items-stretch">
             <button
@@ -85,12 +102,14 @@ function MainPage() {
             </button>
           </div>
         </div>
+
+        <div className="col justify-content-center align-items-center">
+          <img src={hypeImage} className="img-fluid " style={{ width: "450px", height: "450px", borderColor: "black" }}></img>
+        </div>
       </div>
-      <div className="row justify-content-center" style={{ paddingBottom: "50px" }}>
-        <img src={hypeImage} className="img-fluid img-thumbnail rounded-circle" style={{ width: "250px", height: "250px", borderColor: "black" }}></img>
-      </div>
+
       <div className="row justify-content-center pb-5">
-        <Button style={{ width: "200px", backgroundColor:"green" }}>Discover Your Future House!</Button>
+        <Button style={{ width: "200px", backgroundColor:"black" }}>Discover Your Future House!</Button>
       </div>
       <div className="row justify-content-center">
         <div className="col-4" style={{ maxWidth: "375px", height: "40px", border: " 10px solid black", backgroundColor: "black" }}>

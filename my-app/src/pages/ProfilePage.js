@@ -13,41 +13,14 @@ function ProfilePage() {
     <div className="flex-row d-flex vw-100 vh-100" style={{ background: "linear-gradient(rgba(16, 166, 144, 0.5), white)" }}>
       <div className="w-25 d-flex flex-column justify-content-between">
         <div className=" h-100">
-          <div className="w-100 p-3 h-auto flex-row d-flex justify-content-evenly pt-5">
-            <div
-              className="col-4"
-              onClick={() => navigateToPage("./")}
-              style={{
-                cursor: "pointer",
-                width: "100px",
-                height: "100px",
-                backgroundImage: `url(${homePic})`,
-                backgroundSize: "contain",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-              }}
-            />
-            <div
-              className="col-4"
-              onClick={() => navigateToPage("./favourites")}
-              style={{
-                cursor: "pointer",
-                width: "100px",
-                height: "100px",
-                backgroundImage: `url(${favourites})`,
-                backgroundSize: "contain",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-              }}
-            />
-          </div>
+
           <div className="w-100 px-2 flex-column d-flex align-items-center py-2 justify-content-start">
             <img src={profilePic} className="img-fluid" style={{ width: "200px", height: "200px", objectFit: "contain" }} alt="description"></img>
             <h1>Mr. User</h1>
             <span>Email: UserEmail1@gmail.com</span>
             <span>Phone: 123-456-7890</span>
           </div>
-          <Button className=" ms-3 w-50" style={{height:"50px"}}>Edit Profile</Button>
+          <Button className="ms-3 w-50 mx-auto" style={{ height: "50px", backgroundColor: "#10a690" }}>Edit Profile</Button>
         </div>
       </div>
       <div className="w-75 flex-column d-flex align-items-center pt-5">

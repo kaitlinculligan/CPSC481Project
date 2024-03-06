@@ -9,8 +9,7 @@ function LoginPage() {
 
 return <div className='col justify-conent-center' style={{ height: '100vh', width: '100vw' }}>
     <img src={hypeImage} alt="Background Image" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: -1, opacity: 0.1 }} />
-    <div className='row justify-content-center' onClick={() => navigateToPage('/')} style={{cursor: 'pointer',margin:"25px",width:"100px",height:"100px", backgroundImage: `url(${profilePic})`, backgroundSize: 'cover',backgroundPosition: 'center',backgroundRepeat: 'no-repeat'}}>
-    </div>
+
     <div className='row justify-content-center text-center' style={{marginBottom:"25px"}}><h1 style={{ fontSize: '4.2em' }}>Calgary Homes</h1></div>
     <div className='row justify-content-center'>
         <div className='col-4' >
@@ -28,8 +27,8 @@ return <div className='col justify-conent-center' style={{ height: '100vh', widt
                         <input type='password' className='form-control' id='exampleInputPassword1'style={{border:"3px solid grey"}} />
                     </div>
                     <div className="felx-row d-flex justify-content-evenly ">
-                    <button type='submit' className='btn btn-primary w-25 bg-success'>Login</button>
-                    <button type='submit' className='btn btn-primary w-25 bg-success'>Register</button>
+                    <button type='submit' className='btn btn-primary w-25' style={{ backgroundColor: "#10a690" }}>Login</button>
+                    <button type='submit' className='btn btn-primary w-25' style={{ backgroundColor: "#10a690" }}>Register</button>
                     <p1 style={{ cursor: "pointer", textDecoration: 'underline', color: 'blue' }}>Forgot Password?</p1>
                     </div>
                 </form>

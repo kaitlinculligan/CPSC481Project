@@ -12,15 +12,7 @@ function Filters() {
 		<div>
 			<div className='row'>
 			<div className='col'>
-			<Navbar expand="lg" >
-      			<Container>
-        			<Navbar.Collapse id="basic-navbar-nav">
-					<Nav className="me-auto">
-						<Nav.Link href="#home"><img src={backArrow} style={{width:"50px",height:"50px",borderColor:"black" }}></img></Nav.Link>
-					</Nav>
-					</Navbar.Collapse>
-				</Container>
-			</Navbar>
+				
 			</div>
 		</div>
 		<div className="row">
