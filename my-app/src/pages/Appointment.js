@@ -9,10 +9,12 @@ import homeButton from "./Photos/homePage.png"
 import emailIcon from "./Photos/emailLogopng.png"
 import phoneIcon from "./Photos/phoneLogo.png"
 import house1 from "./Photos/house1.png"
+import NavBar from './NavBar.js';
 
 function Appointment() {
 	return(
 	<div style={{background: "linear-gradient(rgba(16, 166, 144, 0.5), white)" }}>
+		<NavBar/>
 		<div className='row'>
 			<div className='col'>
 

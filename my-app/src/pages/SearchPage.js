@@ -9,10 +9,11 @@ import dollarsign from "./Photos/dollarsignpng.png";
 import pin from "./Photos/locationPin.png";
 import favourites from "./Photos/favourites.png";
 import profilePic from "./Photos/homePage.png";
+import NavBar from './NavBar.js';
 
 function SearchPage() {
 	return <div style={{height:"700px",background: "linear-gradient(rgba(16, 166, 144, 0.5), white)" }}>
-
+	<NavBar/>
 	<br></br>
 	<br></br>
 	<div className="row w-100 px-2 flex-column d-flex align-items-center py-2 justify-content-start" style={{height:"25px",paddingLeft:"45px"}}>

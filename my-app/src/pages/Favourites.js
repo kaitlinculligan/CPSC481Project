@@ -2,6 +2,7 @@ import React from 'react';
 import './MainPage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import hypeImage from "./Photos/hype.png";
+import NavBar from './NavBar.js';
 
 function Favourites() {
 
@@ -20,6 +21,7 @@ function Favourites() {
 
   return (
     <div style={{height:"700px", backgroundColor:"#10a690"}}>
+      <NavBar/>
       <div className="row" style={{height:"25px", width:"100px", paddingLeft:"45px"}}>
         <h1>Favourites</h1>
       </div>
