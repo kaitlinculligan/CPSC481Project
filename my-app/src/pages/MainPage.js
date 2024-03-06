@@ -2,7 +2,7 @@ import React from "react";
 import "./MainPage.css";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
-import hypeImage from "./Photos/hype.png";
+import hypeImage from "./Photos/logoAndName.png";
 import house1 from "./Photos/house1.png";
 import house2 from "./Photos/house2.png";
 import house3 from "./Photos/house3.png";
@@ -58,11 +58,7 @@ function MainPage() {
             }}
           ></div>
         </div>
-        <div className="col justify-content-center text-center">
-          <h1 className="justify-content-center" style={{ transform: "translateY(60px)", translate: "30px" }}>
-            CALGARY HOMES
-          </h1>
-        </div>
+
         <div className="col justify-content-right m-5" style={{ height: "175px", maxWidth: "250px" }}>
           <div className="d-flex flex-column align-items-stretch">
             <button
@@ -86,11 +82,11 @@ function MainPage() {
           </div>
         </div>
       </div>
-      <div className="row justify-content-center" style={{ paddingBottom: "50px" }}>
-        <img src={hypeImage} className="img-fluid img-thumbnail rounded-circle" style={{ width: "250px", height: "250px", borderColor: "black" }}></img>
+      <div className="row justify-content-center" style={{ paddingBottom: "50px", }}>
+        <img src={hypeImage} className="img-fluid " style={{ width: "400px", height: "400px", borderColor: "black" }}></img>
       </div>
       <div className="row justify-content-center pb-5">
-        <Button style={{ width: "200px", backgroundColor:"green" }}>Discover Your Future House!</Button>
+        <Button style={{ width: "200px", backgroundColor:"black" }}>Discover Your Future House!</Button>
       </div>
       <div className="row justify-content-center">
         <div className="col-4" style={{ maxWidth: "375px", height: "40px", border: " 10px solid black", backgroundColor: "black" }}>
