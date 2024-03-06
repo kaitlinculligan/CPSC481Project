@@ -10,12 +10,14 @@ import ProfilePage from './pages/ProfilePage.js';
 import Appointment from './pages/Appointment.js';
 import PropertyDetailPage from './pages/PropertyDetailpg.js';
 import Fitlers from "./pages/Filters.js"
+
 import HouseCard from './pages/HouseCard.js';
 import NavBar from './NavBar.js';
 
 
 function App() {
   return (
+
     <div>
       <NavBar /> 
       <Routes>
@@ -32,6 +34,7 @@ function App() {
         <Route path='/housecard' element={<HouseCard/>}/>
       </Routes>
     </div>
+
   );
 }
 
