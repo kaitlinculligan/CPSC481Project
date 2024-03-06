@@ -12,14 +12,12 @@ import PropertyDetailPage from './pages/PropertyDetailpg.js';
 import Fitlers from "./pages/Filters.js"
 
 import HouseCard from './pages/HouseCard.js';
-import NavBar from './NavBar.js';
 
 
 function App() {
   return (
 
     <div>
-      <NavBar /> 
       <Routes>
         <Route path="/" element={<MainPage/>} />
         <Route path="/login" element={<LoginPage/>} />

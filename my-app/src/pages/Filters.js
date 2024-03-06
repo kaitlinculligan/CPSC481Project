@@ -6,10 +6,12 @@ import Container from 'react-bootstrap/Container';
 import hypeImage from "./Photos/hype.png"
 import backArrow from "./Photos/backArrow.png"
 import homeButton from "./Photos/homePage.png"
+import NavBar from './NavBar.js';
 
 function Filters() {
 	return(
 		<div>
+			<NavBar />
 			<div className='row'>
 			<div className='col'>
 				

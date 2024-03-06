@@ -10,6 +10,7 @@ import house1 from "./Photos/house1.png";
 import house2 from "./Photos/house2.png";
 import house3 from "./Photos/house3.png";
 import house4 from "./Photos/house4.png";
+import NavBar from './NavBar.js';
 
 function PropertyDetailPage() {
   const [showModal, setShowModal] = useState(false);
@@ -51,7 +52,7 @@ function PropertyDetailPage() {
   return (
     <Container fluid className="p-0">
 
-
+      <NavBar />
       {/* Property Images Carousel */}
       <Carousel className="property-images-carousel">
         {propertyImages.map((src, index) => (
