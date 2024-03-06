@@ -38,3 +38,101 @@
 	border-radius: 4px;
 	box-sizing: border-box;
   }
+
+  /* New styles for the main content layout */
+/* Ensure full width of the viewport and background styling */
+.search-results-container {
+	height: 100vh;
+	background: linear-gradient(rgba(16, 166, 144, 0.5), white);
+  }
+  
+  /* Main content row padding for 5% space at both ends */
+  .search-results-content .row {
+	margin-left: 5%;
+	margin-right: 5%;
+  }
+  
+  /* Columns for listings and map to take up 45% width each */
+  .listings-column, .map-column {
+	width: 45%; /* Set width to 45% of the parent container */
+	float: left; /* Align columns side by side */
+  }
+  
+  /* Add space between the listings and the map */
+  .listings-column {
+	margin-right: 10%; /* Adjust if needed to create space between the columns */
+  }
+  
+  /* Style for each listing card */
+  .listing-card {
+	margin-bottom: 1rem; /* Space between cards */
+	box-shadow: 0 .125rem .25rem rgba(0,0,0,.075); /* Bootstrap-like box shadow */
+  }
+  
+  /* Responsive image within the listing card */
+  .img-fluid {
+	max-width: 100%;
+	height: auto; /* Maintain aspect ratio */
+  }
+  
+  /* Ensure dropdown menus display correctly */
+  .dropdown-menu {
+	position: static; /* Override default positioning if necessary */
+  }
+  
+  /* Style the search and filter icon buttons */
+  .search-button img, .filter-button img {
+	width: 24px; /* Set the size of the icons */
+	height: 24px;
+  }
+  
+  /* Ensure the input group components align correctly */
+  .input-group {
+	display: flex;
+	flex-wrap: nowrap; /* Prevent wrapping of components */
+  }
+  /* Style for sort dropdown */
+.sort-dropdown {
+    margin-bottom: 1rem; /* Add space below the dropdown */
+    width: 100%; /* Full width */
+}
+
+/* Style for the scrollable listings container */
+.scrollable-listings {
+    max-height: calc(100vh - 120px); /* Set a max-height to enable scrolling, adjust as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding-right: 15px; /* If you want a scrollbar inset */
+}
+
+/* Additional styles for dropdown button within .sort-dropdown */
+.sort-dropdown .dropdown-toggle {
+    width: 100%; /* Full width */
+    text-align: left; /* Align text to the left */
+}
+
+/* Add spacing around the Dropdown Items */
+.dropdown-item {
+    margin: 0; /* Adjust margin as needed */
+    padding: 0.5rem; /* Adjust padding as needed */
+}
+
+/* Adjust the .listings-column width if necessary to accommodate the sort dropdown */
+.listings-column {
+    width: 45%; /* Adjust if necessary for the sort dropdown */
+    padding: 1rem; /* Add padding inside the listings column */
+    /* Remove margin-right if you are using full width for the cards inside */
+}
+
+/* Update media query for responsiveness */
+@media (max-width: 768px) {
+	/* Adjust styles for smaller screens, such as stacking the listings and map */
+	.listings-column, .map-column {
+	  width: 100%;
+	  float: none;
+	  margin-right: 0;
+	}
+	.sort-dropdown, .scrollable-listings, .listings-column {
+        width: 100%;
+    }
+  }
+  

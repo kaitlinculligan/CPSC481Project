@@ -1,89 +1,139 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
+import React from 'react';
 import './SearchResults.css';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button'
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import Container from 'react-bootstrap/Container';
-import {Row, Col } from 'react-bootstrap';
+import { Row, Col, FormControl, InputGroup, Navbar, Container, Card, Nav, Dropdown, Button } from 'react-bootstrap';
 import favourites from "./Photos/favourites.png";
-import profilePic from "./Photos/homePage.png";
-import hypeImage from "./Photos/hype.png"
-import map from "./Photos/map.png"
-import house1 from "./Photos/house1.png"
-import house2 from "./Photos/house2.png"
-import NavBar from './NavBar.js';
+import logoIcon from "./Photos/logoAndName.png";
+import backArrow from "./Photos/backArrow.png";
+import map from "./Photos/map.png";
+import house1 from "./Photos/house1.png";
+import house2 from "./Photos/house2.png";
+import searchIcon from "./Photos/searchIcon.png"; // Imported Search Icon
+import filterIcon from "./Photos/filterIcon.png"; // Imported Filter Icon
+import { DropdownButton } from 'react-bootstrap';
+
 
 
 function SearchResults() {
-	return(
-		<div style={{backgroundColor:"#10a690"}}>
-			<NavBar/>
-			<Navbar expand="lg" className="bg-body-tertiary">
- 
-				<Container>
-					<Nav className="justify-content-end" >
-						<input type="text" placeholder='Search' ></input>
-						<input type="text" placeholder='Filters' ></input>
-					</Nav>
-				</Container>
-			</Navbar>
-			<div className='row'>
+	
+	// Helper function to create dropdown menus for Price, Beds, and Baths
+	const createDropdown = (title, options, className) => (
+        <Dropdown className={className}>
+            <Dropdown.Toggle variant="outline-secondary" id={`dropdown-${title}`}>
+                {title}
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+                {options.map((option, idx) => (
+                    <Dropdown.Item key={idx} eventKey={option}>
+                        {option}
+                    </Dropdown.Item>
+                ))}
+            </Dropdown.Menu>
+        </Dropdown>
+    );
 
-			<div className='col'style={{paddingRight:"25px" }}>
-				<div className='card'>
-					<Card style={{ width: '100%',paddingTop:"10px" }}>
-						<Card.Body>
-							<Row>
-							<Card.Title>123 Brookpark Ave.</Card.Title>
-							</Row>
-							<Row>
-								<Col>
-							<Card.Img variant="top" src={house1} />
-							</Col>
-							<Col>
-							<Card.Text>
-							<ul>
-								<li>Price: $ 595,000</li>
-								<li>Bedrooms: 3</li>
-								<li>Bathrooms: 2</li>
-							</ul>
-							</Card.Text>
-							</Col>
-							</Row>
-						</Card.Body>
-						</Card>
-				</div>
-				<div className='card'>
-					<Card  style={{ width: '100%',paddingTop:"10px" }}>
+	return (
+        <div style={{ height: "100vh", background: "linear-gradient(rgba(16, 166, 144, 0.5), white)" }}>
+            {/* Navbar */}
+            <Navbar expand="lg" className="bg-white">
+                <Container>
+                    <Navbar.Brand href="#home">
+                        <img src={logoIcon} alt="Home" title="Return to the homepage" style={{ width: "50px", height: "50px" }} />
+                    </Navbar.Brand>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav className="me-auto">
+                            <Nav.Link href="#back">
+                                <img src={backArrow} alt="Back to search" title="Return to search page" style={{ width: "50px", height: "50px" }} />
+                            </Nav.Link>
+                            <Nav.Link href="#favorites">
+                                <img src={favourites} alt="Favorites" title="Go to favorites page" style={{ width: "50px", height: "50px" }} />
+                            </Nav.Link>
+                        </Nav>
+                        <InputGroup>
+                            <FormControl placeholder="City, Neighbourhood, Address or MLS number" aria-label="Search" />
+                            {createDropdown("Min Price", ["$100,000", "$200,000", "$300,000"])} {/* Example options */}
+                            {createDropdown("Max Price", ["$500,000", "$600,000", "$700,000"])}
+                            {createDropdown("Beds", ["1", "2", "3"])}
+                            {createDropdown("Baths", ["1", "2", "3"])}
+                            <Button variant="outline-secondary">
+                                <img src={searchIcon} alt="Search" width="24" height="24" />
+                            </Button>
+                            <Button variant="outline-secondary">
+                                <img src={filterIcon} alt="Filter" width="24" height="24" />
+                            </Button>
+                        </InputGroup>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
+
+		 {/* Content Area */}
+		 <Container fluid className="p-0 search-results-content">
+		 <Row noGutters className="content-row">
+              {/* Listings Column */}
+			  <Col md={6} className="listings-column">
+				{/* Sort By Dropdown */}
+				<div className="sort-dropdown">
+                            <DropdownButton id="dropdown-item-button" title="Sort By">
+                                <Dropdown.Item as="button">Newest</Dropdown.Item>
+                                {/* Add more sort options here */}
+                            </DropdownButton>
+                        </div>
+
+                        {/* Scrollable Listings Container */}
+                        <div className="scrollable-listings">
+                            {/* Cards for Listing */}
+				<Card className="listing-card">
+                  <Card.Body>
+                    <Row>
+                      <Col md={6}>
+                        <img src={house1} alt="House at 123 Brookpark Ave." className="img-fluid" />
+                      </Col>
+                      <Col md={6}>
+                        <Card.Title>123 Brookpark Ave.</Card.Title>
+                        <Card.Text>
+                          <ul>
+                            <li>Price: $ 595,000</li>
+                            <li>Bedrooms: 3</li>
+                            <li>Bathrooms: 2</li>
+                          </ul>
+                        </Card.Text>
+                      </Col>
+                    </Row>
+                  </Card.Body>
+                </Card>
+				{/* Card for listing 2 */}
+				<Card className="listing-card">
 					<Card.Body>
-					<Row>
-						<Card.Title>481 Main Street</Card.Title>
-						</Row>
 						<Row>
-							<Col>
-						<Card.Img variant="top" src={house2} />
-						</Col>
-						<Col>
-						<Card.Text>
-						<ul>
-							<li>Price: $ 534,000</li>
-							<li>Bedrooms: 2</li>
-							<li>Bathrooms: 1</li>
-						</ul>
-						</Card.Text>
-						</Col>
+							<Col md={6}>
+								<Card.Img variant="top" src={house2} />
+							</Col>
+							<Col md={6}>
+								<Card.Title>481 Main Street</Card.Title>
+								<Card.Text>
+									<ul>
+										<li>Price: $ 534,000</li>
+										<li>Bedrooms: 2</li>
+										<li>Bathrooms: 1</li>
+									</ul>
+								</Card.Text>
+							</Col>
 						</Row>
 					</Card.Body>
 					</Card>
-				</div>
-				</div>
-				<div className='col'>
-				<img src={map} style={{ width: '100%',height:"100%" }}></img>
-				</div>
-				</div>
-		</div>
-	)
+                 </div>
+                    
+
+				</Col>
+
+                {/* Map Column */}
+				<Col md={6} className="map-column">
+                <img src={map} alt="Map" style={{ width: '100%', height: '100%' }} />
+              </Col>
+            </Row>
+          </Container>
+        </div>
+    );
 }
 
 export default SearchResults;

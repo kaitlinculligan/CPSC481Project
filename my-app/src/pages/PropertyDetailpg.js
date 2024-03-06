@@ -4,7 +4,7 @@ import { Carousel, Container, Navbar, Nav, Card, Modal, Button, Tab, Tabs } from
 import backArrow from "./Photos/backArrow.png";
 import heartIcon from "./Photos/favourites.png";
 import addIcon from "./Photos/addToFav.png"; 
-import logoIcon from "./Photos/hype.png";
+import logoIcon from "./Photos/logoAndName.png";
 import realtorImage from "./Photos/profileLogo.png";
 import house1 from "./Photos/house1.png";
 import house2 from "./Photos/house2.png";
