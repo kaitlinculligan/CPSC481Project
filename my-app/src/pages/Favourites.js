@@ -42,7 +42,7 @@ function Favourites() {
 
       {/* Advanced Filter Button */}
         <div className="col-auto">
-          <button>Advanced Filter + </button>
+          <button onClick={() => navigateToPage('./filters')}>Advanced Filter + </button>
         </div>
       </div>
 
