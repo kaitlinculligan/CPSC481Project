@@ -1,11 +1,11 @@
 import React from 'react';
 import "./NavBar.css";
-import hypeImage from "./pages/Photos/hype.png"
-import logoAndTitle from "./pages/Photos/logoAndName.png"
-import favourites from "./pages/Photos/favourites.png";
-import profilePic from "./pages/Photos/homePage.png";
-import help from "./pages/Photos/help_icon.png";
-import backArrow from "./pages/Photos/backArrow.png";
+import hypeImage from "./Photos/hype.png"
+import logoAndTitle from "./Photos/logoAndName.png"
+import favourites from "./Photos/favourites.png";
+import profilePic from "./Photos/homePage.png";
+import help from "./Photos/help_icon.png";
+import backArrow from "./Photos/backArrow.png";
 const NavBar = () => {
 
   const navigateToPage = (url) => {

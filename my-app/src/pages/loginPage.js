@@ -1,6 +1,7 @@
 import React from 'react';
 import profilePic from "./Photos/homePage.png";
 import hypeImage from "./Photos/hype.png";
+import NavBar from './NavBar.js';
 
 function LoginPage() {
     const navigateToPage = (url) => {
@@ -8,6 +9,7 @@ function LoginPage() {
       };
 
 return <div className='col justify-conent-center' style={{ height: '100vh', width: '100vw' }}>
+    <NavBar />
     <img src={hypeImage} alt="Background Image" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: -1, opacity: 0.1 }} />
 
     <div className='row justify-content-center text-center' style={{marginBottom:"25px"}}><h1 style={{ fontSize: '4.2em' }}>Calgary Homes</h1></div>

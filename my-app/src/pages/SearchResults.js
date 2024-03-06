@@ -12,11 +12,13 @@ import hypeImage from "./Photos/hype.png"
 import map from "./Photos/map.png"
 import house1 from "./Photos/house1.png"
 import house2 from "./Photos/house2.png"
+import NavBar from './NavBar.js';
 
 
 function SearchResults() {
 	return(
 		<div style={{backgroundColor:"#10a690"}}>
+			<NavBar/>
 			<Navbar expand="lg" className="bg-body-tertiary">
  
 				<Container>
