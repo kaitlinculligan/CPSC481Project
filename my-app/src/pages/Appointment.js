@@ -15,18 +15,7 @@ function Appointment() {
 	<div style={{background: "linear-gradient(rgba(16, 166, 144, 0.5), white)" }}>
 		<div className='row'>
 			<div className='col'>
-			<Navbar expand="lg" >
-      			<Container>
-        			<Navbar.Brand href="#home"> <img src={hypeImage} style={{width:"50px",height:"50px",borderColor:"black" }}></img></Navbar.Brand>
-					<Navbar.Toggle aria-controls="basic-navbar-nav" />
-        			<Navbar.Collapse id="basic-navbar-nav">
-					<Nav className="me-auto">
-					<Nav.Link href="#home"><img src={homeButton} style={{width:"50px",height:"50px",borderColor:"black" }}></img></Nav.Link>
-						<Nav.Link href="#home"><img src={backArrow} style={{width:"50px",height:"50px",borderColor:"black" }}></img></Nav.Link>
-					</Nav>
-					</Navbar.Collapse>
-				</Container>
-			</Navbar>
+
 			</div>
 			<div className='col'>
 				<h2>Contact Information</h2>
