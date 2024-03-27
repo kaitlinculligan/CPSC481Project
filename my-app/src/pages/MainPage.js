@@ -23,7 +23,7 @@ function MainPage() {
   return (
     <div className="flex-column d-flex vw-100 vh-100 " style={{ background: "linear-gradient(rgba(16, 166, 144, 0.5), white)" }}>
       <div className="d-flex flex-row justify-content-end w-100 " style={{ height: "14%" }}>
-        <div className=" d-felx flex-column justify-content-center  pe-3">
+        <div className=" d-felx flex-column justify-content-center  pe-3"style={{fontFamily:"Lucida Console"}}>
           Login
           <div
             onClick={() => navigateToPage("./login")}
@@ -38,11 +38,11 @@ function MainPage() {
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
-              transform: "translateX(-20px)",
+              transform: "translateX(-18px)",
             }}
           ></div>
         </div>
-        <div className=" d-felx flex-column me-4 ">
+        <div className=" d-felx flex-column me-4" style={{fontFamily:"Lucida Console"}}>
           Favourites
           <div
             onClick={() => navigateToPage("./favourites")}
@@ -56,13 +56,14 @@ function MainPage() {
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
+              transform: "translateX(10px)",
             }}
           ></div>
         </div>
       </div>
       <div className="d-flex flex-row justify-content-center w-100" style={{ height: "33%" }}>
         <div className=" d-flex flex-column justify-content-center h-100 ps-5" style={{ width: "40%" }}>
-          <img src={hypeImage} className="img-fluid img-thumbnail rounded-circle" style={{ width: "200px", height: "200px", borderColor: "black" }}></img>
+          <img src={hypeImage} className="img-fluid img-thumbnail rounded-circle" style={{ width: "200px", height: "200px", transform: "translateY(-35px)" }}></img>
         </div>
         <div className=" d-flex flex-column align-content-start h-100 mt-5" style={{ width: "60%" }}>
           <div style={{ fontWeight: "bolder", transform: "translateX(-155px)" }}>
