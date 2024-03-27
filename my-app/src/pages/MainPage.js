@@ -18,7 +18,7 @@ function MainPage() {
     // This will reload the page and navigate to the new URL.
     window.location.href = url;
   };
-  const textForAnimation = "Find your dream home today!";
+  const textForAnimation = "Find Your Dream Home Today!";
 
   return (
     <div className="flex-column d-flex vw-100 vh-100 " style={{ background: "linear-gradient(rgba(16, 166, 144, 0.5), white)" }}>
@@ -66,7 +66,7 @@ function MainPage() {
           </div>
         </div>
       </div>
-      <div className="d-flex flex-row justify-content-evenly w-100 h-50  ">
+      <div className="d-flex flex-row justify-content-evenly h-50  " style={{width:"99.8%"}}>
         <div className=" h-100 d-flex flex-row justify-content-center " style={{ width: "20%" }}>
           <HouseCard
             Name="Brentwood Opporunity"
