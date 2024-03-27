@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import './PropertyDetailpg.css';
-import { Carousel, Container, Navbar, Nav, Card, Modal, Button, Tab, Tabs } from 'react-bootstrap';
+import React, { useState } from "react";
+import "./PropertyDetailpg.css";
+import { Carousel, Container, Navbar, Nav, Card, Modal, Button, Tab, Tabs } from "react-bootstrap";
 import backArrow from "./Photos/backArrow.png";
 import heartIcon from "./Photos/favourites.png";
-import addIcon from "./Photos/addToFav.png"; 
+import addIcon from "./Photos/addToFav.png";
 import logoIcon from "./Photos/logoAndName.png";
 import realtorImage from "./Photos/profileLogo.png";
 import house1 from "./Photos/house1.png";
@@ -14,20 +14,20 @@ import house4 from "./Photos/house4.png";
 function PropertyDetailPage() {
   const [showModal, setShowModal] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [activeTab, setActiveTab] = useState('description');
+  const [activeTab, setActiveTab] = useState("description");
 
   const propertyImages = [house1, house2, house3, house4];
   const propertyDetails = {
-    address: '1234 Dream Lane, Imagination City, Fantasy 00000',
-    price: '$999,000',
-    description: 'This dreamy property boasts 4 bedrooms, 3 bathrooms, and a magical garden.',
+    address: "1234 Dream Lane, Imagination City, Fantasy 00000",
+    price: "$999,000",
+    description: "This dreamy property boasts 4 bedrooms, 3 bathrooms, and a magical garden.",
     realtor: {
-      name: 'John Realtor',
-      phone: '800-555-0199',
-      email: 'john@dreamhomes.com'
+      name: "John Realtor",
+      phone: "800-555-0199",
+      email: "john@dreamhomes.com",
     },
     bedrooms: 4,
-    bathrooms: 3
+    bathrooms: 3,
   };
 
   const openModal = (index) => {
@@ -40,44 +40,43 @@ function PropertyDetailPage() {
   };
 
   const goToPrevious = () => {
-    setCurrentIndex(prevIndex => prevIndex === 0 ? propertyImages.length - 1 : prevIndex - 1);
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? propertyImages.length - 1 : prevIndex - 1));
   };
 
   const goToNext = () => {
-    setCurrentIndex(prevIndex => prevIndex === propertyImages.length - 1 ? 0 : prevIndex + 1);
+    setCurrentIndex((prevIndex) => (prevIndex === propertyImages.length - 1 ? 0 : prevIndex + 1));
   };
   const addToFavorites = () => {
     // Placeholder function to mimic adding to favorites
-    console.log('Added to favorites!');
+    console.log("Added to favorites!");
   };
   // Function to format bedroom and bathroom counts
   const formatRooms = (bedrooms, bathrooms) => {
-    return `${bedrooms} Bedroom${bedrooms > 1 ? 's' : ''}, ${bathrooms} Bathroom${bathrooms > 1 ? 's' : ''}`;
+    return `${bedrooms} Bedroom${bedrooms > 1 ? "s" : ""}, ${bathrooms} Bathroom${bathrooms > 1 ? "s" : ""}`;
   };
 
   return (
     <div style={{ height: "700px", background: "linear-gradient(rgba(16, 166, 144, 0.5), white)" }}>
-      
       {/* Navigation bar at the top */}
       <Navbar expand="lg" className="bg-white">
         <Container>
           <Navbar.Brand href="#home">
-            <img src={logoIcon} alt="Home" title="Return to the homepage" style={{width: "50px", height: "50px"}} />
+            <img src={logoIcon} alt="Home" title="Return to the homepage" style={{ width: "50px", height: "50px" }} />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="#back">
-                <img src={backArrow} alt="Back to Search" title="Return to search page" style={{width: "50px", height: "50px"}} />
+                <img src={backArrow} alt="Back to Search" title="Return to search page" style={{ width: "50px", height: "50px" }} />
               </Nav.Link>
               <Nav.Link href="#favorites">
-                <img src={heartIcon} alt="Favorites" title="Go to favorite page" style={{width: "50px", height: "50px"}} />
+                <img src={heartIcon} alt="Favorites" title="Go to favorite page" style={{ width: "50px", height: "50px" }} />
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
-  
+
       {/* Main container for carousel and details */}
       <Container fluid className="p-0">
         {/* Carousel for property images */}
@@ -90,23 +89,22 @@ function PropertyDetailPage() {
           ))}
         </Carousel>
 
-       {/* Property details and realtor information with adjusted layout */}
-       <div className="property-realtor-wrapper mx-auto" style={{ maxWidth: "90%" }}>
+        {/* Property details and realtor information with adjusted layout */}
+        <div className="property-realtor-wrapper mx-auto" style={{ maxWidth: "90%" }}>
           {/* Listing details taking up the majority of the width */}
           <div className="property-details">
             {/* Listing details with the favorites button at the top right */}
-          <div className="listing-header" style={{ flexGrow: 1, marginRight: '15px' }}>
-                {/* Add to Favorites Icon Button */}
-                <button className="favorite-btn" onClick={addToFavorites} title="Add to favorites">
-              <img src={addIcon} alt="Add to Favorites" />
+            <div className="listing-header" style={{ flexGrow: 1, marginRight: "15px" }}>
+              {/* Add to Favorites Icon Button */}
+              <button className="favorite-btn" onClick={addToFavorites} title="Add to favorites">
+                <img src={addIcon} alt="Add to Favorites" />
               </button>
               <div>
                 <h3>{propertyDetails.address}</h3>
                 <h2>{propertyDetails.price}</h2>
                 <p>{formatRooms(propertyDetails.bedrooms, propertyDetails.bathrooms)}</p>
               </div>
-            
-              </div>
+            </div>
             {/* Tabs for property description and neighborhood information */}
             <Tabs activeKey={activeTab} onSelect={(k) => setActiveTab(k)} className="mb-3">
               <Tab eventKey="description" title="Description">
@@ -117,7 +115,7 @@ function PropertyDetailPage() {
               </Tab>
             </Tabs>
           </div>
-          
+
           {/* Realtor info taking up 30% of the width */}
           <div className="realtor-card-wrapper">
             <Card className="realtor-card">
@@ -141,8 +139,12 @@ function PropertyDetailPage() {
             <img src={propertyImages[currentIndex]} alt="Property" className="w-100" />
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={goToPrevious}>Previous</Button>
-            <Button variant="secondary" onClick={goToNext}>Next</Button>
+            <Button variant="secondary" onClick={goToPrevious}>
+              Previous
+            </Button>
+            <Button variant="secondary" onClick={goToNext}>
+              Next
+            </Button>
           </Modal.Footer>
         </Modal>
       </Container>

@@ -1,0 +1,14 @@
+
+  
+  .cursor {
+    display: inline-block;
+    vertical-align: bottom;
+    color:#ffffff;
+    animation: blink 1s infinite;
+    margin-left: 0.15em;
+  }
+  
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
