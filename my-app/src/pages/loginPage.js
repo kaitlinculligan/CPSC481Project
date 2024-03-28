@@ -17,6 +17,10 @@ function LoginPage() {
         setEmail(event.target.value);
     }
 
+    const handleCreateAccount = () => {
+        navigate("/create");
+    }
+
     // Function to handle the password input change
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
@@ -67,7 +71,7 @@ return <div className='col justify-conent-center' style={{ height: '100vh', widt
                     </div>
                     <div className="felx-row d-flex justify-content-evenly ">
                     <button type='submit' className='btn btn-primary w-25' style={{ backgroundColor: "#10a690" }} onClick={handleSubmit}>Login</button>
-                    <button type='submit' className='btn btn-primary w-25' style={{ backgroundColor: "#10a690" }}>Register</button>
+                    <button onClick={handleCreateAccount} type='submit' className='btn btn-primary w-25' style={{ backgroundColor: "#10a690" }}>Create Account</button>
                     <p1 style={{ cursor: "pointer", textDecoration: 'underline', color: 'blue' }}>Forgot Password?</p1>
                     </div>
                 </form>
