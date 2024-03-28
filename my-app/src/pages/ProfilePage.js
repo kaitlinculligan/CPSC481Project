@@ -35,7 +35,7 @@ function ProfilePage() {
   };
 
   useEffect(() => {
-    if (user === undefined) {
+    if (user === undefined || user === "") {
       navigateToPage("./login");
     } else if (user === "Jack") {
       setEmail("JackH88@gmail.com");
@@ -45,6 +45,7 @@ function ProfilePage() {
   useEffect(() => {
     console.log("Updated Email:", email);
   }, [email]);
+  console.log("User:", user);
 
   // Function to handle form submission for profile updates
   const handleSaveChanges = () => {
@@ -68,7 +69,7 @@ function ProfilePage() {
               ></img>
               <h1 className=" py-3">{user === "Jack" ? "Jack Haden" : "Mr. User"}</h1>
               <span className=" py-1">{user === "Jack" ? `Email: ${email}` : "Email: UserEmail1@gmail.com"}</span>
-              <span className=" py-2">{user === "Jack" ? `Email: ${phone}` : "Phone: 403-787-9987"}</span>
+              <span className=" py-2">{user === "Jack" ? `Phone: ${phone}` : "Phone: 403-787-9987"}</span>
               <Button onClick={handleShow} className="w-50 mx-auto my-2" style={{ height: "50px", backgroundColor: "#10a690" }}>
                 Edit Profile
               </Button>

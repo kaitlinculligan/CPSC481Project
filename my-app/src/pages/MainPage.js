@@ -12,21 +12,36 @@ import favourites from "./Photos/favourites.png";
 import help from "./Photos/help_icon.png";
 import HouseCard from "./HouseCard";
 import TypingAnimation from "./TypingAnimation.js";
+import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function MainPage() {
+  const location = useLocation();
+  const user = location.state?.user;
+  const navigate = useNavigate();
   const navigateToPage = (url) => {
-    // This will reload the page and navigate to the new URL.
     window.location.href = url;
   };
+  const handleFavourites = () => {
+    navigate("/favourites", { state: { user } });
+  }
+  const handleProfile = () => {
+    navigate("/profile", { state: { user } });
+  }
+  const handleLogin = () => {
+    navigate("/login", { state: { user: "" } });
+  }
   const textForAnimation = "Find Your Dream Home Today!";
 
   return (
     <div className="flex-column d-flex vw-100 vh-100 " style={{ background: "linear-gradient(rgba(16, 166, 144, 0.5), white)" }}>
       <div className="d-flex flex-row justify-content-end w-100 " style={{ height: "14%" }}>
         <div className=" d-felx flex-column justify-content-center  pe-3"style={{fontFamily:"Lucida Console"}}>
-          Login
+          <div style={{transform: "translateX(-5px)"}}>
+            {user === "" ? "Login" : "Profile"}
+          </div>
           <div
-            onClick={() => navigateToPage("./login")}
+            onClick={user === "" ? handleLogin : handleProfile}
             style={{
               cursor: "pointer",
               marginLeft: "1px",
@@ -45,7 +60,7 @@ function MainPage() {
         <div className=" d-felx flex-column me-4" style={{fontFamily:"Lucida Console"}}>
           Favourites
           <div
-            onClick={() => navigateToPage("./favourites")}
+            onClick={user === "" ? handleLogin : handleFavourites}
             style={{
               cursor: "pointer",
               marginLeft: "1px",
