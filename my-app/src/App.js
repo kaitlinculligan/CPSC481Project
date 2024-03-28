@@ -10,6 +10,7 @@ import ProfilePage from './pages/ProfilePage.js';
 import Appointment from './pages/Appointment.js';
 import PropertyDetailPage from './pages/PropertyDetailpg.js';
 import Fitlers from "./pages/Filters.js"
+import CreateAccount from './pages/CreateAccount.js';
 
 import HouseCard from './pages/HouseCard.js';
 import Test from './pages/Test.js';
@@ -30,6 +31,7 @@ function App() {
         <Route path='/details' element={<PropertyDetailPage/>} />
         <Route path='/appointment' element={<Appointment/>} />
         <Route path='/filters' element={<Fitlers/>}/>
+        <Route path='/create' element={<CreateAccount/>}/>
         <Route path='/test' element={<Test/>}/>
       </Routes>
     </div>
