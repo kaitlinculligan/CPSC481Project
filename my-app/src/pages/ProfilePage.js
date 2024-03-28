@@ -2,6 +2,7 @@ import profilePic from "./Photos/profileLogo.png";
 import homePic from "./Photos/homePage.png";
 import hypeImage from "./Photos/hype.png";
 import favourites from "./Photos/favourites.png";
+import profilepic1 from "./Photos/profileLogo.png";
 import { Button, Card } from "react-bootstrap";
 import NavBar from "./NavBar.js";
 import { useLocation } from "react-router-dom";
@@ -60,7 +61,7 @@ function ProfilePage() {
           <div className="h-100">
             <div className="w-100 px-2 flex-column d-flex align-items-center py-2 justify-content-start">
               <img
-                src={user === "Jack" ? profilePic2 : profilePic}
+                src={user === "Jack" ? profilePic2 : profilepic1}
                 className="img-fluid rounded-circle pt-2"
                 alt="Profile"
                 style={{ width: "200px", height: "200px", objectFit: "contain" }}

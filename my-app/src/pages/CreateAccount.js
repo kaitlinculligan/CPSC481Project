@@ -1,22 +1,67 @@
-import React from "react";
-import profilePic from "./Photos/homePage.png";
-import hypeImage from "./Photos/hype.png";
+import React, { useState } from "react";
 import NavBar from "./NavBar.js";
+import hypeImage from "./Photos/hype.png";
+import { useNavigate } from 'react-router-dom';
 
 function CreatePage() {
+  const [email, setEmail] = useState("");
+  const [confirmEmail, setConfirmEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phonePart1, setPhonePart1] = useState("");
+  const [phonePart2, setPhonePart2] = useState("");
+  const [phonePart3, setPhonePart3] = useState("");
+  const [validationMessage, setValidationMessage] = useState("");
+  const navigate = useNavigate();
   const navigateToPage = (url) => {
     window.location.href = url;
   };
+  const isNumeric = /^\d+$/;
+
+  const handleCreate = (e) => {
+    e.preventDefault();
+    setValidationMessage("");
+
+    if (!email.includes("@")) {
+      setValidationMessage("Please enter a valid email address.");
+      return;
+    }
+
+    if (email !== confirmEmail) {
+      setValidationMessage("Email and confirm email do not match.");
+      return;
+    }
+
+    if (phonePart1.length !== 3 || phonePart2.length !== 3 || phonePart3.length !== 4) {
+      setValidationMessage("Please enter a valid phone number.");
+      return;
+    }
+    if(!isNumeric.test(phonePart1) || !isNumeric.test(phonePart2) || !isNumeric.test(phonePart3)){
+      setValidationMessage("Please enter a valid phone number.");
+      return;
+    }
+    alert("Account creation successful!");
+    navigate( "/profile", { state: { user: firstName } });
+  };
 
   return (
-    <div className="col justify-conent-center" style={{ height: "100vh", width: "100vw" }}>
+    <div className="col justify-content-center" style={{ height: "100vh", width: "100vw" }}>
       <NavBar />
       <img
         src={hypeImage}
-        alt="Background Image"
-        style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover", zIndex: -1, opacity: 0.1 }}
+        alt="Background"
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          zIndex: -1,
+          opacity: 0.1,
+        }}
       />
-
       <div className="row justify-content-center text-center" style={{ marginBottom: "25px" }}>
         <h1 style={{ fontSize: "4.2em" }}>Calgary Homes</h1>
       </div>
@@ -26,49 +71,104 @@ function CreatePage() {
             <p1 style={{ fontSize: "2.2em" }}>Create Account</p1>
           </div>
           <div className="row justify-content-center">
-            <form>
+            <form onSubmit={handleCreate}>
               <div className="form-group" style={{ marginBottom: "10px" }}>
-                <label htmlFor="exampleInputEmail1">Email address</label>
-                <input type="email" className="form-control" id="exampleInputEmail1" style={{ border: "3px solid grey" }} />
+                <label htmlFor="email">Email address</label>
+                <input
+                  type="email"
+                  className="form-control"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  style={{ border: "3px solid grey" }}
+                />
               </div>
               <div className="form-group" style={{ marginBottom: "10px" }}>
-                <label htmlFor="exampleInputEmail1">Confirm Email address</label>
-                <input type="email" className="form-control" id="exampleInputEmail1" style={{ border: "3px solid grey" }} />
+                <label htmlFor="confirmEmail">Confirm Email address</label>
+                <input
+                  type="email"
+                  className="form-control"
+                  id="confirmEmail"
+                  value={confirmEmail}
+                  onChange={(e) => setConfirmEmail(e.target.value)}
+                  style={{ border: "3px solid grey" }}
+                />
               </div>
               <div className="form-group" style={{ marginBottom: "25px" }}>
-                <label htmlFor="exampleInputPassword1">Password</label>
-                <input type="password" className="form-control" id="exampleInputPassword1" style={{ border: "3px solid grey" }} />
+                <label htmlFor="password">Password</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  style={{ border: "3px solid grey" }}
+                />
               </div>
-              {/* first name and last name text boxes */}
               <div className="form-group w-100 row" style={{ marginBottom: "10px" }}>
-                <div className="w-50">
-                  <label htmlFor="exampleInputEmail1">First Name</label>
-                  <input type="text" className="form-control" id="exampleInputEmail1" style={{ border: "3px solid grey" }} />
+                <div className="col">
+                  <label htmlFor="firstName">First Name</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="firstName"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    style={{ border: "3px solid grey" }}
+                  />
                 </div>
-                <div className="w-50">
-                  <label htmlFor="exampleInputEmail1">Last Name</label>
-                  <input type="text" className="form-control" id="exampleInputEmail1" style={{ border: "3px solid grey" }} />
+                <div className="col">
+                  <label htmlFor="lastName">Last Name</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="lastName"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    style={{ border: "3px solid grey" }}
+                  />
                 </div>
               </div>
-              <div className="form-group w-100 row  " style={{ marginBottom: "30px" }}>
-                <label htmlFor="exampleInputEmail1">Phone Number</label>
-                <div style={{ width: "30%" }}>
-                  <input type="text" className="form-control" id="exampleInputEmail1" style={{ border: "3px solid grey" }} />
+              <div className="form-group w-100 row" style={{ marginBottom: "30px" }}>
+                <label htmlFor="phone">Phone Number</label>
+                <div className="col">
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="phone1"
+                    value={phonePart1}
+                    onChange={(e) => setPhonePart1(e.target.value)}
+                    style={{ border: "3px solid grey" }}
+                  />
                 </div>
                 -
-                <div style={{ width: "30%" }}>
-                  <input type="text" className="form-control" id="exampleInputEmail1" style={{ border: "3px solid grey" }} />
+                <div className="col">
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="phone2"
+                    value={phonePart2}
+                    onChange={(e) => setPhonePart2(e.target.value)}
+                    style={{ border: "3px solid grey" }}
+                  />
                 </div>
                 -
-                <div style={{ width: "30%" }}>
-                  <input type="text" className="form-control" id="exampleInputEmail1" style={{ border: "3px solid grey" }} />
+                <div className="col">
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="phone3"
+                    value={phonePart3}
+                    onChange={(e) => setPhonePart3(e.target.value)}
+                    style={{ border: "3px solid grey" }}
+                  />
                 </div>
               </div>
-              <div className="felx-row d-flex justify-content-evenly ">
+              {validationMessage && <div className="text-danger mb-3">{validationMessage}</div>}
+              <div className="flex-row d-flex justify-content-evenly ">
                 <button type="submit" className="btn btn-primary w-50" style={{ backgroundColor: "#10a690" }}>
                   Create Account
                 </button>
-                <p1 style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>Forgot Password?</p1>
               </div>
             </form>
           </div>
@@ -77,4 +177,6 @@ function CreatePage() {
     </div>
   );
 }
+
 export default CreatePage;
+
