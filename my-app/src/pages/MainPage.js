@@ -32,16 +32,16 @@ function MainPage() {
     navigate("/login", { state: { user: "" } });
   }
   const textForAnimation = "Find Your Dream Home Today!";
-
+  console.log("User:", user);
   return (
     <div className="flex-column d-flex vw-100 vh-100 " style={{ background: "linear-gradient(rgba(16, 166, 144, 0.5), white)" }}>
       <div className="d-flex flex-row justify-content-end w-100 " style={{ height: "14%" }}>
         <div className=" d-felx flex-column justify-content-center  pe-3"style={{fontFamily:"Lucida Console"}}>
           <div style={{transform: "translateX(-5px)"}}>
-            {user === "" ? "Login" : "Profile"}
+            {(user === ""||(user === undefined)) ? "Login" : "Profile"}
           </div>
           <div
-            onClick={user === "" ? handleLogin : handleProfile}
+            onClick={((user === "") ||(user === undefined)) ? handleLogin : handleProfile}
             style={{
               cursor: "pointer",
               marginLeft: "1px",
