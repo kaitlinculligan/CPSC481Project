@@ -86,7 +86,7 @@ function MainPage() {
             <TypingAnimation text={textForAnimation} typingSpeed={50} fontSize={38} fontFamily={"Lucida Console"} colorOfText={"#000000"}></TypingAnimation>
           </div>
           <div className="ps-5">
-            <Button style={{ width: "200px", backgroundColor: "green" }}>Search</Button>
+            <Button style={{ width: "200px", backgroundColor: "#10a690" }}>Search</Button>
           </div>
         </div>
       </div>
