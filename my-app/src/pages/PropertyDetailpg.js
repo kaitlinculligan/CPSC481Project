@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./PropertyDetailpg.css";
 import { Carousel, Container, Navbar, Nav, Card, Modal, Button, Tab, Tabs } from "react-bootstrap";
+import NavBar from './NavBar.js';
 import backArrow from "./Photos/backArrow.png";
 import heartIcon from "./Photos/favourites.png";
 import addIcon from "./Photos/addToFav.png";
@@ -58,24 +59,7 @@ function PropertyDetailPage() {
   return (
     <div style={{ height: "700px", background: "linear-gradient(rgba(16, 166, 144, 0.5), white)" }}>
       {/* Navigation bar at the top */}
-      <Navbar expand="lg" className="bg-white">
-        <Container>
-          <Navbar.Brand href="#home">
-            <img src={logoIcon} alt="Home" title="Return to the homepage" style={{ width: "50px", height: "50px" }} />
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="#back">
-                <img src={backArrow} alt="Back to Search" title="Return to search page" style={{ width: "50px", height: "50px" }} />
-              </Nav.Link>
-              <Nav.Link href="#favorites">
-                <img src={heartIcon} alt="Favorites" title="Go to favorite page" style={{ width: "50px", height: "50px" }} />
-              </Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+      <NavBar/>
 
       {/* Main container for carousel and details */}
       <Container fluid className="p-0">
