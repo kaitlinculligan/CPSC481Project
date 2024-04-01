@@ -28,23 +28,6 @@ function Favourites() {
       <br></br>
       <br></br>
 
-      {/* Buttons Row */}
-          <div className="row justify-content-center" style={{height:"50px"}}>
-      {/* Home Button */}
-        <div className="col-auto">
-          <button onClick={() => navigateToPage('./')}>Home</button>
-        </div>
-
-      {/* Search Listings Button */}
-        <div className="col-auto">
-          <button onClick={() => navigateToPage('./search')}>Search Listings</button>
-        </div>
-
-      {/* Advanced Filter Button */}
-        <div className="col-auto">
-          <button onClick={() => navigateToPage('./filters')}>Advanced Filter + </button>
-        </div>
-      </div>
 
       {/* Favorites Listings */}
       {favoriteListings.map((listing) => (
@@ -66,13 +49,7 @@ function Favourites() {
         </div>
       ))}
 
-      <div className='row justify-content-center'>
-        <div className='col'></div>
-        <div className='col-2'>
-          <button style={{width:"200px"}}>View More Favourites</button>
-        </div>
-        <div className='col-5'></div>
-      </div>
+
     </div>
   );
 }
