@@ -11,7 +11,7 @@ import house2 from "./Photos/house2.png";
 import searchIcon from "./Photos/searchIcon.png"; // Imported Search Icon
 import filterIcon from "./Photos/filterIcon.png"; // Imported Filter Icon
 import { DropdownButton } from 'react-bootstrap';
-
+import HouseCard from "./HouseCard";
 
 
 function SearchResults() {
@@ -70,26 +70,23 @@ function SearchResults() {
                         {/* Scrollable Listings Container */}
                         <div className="scrollable-listings">
                             {/* Cards for Listing */}
-				<Card className="listing-card">
-                  <Card.Body>
-                    <Row>
-                      <Col md={6}>
-                        <img src={house1} alt="House at 123 Brookpark Ave." className="img-fluid" />
-                      </Col>
-                      <Col md={6}>
-                        <Card.Title>123 Brookpark Ave.</Card.Title>
-                        <Card.Text>
-                          <ul>
-                            <li>Price: $ 595,000</li>
-                            <li>Bedrooms: 3</li>
-                            <li>Bathrooms: 2</li>
-                          </ul>
-                        </Card.Text>
-                      </Col>
-                    </Row>
-                  </Card.Body>
-                </Card>
+                            <HouseCard className="listing-card"
+            Name="123 Brentwood Ave"
+            Photo={house1}
+            Price="$500,000"
+            Description="A small but important property with a great view of the beltline"
+            NumBath={3}
+            NumBed={2}
+          />
 				{/* Card for listing 2 */}
+        <HouseCard className="listing-card"
+            Name="481 Main Street"
+            Photo={house1}
+            Price="$ 534,000"
+            Description="A small but important property with a great view of the beltline"
+            NumBath={2}
+            NumBed={1}
+          />
 				<Card className="listing-card">
 					<Card.Body>
 						<Row>
