@@ -39,14 +39,15 @@ function Appointment() {
 			</div>
 			<div className='col'>
 				<form>
-					<input className='appointmentForm' type='text' placeholder='Name'></input>
-					<input className='appointmentForm' type='text' placeholder='Phone #'></input>
-					<input className='appointmentForm' type='text' placeholder='Email'></input>
-					<input className='appointmentForm' type='datetime-local'></input>
-					<input className='appointmentRadio' id='inperson'type='radio'name='viewingType' value='inperson'></input>
+				<input className='appointmentRadio' id='inperson'type='radio'name='viewingType' value='inperson'></input>
 					<label className='' for='inperson'>In-Person Viewing</label>
 					<input className='appointmentRadio' id='virtual'type='radio'name='viewingType' value='virtual'></input>
 					<label className='' for='virtual'>Virtual Viewing</label>
+					<input className='appointmentForm' type='text' placeholder='Name'></input>
+					<input className='appointmentForm' type='text' placeholder='Phone #'></input>
+					<input className='appointmentForm' type='text' placeholder='Email'></input>
+					<input className='appointmentForm' type='date'></input>
+					<input className='appointmentForm' type='time' min="09:00:00" max="19:00:00"></input>
 					<input className='appointmentSubmit' type='submit'></input>
 
 				</form>

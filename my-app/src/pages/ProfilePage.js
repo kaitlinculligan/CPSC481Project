@@ -74,7 +74,7 @@ function ProfilePage() {
                 Edit Profile
               </Button>
               <Button onClick={handleLogout} className="w-50 mx-auto my-2" style={{ height: "50px", backgroundColor: "#10a690" }}>
-                logout
+                Logout
               </Button>
             </div>
           </div>

@@ -6,6 +6,7 @@ import favourites from "./Photos/favourites.png";
 import profilePic from "./Photos/profileLogo.png";
 import home from "./Photos/homePage.png";
 import backArrow from "./Photos/backArrow.png";
+import searchIcon from "./Photos/searchIcon.png";
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 const NavBar = () => {
@@ -29,6 +30,10 @@ const NavBar = () => {
     navigate('/profile', { state: { user } });
   }
 
+  const handleSearch=()=>{
+    navigate('/results', { state: { user } });
+  }
+
   return (
 <div>
       <header>
@@ -40,6 +45,9 @@ const NavBar = () => {
         </div>
         <nav>
           <ul>
+            <li>
+            <img src={searchIcon} onClick={handleSearch} style={{width:"45px",height:"45px",borderColor:"black", cursor:"pointer" }} alt="Search" />
+            </li>
             <li>
                 <img src={profilePic}  onClick={handleProfile} style={{width:"50px",height:"50px",borderColor:"black", cursor:"pointer" }} alt="Profile" />
             </li>

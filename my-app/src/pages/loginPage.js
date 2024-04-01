@@ -26,6 +26,11 @@ function LoginPage() {
         setPassword(event.target.value);
     }
 
+    // Function to handle the forgotten password
+    const handleForgotPassword = (event) => {
+        alert('This functionality is under development');
+    }
+
     // Function to handle form submission
     const handleSubmit = (event) => {
         event.preventDefault(); // Prevent the form from submitting
@@ -43,7 +48,7 @@ function LoginPage() {
         else {
             alert('Incorrect email or password');
         }
-        
+
     }
 
 return <div className='col justify-conent-center' style={{ height: '100vh', width: '100vw' }}>
@@ -72,7 +77,7 @@ return <div className='col justify-conent-center' style={{ height: '100vh', widt
                     <div className="felx-row d-flex justify-content-evenly ">
                     <button type='submit' className='btn btn-primary w-25' style={{ backgroundColor: "#10a690" }} onClick={handleSubmit}>Login</button>
                     <button onClick={handleCreateAccount} type='submit' className='btn btn-primary w-25' style={{ backgroundColor: "#10a690" }}>Create </button>
-                    <p1 style={{ cursor: "pointer", textDecoration: 'underline', color: 'blue' }}>Forgot Password?</p1>
+                    <p1 onClick={handleForgotPassword} style={{ cursor: "pointer", textDecoration: 'underline', color: 'blue' }}>Forgot Password?</p1>
                     </div>
                 </form>
             </div>

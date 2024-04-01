@@ -1,6 +1,7 @@
 import React from 'react';
 import './SearchResults.css';
 import { Row, Col, FormControl, InputGroup, Navbar, Container, Card, Nav, Dropdown, Button } from 'react-bootstrap';
+import NavBar from './NavBar.js';
 import favourites from "./Photos/favourites.png";
 import logoIcon from "./Photos/logoAndName.png";
 import backArrow from "./Photos/backArrow.png";
@@ -10,11 +11,11 @@ import house2 from "./Photos/house2.png";
 import searchIcon from "./Photos/searchIcon.png"; // Imported Search Icon
 import filterIcon from "./Photos/filterIcon.png"; // Imported Filter Icon
 import { DropdownButton } from 'react-bootstrap';
-
+import HouseCard from "./HouseCard";
 
 
 function SearchResults() {
-	
+
 	// Helper function to create dropdown menus for Price, Beds, and Baths
 	const createDropdown = (title, options, className) => (
         <Dropdown className={className}>
@@ -34,21 +35,9 @@ function SearchResults() {
 	return (
         <div style={{ height: "100vh", background: "linear-gradient(rgba(16, 166, 144, 0.5), white)" }}>
             {/* Navbar */}
+            <NavBar/>
             <Navbar expand="lg" className="bg-white">
                 <Container>
-                    <Navbar.Brand href="#home">
-                        <img src={logoIcon} alt="Home" title="Return to the homepage" style={{ width: "50px", height: "50px" }} />
-                    </Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="me-auto">
-                            <Nav.Link href="#back">
-                                <img src={backArrow} alt="Back to search" title="Return to search page" style={{ width: "50px", height: "50px" }} />
-                            </Nav.Link>
-                            <Nav.Link href="#favorites">
-                                <img src={favourites} alt="Favorites" title="Go to favorites page" style={{ width: "50px", height: "50px" }} />
-                            </Nav.Link>
-                        </Nav>
                         <InputGroup>
                             <FormControl placeholder="City, Neighbourhood, Address or MLS number" aria-label="Search" />
                             {createDropdown("Min Price", ["$100,000", "$200,000", "$300,000"])} {/* Example options */}
@@ -62,7 +51,6 @@ function SearchResults() {
                                 <img src={filterIcon} alt="Filter" width="24" height="24" />
                             </Button>
                         </InputGroup>
-                    </Navbar.Collapse>
                 </Container>
             </Navbar>
 
@@ -82,26 +70,23 @@ function SearchResults() {
                         {/* Scrollable Listings Container */}
                         <div className="scrollable-listings">
                             {/* Cards for Listing */}
-				<Card className="listing-card">
-                  <Card.Body>
-                    <Row>
-                      <Col md={6}>
-                        <img src={house1} alt="House at 123 Brookpark Ave." className="img-fluid" />
-                      </Col>
-                      <Col md={6}>
-                        <Card.Title>123 Brookpark Ave.</Card.Title>
-                        <Card.Text>
-                          <ul>
-                            <li>Price: $ 595,000</li>
-                            <li>Bedrooms: 3</li>
-                            <li>Bathrooms: 2</li>
-                          </ul>
-                        </Card.Text>
-                      </Col>
-                    </Row>
-                  </Card.Body>
-                </Card>
+                            <HouseCard className="listing-card"
+            Name="123 Brentwood Ave"
+            Photo={house1}
+            Price="$500,000"
+            Description="A small but important property with a great view of the beltline"
+            NumBath={3}
+            NumBed={2}
+          />
 				{/* Card for listing 2 */}
+        <HouseCard className="listing-card"
+            Name="481 Main Street"
+            Photo={house1}
+            Price="$ 534,000"
+            Description="A small but important property with a great view of the beltline"
+            NumBath={2}
+            NumBed={1}
+          />
 				<Card className="listing-card">
 					<Card.Body>
 						<Row>
@@ -122,7 +107,7 @@ function SearchResults() {
 					</Card.Body>
 					</Card>
                  </div>
-                    
+
 
 				</Col>
 

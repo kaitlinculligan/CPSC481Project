@@ -7,7 +7,7 @@ function HouseCard({ Name, Photo, Price, Description,NumBath,NumBed }) {
     <div className="w-100 h-100  d-flex align-content-center border-3 border ">
       <Card
         className="w-100 w-100 d-flex flex-column  align-items-center h-100 border-3 border border-white "
-        style={{ borderColor: "grey", cursor: "pointer", height: "100%", height: "100%", background: "#000000" }}
+        style={{ borderColor: "grey", cursor: "pointer", height: "100%", height: "100%", background: "#FFFFFF" }}
       >
         <div
           className="row bg-black w-100 border-5 border-white border justify-content-center "
@@ -50,7 +50,7 @@ function HouseCard({ Name, Photo, Price, Description,NumBath,NumBed }) {
           <div className="w-100 h-75" style={{ fontStyle:"italic", fontWeight:"lighter", fontSize:"13px"}}>
             {Description}
           </div>
-          
+
         </div>
       </Card>
     </div>
