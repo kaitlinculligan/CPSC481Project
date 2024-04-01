@@ -1,8 +1,10 @@
 import React from 'react';
-import './MainPage.css';
+import './Favourites.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Row, Col, FormControl, InputGroup, Navbar, Container, Card, Nav, Dropdown, Button } from 'react-bootstrap';
 import hypeImage from "./Photos/hype.png";
 import NavBar from './NavBar.js';
+import house2 from "./Photos/house2.png"
 
 function Favourites() {
 
@@ -20,7 +22,7 @@ function Favourites() {
   ];
 
   return (
-    <div style={{height:"700px", backgroundColor:"#10a690"}}>
+    <div style={{height: "100vh", background: "linear-gradient(rgba(16, 166, 144, 0.5), white)" }}>
       <NavBar/>
       <div className="row" style={{height:"25px", width:"100px", paddingLeft:"45px"}}>
         <h1>Favourites</h1>
@@ -30,22 +32,30 @@ function Favourites() {
 
 
       {/* Favorites Listings */}
+
       {favoriteListings.map((listing) => (
-        <div key={listing.id} className="row justify-content-center" style={{ margin: "10px 0", padding: "50px", backgroundColor: "white", border: "2px solid black" }}>
-          <div className="col" style={{ display: "flex", alignItems: "center" }}>
-            {/* Image on the left side */}
-            <div style={{ marginRight: "10px" }}>
-              <img src={hypeImage} style={{ width: '150px', height: 'auto' }} alt="Property" />
-            </div>
-            {/* Details and Remove button on the right side */}
-            <div style={{ marginLeft: "100px", flex: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div>
-                <h2>{listing.address}</h2>
-                <p>{listing.price}</p>
-              </div>
-              <button style={{width:"100px", height:"50px", backgroundColor:"red" }}>Delete</button>
-            </div>
-          </div>
+        <div key={listing.id} className="row justify-content-center" style={{ margin: "5px 0", padding: "3px", width:"75%"}}>
+          <Card className="listing-card">
+					<Card.Body>
+						<Row>
+							<Col md={4}>
+								<Card.Img variant="top" src={house2} />
+							</Col>
+							<Col md={4}>
+								<Card.Title>481 Main Street</Card.Title>
+								<Card.Text>
+                  <p>Info about house</p>
+									<ul>
+										<li>$ 534,000</li>
+										<li>Bedrooms: 2</li>
+										<li>Bathrooms: 1</li>
+									</ul>
+								</Card.Text>
+							</Col>
+              <Col md={4} className="row justify-content-center"><button className="button" style={{width:"100px", height:"50px", backgroundColor:"red", color:"white" }}>Delete</button></Col>
+						</Row>
+					</Card.Body>
+					</Card>
         </div>
       ))}
 
