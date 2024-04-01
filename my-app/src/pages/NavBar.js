@@ -27,7 +27,14 @@ const NavBar = () => {
     navigate(-1, { state: { user} });
   }
   const handleProfile=()=>{
-    navigate('/profile', { state: { user } });
+    if(user === undefined || user === ""){
+      console.log("User:", user);
+      navigate('/login', { state: { user } });
+    }
+    else{
+      navigate('/profile', { state: { user } });
+    }
+    
   }
 
   const handleSearch=()=>{
@@ -41,7 +48,7 @@ const NavBar = () => {
           <img src={backArrow} onClick={handleBack} alt="Back" />
         </div>
         <div className="logo">
-          <imgc style={{cursor: "pointer"}} src={logoAndTitle} onClick={handleHome} alt="Logo" />
+          <img style={{cursor: "pointer"}} src={logoAndTitle} onClick={handleHome} alt="Logo" />
         </div>
         <nav>
           <ul>

@@ -11,6 +11,11 @@ import { useState } from "react";
 import { Modal, Form } from "react-bootstrap";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Carousel } from "react-bootstrap";
+import houseInfo from "./houseinfo.json";
+import HouseCard from "./HouseCard.js";
+import house1 from "./Photos/house1.png";
+import house2 from "./Photos/house2.png";
 
 function ProfilePage() {
   const [show, setShow] = useState(false); // State to control the visibility of the modal
@@ -54,6 +59,9 @@ function ProfilePage() {
   const handleLogout = () => {
     navigate("/login", { state: { user: "" } });
   };
+
+  console.log("House Beds:", houseInfo.map(house => house.bedrooms));
+  console.log("House Baths:", houseInfo.map(house => house.bathrooms));
   return (
     <div>
       <NavBar />
@@ -79,11 +87,31 @@ function ProfilePage() {
             </div>
           </div>
         </div>
-        <div className="w-75 flex-column d-flex align-items-center pt-5">
+        <div className="w-75 d-flex flex-column align-items-center pt-5">
           <Card className="p-5 rounded-3 w-75">
             <h1>Current House Bookings</h1>
-            <div className="h-auto border-5 border-black border rounded-2 p-2 mt-5" style={{ minHeight: "100px" }}>
-              There are no current house bookings.
+            <div className="h-auto border-5 border-black border bg-black rounded-2 p-2 mt-5 justify-content-center d-flex felx-row" style={{ minHeight: "100px" }}>
+              {user ==="Jack" ? (
+                <Carousel className="w-50">
+                  {houseInfo
+                    .filter((house) => house.id === "1" || house.id === "2")
+                    .map((house) => (
+                      <Carousel.Item key={house.id}>
+                        <HouseCard
+                          Name={house.houseName}
+                          Photo={house1}
+                          Price={house.price}
+                          NumBath={house.bathrooms}
+                          Description={house.description}
+                          NumBed={house.bedrooms}
+                        />
+                      </Carousel.Item>
+                    ))}
+                </Carousel>
+              ) : (<div style={{color:"#FFFFFF"}}>
+                "There are no current house bookings."
+                </div>
+              )}
             </div>
           </Card>
         </div>
