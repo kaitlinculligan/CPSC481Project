@@ -23,7 +23,8 @@
     "pool": "no",
     "photos": ["./Photos/insideHouse1.png", "./Photos/insideHouse1-1.png"],
     "jackBooking": "yes",
-    "jackFovorite": "yes"
+    "jackFovorite": "yes",
+    "timeOfBooking": "2020-03-20T00:00 PM"
 },
 {
     "id": "2",
@@ -50,7 +51,8 @@
     "pool": "no",
     "photos": ["./Photos/insideHouse2.png", "./Photos/insideHouse2-1.png", "./Photos/insideHouse2-2.png"],
     "jackBooking": "yes",
-    "jackFovorite": "yes"
+    "jackFovorite": "yes",
+    "timeOfBooking": "2020-03-20T00:00 PM"
 },
 {
     "id": "3",
@@ -77,8 +79,9 @@
     "pool": "yes",
     "photos": ["./Photos/insideHouse3.png", "./Photos/insideHouse3-1.png", "./Photos/insideHouse3-2.png"],
     "jackBooking": "no",
-    "jackFovorite": "yes"
-    
+    "jackFovorite": "yes",
+    "timeOfBooking": "NA"
+
 },
 {
     "id": "4",
@@ -105,7 +108,8 @@
     "pool": "no",
     "photos": ["./Photos/insideHouse4.png", "./Photos/insideHouse4-1.png"],
     "jackBooking": "no",
-    "jackFovorite": "yes"
+    "jackFovorite": "yes",
+    "timeOfBooking": "NA"
 }
 
 
