@@ -22,7 +22,7 @@ function ProfilePage() {
   const [show, setShow] = useState(false); // State to control the visibility of the modal
   const [email, setEmail] = useState(""); // Assuming you want to edit the email, for example
   const [phone, setPhone] = useState("");
-  const [id, setId] = useState("");
+  const [id, setId] = useState("1");
   const [profilePic, setProfilePic] = useState(null);
 
   const handleClose = () => setShow(false);
@@ -83,7 +83,7 @@ function ProfilePage() {
   console.log("house1:", house1);
   let booking = houseInfo.filter((house) => house.id === id).map((house) => house.timeOfBooking);
   let time, date;
-  if (booking) {
+  if (booking.length > 0) {
     let dateNtime = booking[0].split("T");
     date = dateNtime[0];
     time = dateNtime[1];
