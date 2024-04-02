@@ -27,6 +27,8 @@ function Appointment() {
 	const navigate = useNavigate();
 	const [email, setEmail] = useState(""); // Assuming you want to edit the email, for example
   	const [phone, setPhone] = useState("");
+	  const [date, setDate] = useState(""); // Assuming you want to edit the email, for example
+  	const [time, setTime] = useState("");
 
 	  useEffect(() => {
 		if (user === "Jack") {
@@ -39,7 +41,16 @@ function Appointment() {
 		window.location.href = url;
 	  };
 	  const handleSubmit = (event) => {
-       alert("Form submitted")
+		alert(date)
+		alert(time)
+	   if(houseInfo.at(house).jackBooking = 'yes'){
+		alert("A booking for this house already exists")
+	   }
+	   else{
+		houseInfo.at(house).jackBooking = 'yes'
+		houseInfo.at(house).timeOfBooking = date+'T'+time
+		alert("Request submitted")
+	   }
 	   navigate("/", { state: { user} });
     }
 
@@ -65,7 +76,7 @@ function Appointment() {
           </div>
         </div>
 			<div className='col'>
-				<form>
+				<form onSubmit={handleSubmit}>
 				<input className='appointmentRadio' id='inperson'type='radio'name='viewingType' value='inperson'></input>
 					<label className='' for='inperson'>In-Person Viewing</label>
 					<input className='appointmentRadio' id='virtual'type='radio'name='viewingType' value='virtual'></input>
@@ -73,9 +84,9 @@ function Appointment() {
 					<input className='appointmentForm' type='text' placeholder='Name' value={user}></input>
 					<input className='appointmentForm' type='text' placeholder='Phone #'value={phone}></input>
 					<input className='appointmentForm' type='text' placeholder='Email'value={email}></input>
-					<input className='appointmentForm' type='date'></input>
-					<input className='appointmentForm' type='time' min="09:00:00" max="19:00:00"></input>
-					<button type='submit' className='appointmentSubmit' onClick={handleSubmit}>Submit Request</button>
+					<input className='appointmentForm' type='date' onChange={(e) => setDate(e.target.value)}></input>
+					<input className='appointmentForm' type='time' min="09:00:00" max="19:00:00" onChange={(e) => setTime(e.target.value)}></input>
+					<button type='submit' className='appointmentSubmit'>Submit Request</button>
 				</form>
 			</div>
 			<div className="w-25 d-flex flex-column justify-content-between">
