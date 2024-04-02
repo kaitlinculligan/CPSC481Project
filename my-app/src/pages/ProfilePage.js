@@ -25,6 +25,8 @@ function ProfilePage() {
   const [id, setId] = useState("1");
   const [profilePic, setProfilePic] = useState(null);
 
+  
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleProfilePicChange = (event) => {

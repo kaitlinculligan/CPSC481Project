@@ -35,6 +35,10 @@ function MainPage() {
   const handleSearch = () => {
     navigate("/search", { state: { user} });
   }
+  const handleHouseNav = (num) => {
+    console.log("House Number:", num);
+    navigate("/details", { state: { user , id: num} });
+  }
 
   const textForAnimation = "Find Your Dream Home Today!";
   console.log("User:", user);
@@ -96,7 +100,7 @@ function MainPage() {
         </div>
       </div>
       <div className="d-flex flex-row justify-content-evenly h-50  " style={{ width: "99.8%" }}>
-        <div className=" h-100 d-flex flex-row justify-content-center " style={{ width: "20%" }}>
+        <div className=" h-100 d-flex flex-row justify-content-center " onClick={() => handleHouseNav(1)} style={{ width: "20%" }}>
           <HouseCard
             Name="Brentwood Opporunity"
             Photo={"./Photos/house1.png"}
@@ -106,7 +110,7 @@ function MainPage() {
             NumBed={2}
           />
         </div>
-        <div className=" h-100 d-flex flex-row justify-content-center " style={{ width: "20%" }}>
+        <div className=" h-100 d-flex flex-row justify-content-center " onClick={() => handleHouseNav(2)} style={{ width: "20%" }}>
           <HouseCard
             Name="Brentwood Opporunity"
             Photo={"./Photos/house2.png"}
@@ -116,7 +120,7 @@ function MainPage() {
             NumBed={2}
           />
         </div>
-        <div className=" h-100 d-flex flex-row justify-content-center " style={{ width: "20%" }}>
+        <div className=" h-100 d-flex flex-row justify-content-center " onClick={() => handleHouseNav(3)} style={{ width: "20%" }}>
           <HouseCard
             Name="Brentwood Opporunity"
             Photo={"./Photos/house3.png"}
@@ -124,9 +128,10 @@ function MainPage() {
             Description="A small but important property with a great view of the beltline"
             NumBath={3}
             NumBed={2}
+            
           />
         </div>
-        <div className=" h-100 d-flex flex-row justify-content-center " style={{ width: "20%" }}>
+        <div className=" h-100 d-flex flex-row justify-content-center " onClick={() => handleHouseNav(4)} style={{ width: "20%" }}>
           <HouseCard
             Name="Brentwood Opporunity"
             Photo={"./Photos/house4.png"}
@@ -134,9 +139,10 @@ function MainPage() {
             Description="A small but important property with a great view of the beltline"
             NumBath={3}
             NumBed={2}
+          
           />
         </div>
-        <div className=" h-100 d-flex flex-row justify-content-center " style={{ width: "20%" }}>
+        <div className=" h-100 d-flex flex-row justify-content-center " onClick={() => handleHouseNav(5)}style={{ width: "20%" }}>
           <HouseCard
             Name="Brentwood Opporunity"
             Photo={"./Photos/house1.png"}
