@@ -1,4 +1,4 @@
-[{
+const houseInfo=[{
     "id": "1",
     "houseName": "2023 40th ave sw",
     "price": "100,000",
@@ -114,3 +114,4 @@
 
 
 ]
+export default houseInfo;
