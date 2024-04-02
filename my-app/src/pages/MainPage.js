@@ -31,6 +31,11 @@ function MainPage() {
   const handleLogin = () => {
     navigate("/login", { state: { user: "" } });
   }
+
+  const handleSearch = () => {
+    navigate("/search", { state: { user} });
+  }
+
   const textForAnimation = "Find Your Dream Home Today!";
   console.log("User:", user);
   return (
@@ -86,7 +91,7 @@ function MainPage() {
             <TypingAnimation text={textForAnimation} typingSpeed={50} fontSize={38} fontFamily={"Lucida Console"} colorOfText={"#000000"}></TypingAnimation>
           </div>
           <div className="ps-5">
-            <Button style={{ width: "200px", backgroundColor: "green" }}>Search</Button>
+            <Button onClick={user === "" ? handleLogin : handleSearch} style={{ width: "200px", backgroundColor: "green" }}>Search</Button>
           </div>
         </div>
       </div>
