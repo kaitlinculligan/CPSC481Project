@@ -6,6 +6,17 @@
 body {
   margin: 0; /* Removes the default margin of the body */
 }
+.rating-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  padding: .5em 1em;
+  border-radius: 999px; /* Pill shape */
+  font-size: 1em; /* Adjust as needed */
+  margin: .5em; /* Spacing between badges */
+  cursor: pointer;
+}
 
 /* Ensure full width for container and no side paddings */
 .container-fluid {
@@ -34,7 +45,7 @@ body {
 .property-images-carousel .carousel-item img {
   object-fit: contain; /* Covers the element's box while maintaining aspect ratio */
   cursor: pointer; /* Indicates that the item is interactive */
-  max-height: 48vh; /* Maximum height to ensure it does not push content out of the viewport */
+  max-height: 46vh; /* Maximum height to ensure it does not push content out of the viewport */
 }
 
 /* Wrapping container for property details and realtor card */

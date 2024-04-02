@@ -21,7 +21,7 @@ const houseInfo=[{
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "no",
-    "photos": ["./Photos/insideHouse1.png", "./Photos/insideHouse1-1.png"],
+    "photos": ["./Photos/house1.png","./Photos/insideHouse1.png", "./Photos/insideHouse1-1.png"],
     "jackBooking": "yes",
     "jackFovorite": "yes",
     "timeOfBooking": "2020-03-20T00:01 PM"
@@ -49,7 +49,7 @@ const houseInfo=[{
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "no",
-    "photos": ["./Photos/insideHouse2.png", "./Photos/insideHouse2-1.png", "./Photos/insideHouse2-2.png"],
+    "photos": ["./Photos/house2.png","./Photos/insideHouse2.png", "./Photos/insideHouse2-1.png", "./Photos/insideHouse2-2.png"],
     "jackBooking": "yes",
     "jackFovorite": "yes",
     "timeOfBooking": "2020-03-20T00:00 PM"
@@ -77,7 +77,7 @@ const houseInfo=[{
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "yes",
-    "photos": ["./Photos/insideHouse3.png", "./Photos/insideHouse3-1.png", "./Photos/insideHouse3-2.png"],
+    "photos": ["./Photos/house3.png","./Photos/insideHouse3.png", "./Photos/insideHouse3-1.png", "./Photos/insideHouse3-2.png"],
     "jackBooking": "no",
     "jackFovorite": "yes",
     "timeOfBooking": "NA"
@@ -106,7 +106,7 @@ const houseInfo=[{
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "no",
-    "photos": ["./Photos/insideHouse4.png", "./Photos/insideHouse4-1.png"],
+    "photos": ["./Photos/house4.png","./Photos/insideHouse4.png", "./Photos/insideHouse4-1.png"],
     "jackBooking": "no",
     "jackFovorite": "no",
     "timeOfBooking": "NA"
