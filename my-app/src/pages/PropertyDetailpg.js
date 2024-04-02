@@ -14,7 +14,7 @@ import house4 from "./Photos/house4.png";
 import bed from "./Photos/Bed.png";
 import bath from "./Photos/Bath.png";
 import { useLocation } from "react-router-dom";
-import houseInfo from "./houseinfo.json";
+import houseInfo from "./houseInfo.js";
 import { useEffect } from "react";
 
 function PropertyDetailPage() {
