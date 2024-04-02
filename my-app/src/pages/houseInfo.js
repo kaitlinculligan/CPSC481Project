@@ -1,11 +1,11 @@
-[{
+const houseInfo=[{
     "id": "1",
     "houseName": "2023 40th ave sw",
     "price": "100,000",
     "bedrooms": "1",
     "bathrooms": "1",
     "sqft": "2000",
-    "description": "This is a beautiful house in a great neighborhood.  It has a large backyard and a two car garage. What it lacks in a pool it makes up with a long history of being a great house. Overall a great house to live in.",
+    "description": "This is a beautiful house in a great neighborhood.  It has a large backyard and a two car garage.",
     "image": "./Photos/house1.png",
     "noiseLevel": "3",
     "safety": "4",
@@ -33,7 +33,7 @@
     "bedrooms": "2",
     "bathrooms": "2",
     "sqft": "2000",
-    "description": "This is a beautiful house in a great neighborhood.  It has a large backyard and a one car garage. Super close to the city with more then enough to do in all parts of the day.This is a once in a lifetime opportunity. Overall a great house to live in.",
+    "description": "This is a beautiful house in a great neighborhood.  It has a large backyard and a one car garage.",
     "image": "./Photos/house2.png",
     "noiseLevel": "3",
     "safety": "4",
@@ -61,7 +61,7 @@
     "bedrooms": "3",
     "bathrooms": "2",
     "sqft": "2000",
-    "description": "This is a beautiful house in a great neighborhood.  It has a large backyard and a two car garage. It also has a pool in the backyard. With a great view of the city. Overall a great house to live in.",
+    "description": "This is a beautiful house in a great neighborhood.  It has a large backyard and a two car garage.",
     "image": "./Photos/house3.png",
     "noiseLevel": "3",
     "safety": "4",
@@ -114,3 +114,4 @@
 
 
 ]
+export default houseInfo;
