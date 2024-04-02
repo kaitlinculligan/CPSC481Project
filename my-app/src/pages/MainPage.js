@@ -104,7 +104,7 @@ function MainPage() {
         <div className=" h-100 d-flex flex-row justify-content-center " onClick={() => handleHouseNav(1)} style={{ width: "20%" }}>
           <HouseCard
             Name="Brentwood Opporunity"
-            Photo={house1}
+            Photo="./Photos/house1.png"
             Price="$500,000"
             Description="A small but important property with a great view of the beltline"
             NumBath={3}
@@ -114,7 +114,7 @@ function MainPage() {
         <div className=" h-100 d-flex flex-row justify-content-center " onClick={() => handleHouseNav(2)} style={{ width: "20%" }}>
           <HouseCard
             Name="Brentwood Opporunity"
-            Photo={house2}
+            Photo=  "./Photos/house2.png"
             Price="$500,000"
             Description="A small but important property with a great view of the beltline"
             NumBath={3}
@@ -124,7 +124,7 @@ function MainPage() {
         <div className=" h-100 d-flex flex-row justify-content-center " onClick={() => handleHouseNav(3)} style={{ width: "20%" }}>
           <HouseCard
             Name="Brentwood Opporunity"
-            Photo={house3}
+            Photo="./Photos/house3.png"
             Price="$500,000"
             Description="A small but important property with a great view of the beltline"
             NumBath={3}
@@ -135,7 +135,7 @@ function MainPage() {
         <div className=" h-100 d-flex flex-row justify-content-center " onClick={() => handleHouseNav(4)} style={{ width: "20%" }}>
           <HouseCard
             Name="Brentwood Opporunity"
-            Photo={house4}
+            Photo="./Photos/house4.png"
             Price="$500,000"
             Description="A small but important property with a great view of the beltline"
             NumBath={3}
@@ -146,7 +146,7 @@ function MainPage() {
         <div className=" h-100 d-flex flex-row justify-content-center " onClick={() => handleHouseNav(5)}style={{ width: "20%" }}>
           <HouseCard
             Name="Brentwood Opporunity"
-            Photo={house1}
+            Photo="./Photos/house1.png"
             Price="$500,000"
             Description="A small but important property with a great view of the beltline"
             NumBath={3}
