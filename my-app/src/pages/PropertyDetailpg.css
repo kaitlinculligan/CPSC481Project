@@ -17,6 +17,27 @@ body {
   margin: .5em; /* Spacing between badges */
   cursor: pointer;
 }
+/* Define your custom colors */
+.rating-1 {
+  background-color: #d9534f; /* Bootstrap danger color */
+}
+.rating-2 {
+  background-color: #f0ad4e; /* Bootstrap warning color */
+}
+.rating-3 {
+  background-color: #6c757d; /* Bootstrap secondary color */
+}
+.rating-4 {
+  background-color: #5cb85c; /* Lighter Bootstrap success color */
+}
+.rating-5 {
+  background-color: #28a745; /* Bootstrap success color */
+}
+
+/* Optional: Add hover effect to provide more interactivity */
+.badge:hover {
+  opacity: 0.8;
+}
 
 /* Ensure full width for container and no side paddings */
 .container-fluid {

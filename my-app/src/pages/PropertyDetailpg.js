@@ -12,7 +12,7 @@ import { Badge, OverlayTrigger, Tooltip, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function RatingsGroup({ houseDetails }) {
-  const saeftyTable ={
+  const safetyTable ={
     1: 'High crime rate',
     2: 'Moderate crime rate',
     3: 'Average crime rate',
@@ -54,6 +54,13 @@ function RatingsGroup({ houseDetails }) {
     4: '5-6 middle schools nearby',
     5: '7+ middle schools nearby',
   }
+  const elementarySchoolTable ={
+    1: 'no elementary school nearby',
+    2: '1-2 elementary schools nearby',
+    3: '3-4 elementary schools nearby',
+    4: '5-6 elementary schools nearby',
+    5: '7+ elementary schools nearby',
+  }
   const preSchoolTable ={
     1: 'no preschool nearby',
     2: '1-2 preschools nearby',
@@ -83,17 +90,53 @@ function RatingsGroup({ houseDetails }) {
     5: 'Pet paradise',
   }
 
+
   return (
     <Card className="my-3">
       <Card.Body>
         <Card.Title>Neighborhood Ratings</Card.Title>
-        <div className="d-flex flex-column ailgn-items-center">
-        <Card.Header>Schools</Card.Header>
-          <div className="d-flex flex-row justify-content-center"></div>
+        <Row>
+          <Card.Header>Schools</Card.Header>
+          <Col>
+            <Rating label="High School" value={parseInt(houseDetails.highSchool, 10)} descriptions={highSchoolTable} />
+          </Col>
+          <Col>
+            <Rating label="Middle School" value={parseInt(houseDetails.middleSchool, 10)} descriptions={middleSchoolTable} />
+          </Col>
+          <Col>
+            <Rating label="Elementary School" value={parseInt(houseDetails.elementarySchool, 10)} descriptions={elementarySchoolTable} />
+          </Col>
+          <Col>
+            <Rating label="Pre-School" value={parseInt(houseDetails.preSchool, 10)} descriptions={preSchoolTable} />
+          </Col>
+        </Row>
+        <Row>
           <Card.Header>Amenities</Card.Header>
-          <div className="d-flex flex-row justify-content-center"></div> 
-          <Card.Header>Health and safety</Card.Header>
-        </div>
+          <Col>
+            <Rating label="Shopping" value={parseInt(houseDetails.shopping, 10)} descriptions={shoppingTable} />
+          </Col>
+          <Col>
+            <Rating label="Transportation" value={parseInt(houseDetails.transportation, 10)} descriptions={transportationTable} />
+          </Col>
+          <Col>
+            <Rating label="Pet Friendly" value={parseInt(houseDetails.petFriendly, 10)} descriptions={petFriendlyTable} />
+          </Col>
+          <Col>
+            <Rating label="Walkability" value={parseInt(houseDetails.walkability, 10)} descriptions={walkabilityTable} />
+          </Col>
+        </Row>
+        <Row>
+          <Card.Header>Health and Safety</Card.Header>
+          <Col>
+            <Rating label="Safety" value={parseInt(houseDetails.safety, 10)} descriptions={safetyTable} />
+          </Col>
+          <Col>
+            <Rating label="Noise Level" value={parseInt(houseDetails.noiseLevel, 10)} descriptions={noiseTable} />
+          </Col>
+          <Col>
+            <Rating label="Cleanliness" value={parseInt(houseDetails.cleanliness, 10)} descriptions={cleanlinessTable} />
+          </Col>
+        </Row>
       </Card.Body>
     </Card>
   );
@@ -202,7 +245,7 @@ function PropertyDetailPage() {
           middleSchool: property.schoolsMiddle || "",
           highSchool: property.schoolsHighschool || "",
           elementarySchool: property.schoolsElementary || "",
-          preSchool: property.schoolspreSchool || "",
+          preSchool: property.schoolsPreschool || "",
           pool: property.pool || false,
           shopping: property.shopping || "",
           transportation: property.transportation || "",
@@ -330,10 +373,7 @@ function PropertyDetailPage() {
         </div>
       </div>
       <Container fluid className="p-0">
-        {/* Carousel for property images */}
-        {/* Carousel styling adjusted to match the desired layout */}
 
-        {/* Property details and realtor information with adjusted layout */}
         <div className="property-realtor-wrapper mx-auto" style={{ maxWidth: "90%" }}>
           {/* Listing details taking up the majority of the width */}
           <div className="property-details">
