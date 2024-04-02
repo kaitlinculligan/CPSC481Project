@@ -1,8 +1,10 @@
 import { Card } from "react-bootstrap";
 import Bed from "./Photos/Bed.png";
 import Bath from "./Photos/Bath.png";
+import React from "react";
 
 function HouseCard({ Name, Photo, Price, Description,NumBath,NumBed }) {
+  const dynamicPhoto = typeof Photo === 'string' ? require(`${Photo}`) : Photo;
   return (
     <div className="w-100 h-100  d-flex align-content-center border-3 border ">
       <Card
@@ -17,7 +19,7 @@ function HouseCard({ Name, Photo, Price, Description,NumBath,NumBed }) {
         </div>
         <div className=" row w-100 justify-content-evenly " style={{ minHeight: "45%" }}>
           <img
-            src={Photo}
+            src={dynamicPhoto}
             alt="House Photo"
             style={{ width: "75%", height: "100%", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}
           />
