@@ -40,6 +40,7 @@ function MainPage() {
     navigate("/details", { state: { user , id: num} });
   }
 
+
   const textForAnimation = "Find Your Dream Home Today!";
   console.log("User:", user);
   return (
@@ -95,7 +96,7 @@ function MainPage() {
             <TypingAnimation text={textForAnimation} typingSpeed={50} fontSize={38} fontFamily={"Lucida Console"} colorOfText={"#000000"}></TypingAnimation>
           </div>
           <div className="ps-5">
-            <Button onClick={user === "" ? handleLogin : handleSearch} style={{ width: "200px", backgroundColor: "green" }}>Search</Button>
+            <Button style={{ width: "200px", backgroundColor: "green" }}>Search</Button>
           </div>
         </div>
       </div>
@@ -103,7 +104,7 @@ function MainPage() {
         <div className=" h-100 d-flex flex-row justify-content-center " onClick={() => handleHouseNav(1)} style={{ width: "20%" }}>
           <HouseCard
             Name="Brentwood Opporunity"
-            Photo={"./Photos/house1.png"}
+            Photo={house1}
             Price="$500,000"
             Description="A small but important property with a great view of the beltline"
             NumBath={3}
@@ -113,7 +114,7 @@ function MainPage() {
         <div className=" h-100 d-flex flex-row justify-content-center " onClick={() => handleHouseNav(2)} style={{ width: "20%" }}>
           <HouseCard
             Name="Brentwood Opporunity"
-            Photo={"./Photos/house2.png"}
+            Photo={house2}
             Price="$500,000"
             Description="A small but important property with a great view of the beltline"
             NumBath={3}
@@ -123,7 +124,7 @@ function MainPage() {
         <div className=" h-100 d-flex flex-row justify-content-center " onClick={() => handleHouseNav(3)} style={{ width: "20%" }}>
           <HouseCard
             Name="Brentwood Opporunity"
-            Photo={"./Photos/house3.png"}
+            Photo={house3}
             Price="$500,000"
             Description="A small but important property with a great view of the beltline"
             NumBath={3}
@@ -134,7 +135,7 @@ function MainPage() {
         <div className=" h-100 d-flex flex-row justify-content-center " onClick={() => handleHouseNav(4)} style={{ width: "20%" }}>
           <HouseCard
             Name="Brentwood Opporunity"
-            Photo={"./Photos/house4.png"}
+            Photo={house4}
             Price="$500,000"
             Description="A small but important property with a great view of the beltline"
             NumBath={3}
@@ -145,7 +146,7 @@ function MainPage() {
         <div className=" h-100 d-flex flex-row justify-content-center " onClick={() => handleHouseNav(5)}style={{ width: "20%" }}>
           <HouseCard
             Name="Brentwood Opporunity"
-            Photo={"./Photos/house1.png"}
+            Photo={house1}
             Price="$500,000"
             Description="A small but important property with a great view of the beltline"
             NumBath={3}

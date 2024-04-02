@@ -6,12 +6,19 @@ import favourites from "./Photos/favourites.png";
 import logoIcon from "./Photos/logoAndName.png";
 import backArrow from "./Photos/backArrow.png";
 import map from "./Photos/map.png";
-import house1 from "./Photos/house1.png";
+import house1 from "./Photos/house1.png"; 
+
 import house2 from "./Photos/house2.png";
 import searchIcon from "./Photos/searchIcon.png"; // Imported Search Icon
 import filterIcon from "./Photos/filterIcon.png"; // Imported Filter Icon
 import { DropdownButton } from 'react-bootstrap';
 import HouseCard from "./HouseCard";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+
+//back end script for house information 
+//import houseInfo from './path/to/houseinfo.json'; 
+
+
 
 
 function SearchResults() {
@@ -31,6 +38,20 @@ function SearchResults() {
             </Dropdown.Menu>
         </Dropdown>
     );
+
+    //google maps api style for the map container
+    const containerStyle = {
+    width: '100%',
+    height: '100%'
+    };
+
+    // Center position for Calgary, AB
+    const center = {
+    lat: 51.0447, // Latitude for Calgary
+    lng: -114.0719 // Longitude for Calgary
+    };
+
+
 
 	return (
         <div style={{ height: "100vh", background: "linear-gradient(rgba(16, 166, 144, 0.5), white)" }}>
@@ -113,7 +134,15 @@ function SearchResults() {
 
                 {/* Map Column */}
 				<Col md={6} className="map-column">
-                <img src={map} alt="Map" style={{ width: '100%', height: '100%' }} />
+                <LoadScript googleMapsApiKey="AIzaSyC9k9s02k_7lQfZw-D1FbdixU95HPL_qFM">
+                    <GoogleMap
+                    mapContainerStyle={containerStyle}
+                    center={center}
+                    zoom={10}
+                    >
+                    {/* Place markers on the map using <Marker> components */}
+                    </GoogleMap>
+                </LoadScript>
               </Col>
             </Row>
           </Container>
