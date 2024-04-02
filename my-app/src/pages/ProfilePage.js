@@ -59,6 +59,10 @@ function ProfilePage() {
   const handleLogout = () => {
     navigate("/login", { state: { user: "" } });
   };
+  const handleHouseClick = (house) => { 
+
+    
+  };
 
   console.log("House Beds:", houseInfo.map(house => house.bedrooms));
   console.log("House Baths:", houseInfo.map(house => house.bathrooms));
@@ -94,7 +98,7 @@ function ProfilePage() {
               {user ==="Jack" ? (
                 <Carousel className="w-50">
                   {houseInfo
-                    .filter((house) => house.id === "1" || house.id === "2")
+                    .filter((house) => house.jackBooking === "yes")
                     .map((house) => (
                       <Carousel.Item key={house.id}>
                         <HouseCard
@@ -104,6 +108,7 @@ function ProfilePage() {
                           NumBath={house.bathrooms}
                           Description={house.description}
                           NumBed={house.bedrooms}
+                          onClick={() => {navigate("/details", {state: user, house: house.id})}}
                         />
                       </Carousel.Item>
                     ))}

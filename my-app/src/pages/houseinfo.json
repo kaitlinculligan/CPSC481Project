@@ -21,7 +21,9 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "no",
-    "photos": ["./Photos/insideHouse1.png", "./Photos/insideHouse1-1.png"]
+    "photos": ["./Photos/insideHouse1.png", "./Photos/insideHouse1-1.png"],
+    "jackBooking": "yes",
+    "jackFovorite": "yes"
 },
 {
     "id": "2",
@@ -46,7 +48,9 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "no",
-    "photos": ["./Photos/insideHouse2.png", "./Photos/insideHouse2-1.png", "./Photos/insideHouse2-2.png"]
+    "photos": ["./Photos/insideHouse2.png", "./Photos/insideHouse2-1.png", "./Photos/insideHouse2-2.png"],
+    "jackBooking": "yes",
+    "jackFovorite": "yes"
 },
 {
     "id": "3",
@@ -71,7 +75,10 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "yes",
-    "photos": ["./Photos/insideHouse3.png", "./Photos/insideHouse3-1.png", "./Photos/insideHouse3-2.png"]
+    "photos": ["./Photos/insideHouse3.png", "./Photos/insideHouse3-1.png", "./Photos/insideHouse3-2.png"],
+    "jackBooking": "no",
+    "jackFovorite": "yes"
+    
 },
 {
     "id": "4",
@@ -96,7 +103,9 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "no",
-    "photos": ["./Photos/insideHouse4.png", "./Photos/insideHouse4-1.png"]
+    "photos": ["./Photos/insideHouse4.png", "./Photos/insideHouse4-1.png"],
+    "jackBooking": "no",
+    "jackFovorite": "yes"
 }
 
 
