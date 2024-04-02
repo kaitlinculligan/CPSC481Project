@@ -1,0 +1,10 @@
+.ellipsis-multiline {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Adjust based on your expected line count */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-Style: "italic";
+    font-Weight: "lighter";
+    font-size: 13px;
+  }
