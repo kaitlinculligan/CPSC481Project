@@ -41,8 +41,6 @@ function Appointment() {
 		window.location.href = url;
 	  };
 	  const handleSubmit = (event) => {
-		alert(date)
-		alert(time)
 	   if(houseInfo.at(house).jackBooking = 'yes'){
 		alert("A booking for this house already exists")
 	   }
