@@ -12,6 +12,8 @@ import searchIcon from "./Photos/searchIcon.png"; // Imported Search Icon
 import filterIcon from "./Photos/filterIcon.png"; // Imported Filter Icon
 import { DropdownButton } from 'react-bootstrap';
 import HouseCard from "./HouseCard";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+
 
 
 function SearchResults() {
@@ -31,6 +33,19 @@ function SearchResults() {
             </Dropdown.Menu>
         </Dropdown>
     );
+
+    //google maps api style for the map container
+    const containerStyle = {
+    width: '100%',
+    height: '100%'
+    };
+
+    // Example center position for the map
+    const center = {
+    lat: -34.397,
+    lng: 150.644
+    };
+
 
 	return (
         <div style={{ height: "100vh", background: "linear-gradient(rgba(16, 166, 144, 0.5), white)" }}>
@@ -113,7 +128,15 @@ function SearchResults() {
 
                 {/* Map Column */}
 				<Col md={6} className="map-column">
-                <img src={map} alt="Map" style={{ width: '100%', height: '100%' }} />
+                <LoadScript googleMapsApiKey="AIzaSyAQdDxUoOKNGTyCqtnkCE9MGo6pDSQdBQI">
+                    <GoogleMap
+                    mapContainerStyle={containerStyle}
+                    center={center}
+                    zoom={10}
+                    >
+                    {/* Place markers on the map using <Marker> components */}
+                    </GoogleMap>
+                </LoadScript>
               </Col>
             </Row>
           </Container>
