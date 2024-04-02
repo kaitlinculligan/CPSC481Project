@@ -34,7 +34,7 @@ body {
 .property-images-carousel .carousel-item img {
   object-fit: contain; /* Covers the element's box while maintaining aspect ratio */
   cursor: pointer; /* Indicates that the item is interactive */
-  max-height: 50vh; /* Maximum height to ensure it does not push content out of the viewport */
+  max-height: 48vh; /* Maximum height to ensure it does not push content out of the viewport */
 }
 
 /* Wrapping container for property details and realtor card */

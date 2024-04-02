@@ -23,6 +23,8 @@ function ProfilePage() {
   const [phone, setPhone] = useState("");
   const [profilePic, setProfilePic] = useState(null);
 
+  
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleProfilePicChange = (event) => {

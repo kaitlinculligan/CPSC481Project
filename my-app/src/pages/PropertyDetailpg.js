@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./PropertyDetailpg.css";
 import { Carousel, Container, Navbar, Nav, Card, Modal, Button, Tab, Tabs } from "react-bootstrap";
-import NavBar from './NavBar.js';
+import NavBar from "./NavBar.js";
 import backArrow from "./Photos/backArrow.png";
 import heartIcon from "./Photos/favourites.png";
 import addIcon from "./Photos/addToFav.png";
@@ -11,13 +11,39 @@ import house1 from "./Photos/house1.png";
 import house2 from "./Photos/house2.png";
 import house3 from "./Photos/house3.png";
 import house4 from "./Photos/house4.png";
+import bed from "./Photos/Bed.png";
+import bath from "./Photos/Bath.png";
+import { useLocation } from "react-router-dom";
+import houseInfo from "./houseInfo.js";
+import { useEffect } from "react";
 
 function PropertyDetailPage() {
   const [showModal, setShowModal] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [activeTab, setActiveTab] = useState("description");
 
-  const propertyImages = [house1, house2, house3, house4];
+  const location = useLocation();
+  const { user, id} = location.state || {};
+  let houseId = String(id);
+  console.log("id:", id);
+  const [propertyImages, setPropertyImages] = useState([]);
+
+  useEffect(() => {
+    // Function to find the property by ID and set images
+    const getPropertyImages = (houseId) => {
+      const property = houseInfo.find(property => property.id === houseId);
+      console.log("Property:", property);
+      if (property && property.photos) {
+        setPropertyImages(property.photos);
+      }
+      console.log("Property Images:", propertyImages);
+    };
+
+    
+
+    getPropertyImages(houseId);
+  }, [houseId]);
+
   const propertyDetails = {
     address: "1234 Dream Lane, Imagination City, Fantasy 00000",
     price: "$999,000",
@@ -59,19 +85,61 @@ function PropertyDetailPage() {
   return (
     <div style={{ height: "700px", background: "linear-gradient(rgba(16, 166, 144, 0.5), white)" }}>
       {/* Navigation bar at the top */}
-      <NavBar/>
+      <NavBar />
 
       {/* Main container for carousel and details */}
+      <div className="h-50 w-100 d-flex flex-row bg-info ">
+        <div className="h-100 w-50 d-flex flex-column align-items-center">
+          <div className="w-100 h-50 d-flex flex-row justify-content-center bg-body-secondary" style={{ fontSize: "45px", fontWeight: "bold" }}>
+            {propertyDetails.address}
+          </div>
+          <div className="w-100 h-25 d-flex flex-row justify-content-center bg-body-tertiary text-uppercase" style={{ fontSize: "45px" }}>
+            {propertyDetails.price}
+          </div>
+          <div className="w-100 h-25 d-flex flex-row justify-content-center bg-body ">
+            <div className="h-100 w-50 d-flex flex-row justify-content-evenly">
+              <div className="w-50 h-100">
+                <img
+                  src={bed}
+                  alt="Bed"
+                  style={{
+                    width: "100%", // Use 100% of the container's width
+                    height: "100%", // Use 100% of the container's height
+                    objectFit: "contain", // Maintain the aspect ratio and contain within the given dimensions
+                  }}
+                />
+              </div>
+              <div className="w-50 h-100"></div>
+            </div>
+            <div className="h-100 w-50 d-flex flex-row justify-content-evenly  ">
+              <div className="w-50 h-100">
+                <img
+                  src={bath}
+                  alt="Bath"
+                  style={{
+                    width: "100%", // Use 100% of the container's width
+                    height: "100%", // Use 100% of the container's height
+                    objectFit: "contain", // Maintain the aspect ratio and contain within the given dimensions
+                  }}
+                />
+              </div>
+              <div className="w-50 h-100"></div>
+            </div>
+          </div>
+        </div>
+        <div className="h-100 w-50 bg-danger  d-flex flex-column align-items-center">
+          <Carousel className=" property-images-carousel" style={{ maxWidth: "100%" }}>
+            {propertyImages.map((src, index) => (
+              <Carousel.Item className=" carousel-item" key={index} onClick={() => openModal(index)}>
+                <img className="d-block w-100" src={process.env.PUBLIC_URL + src} alt={`Slide ${index}`} />
+              </Carousel.Item>
+            ))}
+          </Carousel>
+        </div>
+      </div>
       <Container fluid className="p-0">
         {/* Carousel for property images */}
         {/* Carousel styling adjusted to match the desired layout */}
-        <Carousel className="property-images-carousel mx-auto my-4" style={{ maxWidth: "90%" }}>
-          {propertyImages.map((src, index) => (
-            <Carousel.Item key={index} onClick={() => openModal(index)}>
-              <img className="d-block w-100" src={src} alt={`Slide ${index}`} />
-            </Carousel.Item>
-          ))}
-        </Carousel>
 
         {/* Property details and realtor information with adjusted layout */}
         <div className="property-realtor-wrapper mx-auto" style={{ maxWidth: "90%" }}>
@@ -80,9 +148,7 @@ function PropertyDetailPage() {
             {/* Listing details with the favorites button at the top right */}
             <div className="listing-header" style={{ flexGrow: 1, marginRight: "15px" }}>
               {/* Add to Favorites Icon Button */}
-              <button className="favorite-btn" onClick={addToFavorites} title="Add to favorites">
-                <img src={addIcon} alt="Add to Favorites" />
-              </button>
+
               <div>
                 <h3>{propertyDetails.address}</h3>
                 <h2>{propertyDetails.price}</h2>
