@@ -2,6 +2,7 @@ import { Card } from "react-bootstrap";
 import Bed from "./Photos/Bed.png";
 import Bath from "./Photos/Bath.png";
 import React from "react";
+import "./HouseCard.css";
 
 function HouseCard({ Name, Photo, Price, Description,NumBath,NumBed }) {
   const dynamicPhoto = typeof Photo === 'string' ? require(`${Photo}`) : Photo;
@@ -49,7 +50,7 @@ function HouseCard({ Name, Photo, Price, Description,NumBath,NumBed }) {
               </div>
             </div>
           </div>
-          <div className="w-100 h-75" style={{ fontStyle:"italic", fontWeight:"lighter", fontSize:"13px"}}>
+          <div className="w-100 h-75 ellipsis-multiline" style={{ fontStyle:"italic", fontWeight:"lighter", fontSize:"13px" }}>
             {Description}
           </div>
 
