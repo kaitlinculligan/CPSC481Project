@@ -6,13 +6,18 @@ import favourites from "./Photos/favourites.png";
 import logoIcon from "./Photos/logoAndName.png";
 import backArrow from "./Photos/backArrow.png";
 import map from "./Photos/map.png";
-import house1 from "./Photos/house1.png";
+import house1 from "./Photos/house1.png"; 
+
 import house2 from "./Photos/house2.png";
 import searchIcon from "./Photos/searchIcon.png"; // Imported Search Icon
 import filterIcon from "./Photos/filterIcon.png"; // Imported Filter Icon
 import { DropdownButton } from 'react-bootstrap';
 import HouseCard from "./HouseCard";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+
+//back end script for house information 
+//import houseInfo from './path/to/houseinfo.json'; 
+
 
 
 
@@ -40,11 +45,12 @@ function SearchResults() {
     height: '100%'
     };
 
-    // Example center position for the map
+    // Center position for Calgary, AB
     const center = {
-    lat: -34.397,
-    lng: 150.644
+    lat: 51.0447, // Latitude for Calgary
+    lng: -114.0719 // Longitude for Calgary
     };
+
 
 
 	return (
@@ -128,7 +134,7 @@ function SearchResults() {
 
                 {/* Map Column */}
 				<Col md={6} className="map-column">
-                <LoadScript googleMapsApiKey="AIzaSyAQdDxUoOKNGTyCqtnkCE9MGo6pDSQdBQI">
+                <LoadScript googleMapsApiKey="AIzaSyC9k9s02k_7lQfZw-D1FbdixU95HPL_qFM">
                     <GoogleMap
                     mapContainerStyle={containerStyle}
                     center={center}

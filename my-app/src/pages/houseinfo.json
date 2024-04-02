@@ -1,6 +1,6 @@
 [{
     "id": "1",
-    "houseName": "2023 40th ave sw",
+    "houseName": "2 Lawrey Gardens Park",
     "price": "100,000",
     "bedrooms": "1",
     "bathrooms": "1",
@@ -21,11 +21,13 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "no",
-    "photos": ["./Photos/insideHouse1.png", "./Photos/insideHouse1-1.png"]
+    "photos": ["./Photos/insideHouse1.png", "./Photos/insideHouse1-1.png"],
+    "lat": 51.05165310196438,  
+    "lng": -114.12224671759095
 },
 {
     "id": "2",
-    "houseName": "8085 19th ave sw",
+    "houseName": "323 Valley Woods Pl NW",
     "price": "100,000",
     "bedrooms": "2",
     "bathrooms": "2",
@@ -46,11 +48,13 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "no",
-    "photos": ["./Photos/insideHouse2.png", "./Photos/insideHouse2-1.png", "./Photos/insideHouse2-2.png"]
+    "photos": ["./Photos/insideHouse2.png", "./Photos/insideHouse2-1.png", "./Photos/insideHouse2-2.png"],
+    "lat" : 51.100058339014126, 
+    "lng": -114.26738183047935
 },
 {
     "id": "3",
-    "houseName": "2023 40th ave sw",
+    "houseName": "106 Rockcliff Terrace NW",
     "price": "100,000",
     "bedrooms": "3",
     "bathrooms": "2",
@@ -71,11 +75,13 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "yes",
-    "photos": ["./Photos/insideHouse3.png", "./Photos/insideHouse3-1.png", "./Photos/insideHouse3-2.png"]
+    "photos": ["./Photos/insideHouse3.png", "./Photos/insideHouse3-1.png", "./Photos/insideHouse3-2.png"], 
+    "lat": 51.15381625428013, 
+    "lng": -114.2400345159444
 },
 {
     "id": "4",
-    "houseName": "2023 40th ave sw",
+    "houseName": "135 McKinnon Pl NE",
     "price": "100,000",
     "bedrooms": "3",
     "bathrooms": "2",
@@ -96,7 +102,9 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "no",
-    "photos": ["./Photos/insideHouse4.png", "./Photos/insideHouse4-1.png"]
+    "photos": ["./Photos/insideHouse4.png", "./Photos/insideHouse4-1.png"], 
+    "lat": 51.056521039602835,
+    "lng":  -114.00332083408925
 }
 
 
