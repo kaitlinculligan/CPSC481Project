@@ -210,7 +210,7 @@ function PropertyDetailPage() {
 
   });
   const location = useLocation();
-  const { user, id } = location.state || {user:"Jack",id:"4"};
+  const { user, id } = location.state || {};
   const navigate = useNavigate();
   let houseId = String(id);
   console.log("id:", id);
