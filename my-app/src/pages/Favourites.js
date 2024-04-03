@@ -73,7 +73,7 @@ function Favourites() {
                 <Row>
                 <button className="button"
               onClick={() => {openModal(house.id)}}
-              style={{width:"95%", height:"65%", backgroundColor:"red", color:"white" }}>Delete</button>
+              style={{width:"80%", height:"30%", backgroundColor:"red", color:"white" }}>Delete</button>
               </Row>
               <Row></Row>
               </Col>
