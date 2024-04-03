@@ -134,7 +134,7 @@ function SearchResults() {
 
                 {/* Map Column */}
 				<Col md={6} className="map-column">
-                <LoadScript googleMapsApiKey="AIzaSyC9k9s02k_7lQfZw-D1FbdixU95HPL_qFM">
+                <LoadScript googleMapsApiKey="key goes here">
                     <GoogleMap
                     mapContainerStyle={containerStyle}
                     center={center}
