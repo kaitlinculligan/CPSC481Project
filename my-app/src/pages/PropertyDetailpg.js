@@ -6,9 +6,10 @@ import realtorImage from "./Photos/profileLogo.png";
 import bed from "./Photos/Bed.png";
 import bath from "./Photos/Bath.png";
 import { useLocation } from "react-router-dom";
-import houseInfo from "./houseinfo.json";
+import houseInfo from "./houseInfo.js";
 import { useEffect } from "react";
 import { Badge, OverlayTrigger, Tooltip, Row, Col } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function RatingsGroup({ houseDetails }) {
@@ -183,6 +184,8 @@ function Rating({ label, value, descriptions }) {
 }
 function PropertyDetailPage() {
   const [showModal, setShowModal] = useState(false);
+  const [favouriteMessage, setfavouriteMessage] = useState('');
+  const [showFavModal, setShowFavModal] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [activeTab, setActiveTab] = useState("description");
   const [houseDetails, setHouseDetails] = useState({
@@ -207,7 +210,8 @@ function PropertyDetailPage() {
 
   });
   const location = useLocation();
-  const { user, id } = location.state || {};
+  const { user, id } = location.state || {user:"Jack",id:"4"};
+  const navigate = useNavigate();
   let houseId = String(id);
   console.log("id:", id);
   const [propertyImages, setPropertyImages] = useState([]);
@@ -250,7 +254,7 @@ function PropertyDetailPage() {
           shopping: property.shopping || "",
           transportation: property.transportation || "",
           safety: property.safety || "",
-          squareFeet: property.squareFeet || "",
+          squareFeet: property.sqft || "",
           bedrooms: property.bedrooms || 0,
           bathrooms: property.bathrooms || 0,
           noiseLevel: property.noiseLevel || "",
@@ -287,6 +291,14 @@ function PropertyDetailPage() {
     setShowModal(false);
   };
 
+  const openFavModal = () => {
+    setShowFavModal(true);
+  };
+
+  const closeFavModal = () => {
+    setShowFavModal(false);
+  };
+
   const goToPrevious = () => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? propertyImages.length - 1 : prevIndex - 1));
   };
@@ -294,13 +306,27 @@ function PropertyDetailPage() {
   const goToNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex === propertyImages.length - 1 ? 0 : prevIndex + 1));
   };
-  const addToFavorites = () => {
-    // Placeholder function to mimic adding to favorites
-    console.log("Added to favorites!");
-  };
+
   // Function to format bedroom and bathroom counts
   const formatRooms = (bedrooms, bathrooms) => {
     return `${bedrooms} Bedroom${bedrooms > 1 ? "s" : ""}, ${bathrooms} Bathroom${bathrooms > 1 ? "s" : ""}`;
+  };
+
+  const handleAddToFavourites = (id)=>{
+    if(user === undefined || user === ""){
+      console.log("User:", user);
+      navigate('/login', { state: { user } });
+    }
+    else{
+      if(houseInfo.at(id).jackFovorite ==='yes'){
+        setfavouriteMessage("You've already favourited this property");
+      }
+      else{
+        houseInfo.at(id).jackFovorite ='yes'
+        setfavouriteMessage("Added to favourites");
+      }
+      openFavModal()
+   }
   };
 
   return (
@@ -309,12 +335,15 @@ function PropertyDetailPage() {
       <NavBar />
       <div className="h-50 w-100 d-flex flex-row  ">
         <div className="h-100 w-50 d-flex flex-column align-items-center">
-          <div className="w-100 h-50 d-flex flex-row justify-content-center" style={{ fontSize: "85px", fontWeight: "bold" }}>
+          <div className="w-100 h-50 d-flex flex-row justify-content-center" style={{ fontSize: "75px", fontWeight: "bold" }}>
             {houseDetails.address}
           </div>
-          <div className="w-100 h-25 d-flex flex-row justify-content-center text-uppercase" style={{ fontSize: "65px", fontWeight: "bolder" }}>
-            ${houseDetails.price}
+          <div className="w-100 h-100 d-flex flex-row justify-content-center" style={{ fontSize: "30px", fontWeight: "bold" }}>
+
+          <p>Square footage: {houseDetails.squareFeet}   |  Price: ${houseDetails.price}</p>
+
           </div>
+
           <div className="w-100 h-25 d-flex flex-row justify-content-center  ">
             <div className="h-100 w-50 d-flex flex-row justify-content-evenly  border border-3 border-black">
               <div className="w-50 h-100 col">
@@ -330,9 +359,9 @@ function PropertyDetailPage() {
                   />
                 </div>
 
-                <p1 className="ps-5" style={{ fontWeight: "light", fontStyle: "italic" }}>
+                <p className="ps-5" style={{ fontWeight: "light", fontStyle: "italic" }}>
                   beds
-                </p1>
+                </p>
               </div>
               <div className="w-50 h-100 pt-3" style={{ fontSize: "30px", fontWeight: "bolder" }}>
                 {houseDetails.bedrooms}
@@ -352,14 +381,17 @@ function PropertyDetailPage() {
                   />
                 </div>
 
-                <p1 className="ps-5" style={{ fontWeight: "light", fontStyle: "italic" }}>
+                <p className="ps-5" style={{ fontWeight: "light", fontStyle: "italic" }}>
                   baths
-                </p1>
+                </p>
               </div>
               <div className="w-50 h-100 pt-3" style={{ fontSize: "30px", fontWeight: "bolder" }}>
                 {houseDetails.bathrooms}
               </div>
             </div>
+          </div>
+          <div className="w-50 h-100 d-flex flex-row justify-content-center text-lowercase" style={{ fontSize: "45px", fontWeight: "bold", padding:"5px" }}>
+          <Button  onClick={() => {handleAddToFavourites(houseDetails.id)}} style={{backgroundColor:"#10a690"}}>Add to Favourites</Button>
           </div>
         </div>
         <div className="h-100 d-flex flex-row justify-content-evenly border border-5 border-black rounded-5 bg-black m-3" style={{ width: "45%" }}>
@@ -395,6 +427,9 @@ function PropertyDetailPage() {
               </Tab>
             </Tabs>
           </div>
+          <div className="pictureButton w-50 h-100 d-flex flex-column align-items-left ">
+            <Button onClick={() => {openModal(0)}} style={{backgroundColor:"#10a690", marginTop:"25px",marginLeft:"5%", width:"75%"}}>View More Pictures</Button>
+          </div>
         </div>
 
         {/* Modal for enlarged image view */}
@@ -413,6 +448,16 @@ function PropertyDetailPage() {
               Next
             </Button>
           </Modal.Footer>
+        </Modal>
+
+        {/* Modal for add to favourites  */}
+        <Modal show={showFavModal} onHide={closeFavModal} size="md" centered>
+          <Modal.Header closeButton>
+            <Modal.Title>Add to Favourites</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p>{favouriteMessage}</p>
+          </Modal.Body>
         </Modal>
       </Container>
     </div>
