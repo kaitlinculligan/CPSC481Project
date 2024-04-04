@@ -1,28 +1,138 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './SearchResults.css';
-import { Row, Col, FormControl, InputGroup, Navbar, Container, Card, Nav, Dropdown, Button } from 'react-bootstrap';
+import { Row, Col, FormControl, InputGroup, Navbar, Container, Dropdown, Button, DropdownButton } from 'react-bootstrap';
 import NavBar from './NavBar.js';
-import favourites from "./Photos/favourites.png";
-import logoIcon from "./Photos/logoAndName.png";
-import backArrow from "./Photos/backArrow.png";
-import map from "./Photos/map.png";
-import house1 from "./Photos/house1.png"; 
-
-import house2 from "./Photos/house2.png";
-import searchIcon from "./Photos/searchIcon.png"; // Imported Search Icon
-import filterIcon from "./Photos/filterIcon.png"; // Imported Filter Icon
-import { DropdownButton } from 'react-bootstrap';
+import searchIcon from "./Photos/searchIcon.png"; 
+import filterIcon from "./Photos/filterIcon.png"; 
 import HouseCard from "./HouseCard";
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
-
-//back end script for house information 
-//import houseInfo from './path/to/houseinfo.json'; 
+import houseInfo from "./houseInfo.js"
+import { Wrapper, Status } from "@googlemaps/react-wrapper";
 
 
+
+// google maps rendering 
+const render = (status) => {
+    if (status === Status.LOADING) return <div>Loading...</div>;
+    return null;
+};
+  
+const MyMapComponent = ({ apiKey, listings, hoveredPropertyId, selectedPropertyId, onMapLoad }) => {
+    const ref = useRef();
+    const mapRef = useRef(null); // Ref to store the map object
+  
+    useEffect(() => {
+      if (ref.current && !mapRef.current) {
+        const map = new window.google.maps.Map(ref.current, {
+          center: { lat: 51.0447, lng: -114.0719 },
+          zoom: 10,
+        });
+  
+        mapRef.current = map; // Store the map object
+        if (onMapLoad) {
+          onMapLoad(map); // Pass the map object back to the parent component
+        }
+  
+        const infoWindow = new window.google.maps.InfoWindow();
+        listings.forEach((listing) => {
+          const marker = new window.google.maps.Marker({
+            position: { lat: parseFloat(listing.lat), lng: parseFloat(listing.lng) },
+            map: map,
+            title: listing.houseName,
+          });
+  
+          marker.addListener('click', () => {
+            infoWindow.setContent(`
+              <div>
+                <h5>${listing.houseName}</h5>
+                <img src="${listing.image}" alt="House image" style="width:100px;"><br>
+                Price: ${listing.price}<br>
+                Bedrooms: ${listing.bedrooms}<br>
+                Bathrooms: ${listing.bathrooms}
+              </div>
+            `);
+            infoWindow.open(map, marker);
+          });
+        });
+      }
+    }, [listings, onMapLoad]);
+  
+    useEffect(() => {
+      if (selectedPropertyId && mapRef.current) {
+        // Assume listings is a flat array where each item has an id
+        const listing = listings.find(listing => listing.id === selectedPropertyId);
+        if (listing) {
+          mapRef.current.setZoom(15);
+          mapRef.current.panTo({ lat: parseFloat(listing.lat), lng: parseFloat(listing.lng) });
+        }
+      }
+    }, [selectedPropertyId, listings]);
+  
+    return <div ref={ref} style={{ height: "100%", width: "100%" }} />;
+  };
+    
+  
 
 
 function SearchResults() {
 
+    const apiKey = "AIzaSyBwFfcnAy4EsP1jo88dc4KV3OnGsEqX5ec";
+    
+
+    // State to hold fileter/search listings
+    const [displayedListings, setDisplayedListings] = useState(houseInfo);
+    const [hoveredPropertyId, setHoveredPropertyId] = useState(null);
+    const [selectedPropertyId, setSelectedPropertyId] = useState(null);
+    //store google maps instance 
+    const mapInstanceRef = useRef(null); 
+
+    
+     // Function to reset the map view to its default center and zoom level
+     const handleResetMap = () => {
+        if (mapInstanceRef.current) {
+          mapInstanceRef.current.setZoom(10);
+          mapInstanceRef.current.panTo({ lat: 51.0447, lng: -114.0719 });
+        }
+      };
+
+    //const selectedMarkerIcon = `${process.env.PUBLIC_URL}/icons/selectedMarkerIcon.png`;
+    //const defaultMarkerIcon = `${process.env.PUBLIC_URL}/icons/defaultMarkerIcon.png`;
+
+    
+
+    /*
+    // Define customMarkerSize inside useEffect or directly in Marker component after confirming mapsApiLoaded
+    let customMarkerSize;
+    if (mapsApiLoaded) {
+        customMarkerSize = {
+            scaledSize: new window.google.maps.Size(30, 30),
+        };
+    }
+    
+    //state for managing zoom level
+    const [zoom, setZoom] = useState(10);
+    
+    // Ref for the map to enable programmatic control
+    const mapRef = useRef(null);
+
+    // Define a function to handle map load to access map instance
+    const handleMapLoad = (map) => {
+    mapRef.current = map;
+    };
+
+    useEffect(() => {
+        // If a property is selected, zoom in on it
+        if (selectedPropertyId) {
+          const selectedListing = houseInfo.find(listing => listing.id === selectedPropertyId);
+          if (selectedListing) {
+            mapRef.current.panTo({ lat: parseFloat(selectedListing.lat), lng: parseFloat(selectedListing.lng) });
+            setZoom(15); // Zoom in
+          }
+        } else {
+          setZoom(10); // Reset zoom to default when no selection
+        }
+      }, [selectedPropertyId]);
+
+    */
 	// Helper function to create dropdown menus for Price, Beds, and Baths
 	const createDropdown = (title, options, className) => (
         <Dropdown className={className}>
@@ -39,21 +149,31 @@ function SearchResults() {
         </Dropdown>
     );
 
-    //google maps api style for the map container
-    const containerStyle = {
-    width: '100%',
-    height: '100%'
-    };
+    
+    //function to handle mouse enter on property card
+    const handleMouseEnter = (propertyId) => {
+        setHoveredPropertyId(propertyId);
+      };
 
-    // Center position for Calgary, AB
-    const center = {
-    lat: 51.0447, // Latitude for Calgary
-    lng: -114.0719 // Longitude for Calgary
-    };
+    //function to handle mouse leave on property card
+    const handleMouseLeave = () => {
+        setHoveredPropertyId(null);
+      };
 
+    //function to handle click on property card 
+    const handleClick = (propertyId) => {
+        setSelectedPropertyId(propertyId);
+      };
 
+    //fetch function to get information from houseinfo.js
+    const getPropertyDetails = (houseId) => {
+        return houseInfo.find(property => property.id === houseId);
+      }
+    
+      
 
 	return (
+        
         <div style={{ height: "100vh", background: "linear-gradient(rgba(16, 166, 144, 0.5), white)" }}>
             {/* Navbar */}
             <NavBar/>
@@ -76,78 +196,62 @@ function SearchResults() {
             </Navbar>
 
 		 {/* Content Area */}
-		 <Container fluid className="p-0 search-results-content">
-		 <Row noGutters className="content-row">
+		 <Container fluid className="search-results-content">
+		 <Row className="no-gutters content-row">
               {/* Listings Column */}
 			  <Col md={6} className="listings-column">
 				{/* Sort By Dropdown */}
 				<div className="sort-dropdown">
-                            <DropdownButton id="dropdown-item-button" title="Sort By">
-                                <Dropdown.Item as="button">Newest</Dropdown.Item>
-                                {/* Add more sort options here */}
-                            </DropdownButton>
+                    <DropdownButton id="dropdown-item-button" title="Sort By">
+                        <Dropdown.Item as="button">Newest</Dropdown.Item>
+                        {/* Add more sort options here */}
+                    </DropdownButton>
+                </div>
+
+                {/* Scrollable Listings Container */}
+                <div className="scrollable-listings">
+                    {displayedListings.map((listing) => {
+                    const details = getPropertyDetails(listing.id); 
+                    return (
+                        <div
+                            onMouseEnter={() => handleMouseEnter(listing.id)}
+                            onMouseLeave={handleMouseLeave}
+                            onClick={() => handleClick(listing.id)}
+                            key={listing.id}>
+                            <HouseCard 
+                                className="listing-card"
+                                Name={details.houseName}
+                                Photo={details.image} 
+                                Price={details.price}
+                                Description={details.description}
+                                NumBath={details.bathrooms}
+                                NumBed={details.bedrooms}
+                            />
                         </div>
+                    );
+                })}     
+            </div>
+		</Col>
+        
 
-                        {/* Scrollable Listings Container */}
-                        <div className="scrollable-listings">
-                            {/* Cards for Listing */}
-                            <HouseCard className="listing-card"
-            Name="123 Brentwood Ave"
-            Photo={house1}
-            Price="$500,000"
-            Description="A small but important property with a great view of the beltline"
-            NumBath={3}
-            NumBed={2}
-          />
-				{/* Card for listing 2 */}
-        <HouseCard className="listing-card"
-            Name="481 Main Street"
-            Photo={house1}
-            Price="$ 534,000"
-            Description="A small but important property with a great view of the beltline"
-            NumBath={2}
-            NumBed={1}
-          />
-				<Card className="listing-card">
-					<Card.Body>
-						<Row>
-							<Col md={6}>
-								<Card.Img variant="top" src={house2} />
-							</Col>
-							<Col md={6}>
-								<Card.Title>481 Main Street</Card.Title>
-								<Card.Text>
-									<ul>
-										<li>Price: $ 534,000</li>
-										<li>Bedrooms: 2</li>
-										<li>Bathrooms: 1</li>
-									</ul>
-								</Card.Text>
-							</Col>
-						</Row>
-					</Card.Body>
-					</Card>
-                 </div>
-
-
-				</Col>
-
-                {/* Map Column */}
-				<Col md={6} className="map-column">
-                <LoadScript googleMapsApiKey="key goes here">
-                    <GoogleMap
-                    mapContainerStyle={containerStyle}
-                    center={center}
-                    zoom={10}
-                    >
-                    {/* Place markers on the map using <Marker> components */}
-                    </GoogleMap>
-                </LoadScript>
-              </Col>
-            </Row>
-          </Container>
-        </div>
-    );
+        {/* Map Column */}
+        <Col md={6} className="map-column">
+            <Button onClick={handleResetMap} style={{ margin: "10px" }}>Reset Map View</Button>
+            <Wrapper apiKey={apiKey} render={render}>
+              <MyMapComponent
+                apiKey={apiKey}
+                listings={houseInfo}
+                hoveredPropertyId={hoveredPropertyId}
+                selectedPropertyId={selectedPropertyId}
+                onMapLoad={(map) => mapInstanceRef.current = map} // Store the map instance when loaded
+              />
+            </Wrapper>
+          </Col>
+        </Row>
+      </Container>
+    </div>
+  );
 }
+
 
 export default SearchResults;

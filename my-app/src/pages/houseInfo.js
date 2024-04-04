@@ -1,6 +1,6 @@
 const houseInfo=[{
     "id": "1",
-    "houseName": "2023 40th ave sw",
+    "houseName": "2026 40th ave sw",
     "price": "100,000",
     "bedrooms": "1",
     "bathrooms": "1",
@@ -24,7 +24,9 @@ const houseInfo=[{
     "photos": ["./Photos/insideHouse1.png", "./Photos/insideHouse1-1.png"],
     "jackBooking": "yes",
     "jackFovorite": "yes",
-    "timeOfBooking": "2020-03-20T00:01 PM"
+    "timeOfBooking": "2020-03-20T00:01 PM",
+    "lat" : "50.99082427487876", 
+    "lng" : "-114.11832951558249" 
 },
 {
     "id": "2",
@@ -52,11 +54,13 @@ const houseInfo=[{
     "photos": ["./Photos/insideHouse2.png", "./Photos/insideHouse2-1.png", "./Photos/insideHouse2-2.png"],
     "jackBooking": "yes",
     "jackFovorite": "yes",
-    "timeOfBooking": "2020-03-20T00:00 PM"
+    "timeOfBooking": "2020-03-20T00:00 PM",
+    "lat" : "51.14722309638639", 
+    "lng" : "-114.07073863792215"
 },
 {
     "id": "3",
-    "houseName": "2023 40th ave sw",
+    "houseName": "2024 44th ave Nw",
     "price": "100,000",
     "bedrooms": "3",
     "bathrooms": "2",
@@ -80,12 +84,14 @@ const houseInfo=[{
     "photos": ["./Photos/insideHouse3.png", "./Photos/insideHouse3-1.png", "./Photos/insideHouse3-2.png"],
     "jackBooking": "no",
     "jackFovorite": "yes",
-    "timeOfBooking": "NA"
+    "timeOfBooking": "NA",
+    "lat" : "51.1001302774115", 
+    "lng" : "-114.26005033583782"
 
 },
 {
     "id": "4",
-    "houseName": "2023 40th ave sw",
+    "houseName": "2023 40th ave nw",
     "price": "100,000",
     "bedrooms": "3",
     "bathrooms": "2",
@@ -109,7 +115,9 @@ const houseInfo=[{
     "photos": ["./Photos/insideHouse4.png", "./Photos/insideHouse4-1.png"],
     "jackBooking": "no",
     "jackFovorite": "no",
-    "timeOfBooking": "NA"
+    "timeOfBooking": "NA",
+    "lat" : "51.13212065795928", 
+    "lng" : "-114.25638624110948"
 }
 
 
