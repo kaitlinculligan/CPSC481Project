@@ -40,14 +40,20 @@ function SearchPage() {
 			<div className='row'>
 				<div className='col-3'>
 					<h3>Property Type</h3>
-					<select className='searchForm'>
+					<select style={{width:"200px"}} className='searchForm'>
 						<option>Any</option>
+						<option>Apartment</option>
+						<option>House</option>
+						<option>Townhouse</option>
+						<option>Condo</option>
+						<option>Lofft</option>
+						<option>Villa</option>
 					</select>
 				</div>
 				<div className='col'></div>
 				<div className='col-3'>
 				<h3># of Bed</h3>
-				<select className='searchForm'>
+				<select style={{padding:"10px"}} className='searchForm'>
 					<option>Any</option>
 					<option>1</option>
 					<option>2</option>
