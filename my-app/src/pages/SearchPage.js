@@ -10,8 +10,22 @@ import pin from "./Photos/locationPin.png";
 import favourites from "./Photos/favourites.png";
 import profilePic from "./Photos/homePage.png";
 import NavBar from './NavBar.js';
+import filtericon from "./Photos/filterIcon.png";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function SearchPage() {
+	const location = useLocation();
+	const user = location.state?.user;
+	const navigate = useNavigate();
+	const navigateToPage = (url) => {
+	  window.location.href = url;
+	};
+
+	const handleFilter = () => {
+		navigate("/filters", { state: { user } });
+	};
+
 	return <div style={{height:"700px",background: "linear-gradient(rgba(16, 166, 144, 0.5), white)" }}>
 	<NavBar/>
 	<br></br>
@@ -25,22 +39,22 @@ function SearchPage() {
 	<br></br>
 	<div className='row justify-content-center' style={{padding:"5px"}} >
 		<div className='col SearchBox' style={{height:"200px",maxWidth:"500px",border: '2px solid black',padding:"5px",backgroundColor:"#10a690", borderRadius:"10px"}} >
-			<h2><img src={dollarsign} className="img-fluid img-thumbnail rounded-circle" style={{width:"30px",height:"30px",borderColor:"black"}}></img>Price</h2>
-			<input type="text" placeholder='Min' className='searchForm'></input>
-			<input type="text" placeholder='Max' className='searchForm'></input>
+			<h2 style={{padding: "6px"}}><img src={dollarsign} className="img-fluid img-thumbnail rounded-circle" style={{width:"30px",height:"30px",borderColor:"black", margin: '6px'}}></img>Price</h2>
+			<input type="text" style={{ margin: '10px' }} placeholder='Min' className='searchForm'></input>
+			<input type="text" style={{ margin: '10px' }} placeholder='Max' className='searchForm'></input>
 		</div>
 		<div className='col' style={{maxWidth:"2px"}}></div>
 		<div className='col' style={{height:"200px",maxWidth:"500px",border: '2px solid black',padding:"5px",backgroundColor:"#10a690", borderRadius:"10px"}} >
-			<h2><img src={pin} className="img-fluid img-thumbnail rounded-circle" style={{width:"30px",height:"30px",borderColor:"black" }}></img>Location</h2>
-			<input type="text" placeholder='Neighborhood' className='searchForm'></input>
+			<h2 style={{padding: "6px"}}><img src={pin} className="img-fluid img-thumbnail rounded-circle" style={{width:"30px",height:"30px",borderColor:"black", margin: '6px'}}></img>Location</h2>
+			<input type="text" style={{ margin: '10px', padding: "11px"}} placeholder='Neighborhood' className='searchForm'></input>
 		</div>
 	</div>
 	<div className='row justify-content-center' >
 		<div className='col' style={{height:"200px",maxWidth:"500px",border: '2px solid black',padding:"5px",backgroundColor:"#10a690", borderRadius:"10px"}} >
 			<div className='row'>
 				<div className='col-3'>
-					<h3>Property Type</h3>
-					<select style={{width:"200px"}} className='searchForm'>
+					<h3 style={{fontSize:"25px"}}>Property Type</h3>
+					<select className='searchForm'>
 						<option>Any</option>
 						<option>Apartment</option>
 						<option>House</option>
@@ -52,8 +66,8 @@ function SearchPage() {
 				</div>
 				<div className='col'></div>
 				<div className='col-3'>
-				<h3># of Bed</h3>
-				<select style={{padding:"10px"}} className='searchForm'>
+				<h3 style={{fontSize:"25px"}}>Number of Beds</h3>
+				<select className='searchForm'>
 					<option>Any</option>
 					<option>1</option>
 					<option>2</option>
@@ -65,7 +79,7 @@ function SearchPage() {
 				</div>
 				<div className='col'></div>
 				<div className='col-3'>
-				<h3># of Bath</h3>
+				<h3 style={{fontSize:"25px"}}>Number of Baths</h3>
 				<select className='searchForm'>
 					<option>Any</option>
 					<option>1</option>
@@ -80,14 +94,14 @@ function SearchPage() {
 		</div>
 		<div className='col' style={{maxWidth:"2px"}}></div>
 		<div className='col' style={{height:"200px",maxWidth:"500px",border: '2px solid black',padding:"5px",backgroundColor:"#10a690", borderRadius:"10px"}} >
-			<h2>Advanced Filters</h2>
-			<button className='searchForm'>+</button>
+		<h2 style={{padding: "6px"}}><img src={filtericon} className="img-fluid img-thumbnail rounded-circle" style={{width:"30px",height:"30px",borderColor:"black", margin: '6px'}}></img>Advanced Filter</h2>
+			<button onClick={handleFilter} className='searchForm'>+</button>
 		</div>
 	</div>
 	<div className='row justify-content-center'>
 	<div className='col'></div>
 	<div className='col-2'>
-		<input type="submit" value="Search"classname=' searchButton w-100 px-2 flex-column d-flex align-items-center py-2 justify-content-start' style={{width:"200px",padding:"14px 20px", backgroundColor:'#04AA6d',color:'white',margin:'8px 0', border:'none',borderRadius:'4px'}}></input>
+		<input type="submit" value="Search" classname=' searchButton w-100 px-2 flex-column d-flex align-items-center py-2 justify-content-start' style={{width:"200px",padding:"14px 20px", backgroundColor:'#04AA6d',color:'white',margin:'8px 0', border:'none',borderRadius:'4px'}}></input>
 		</div>
 		<div className='col-5'></div>
 	</div>
