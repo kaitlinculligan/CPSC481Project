@@ -21,7 +21,6 @@
   /* Style the submit button */
 
 .appointmentSubmit {
-
 	width: 100%;
 	background-color: #10a690;
 	color: white;
@@ -43,6 +42,7 @@
     margin-right: auto;
 	height: 50%;
 	width: 50%;
+	text-align: center;
 }
 
 .realtorName{
@@ -50,4 +50,5 @@
     margin-left: auto;
     margin-right: auto;
 	width: 50%;
+	text-align: center;
 }

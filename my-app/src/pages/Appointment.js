@@ -20,7 +20,7 @@ function Appointment() {
 
 			</div>
 			<div className='col'>
-				<h2>Contact Information</h2>
+				<h2 style={{textAlign: 'center'}}>Contact Information</h2>
 			</div>
 			<div className='col'>
 			<h3>Booking a showing for:</h3>
@@ -31,7 +31,7 @@ function Appointment() {
 			<div className='col'>
 			<img src={profilePic} className='realtorInfo'></img>
 			<h3 className='realtorName'>Realtor Name</h3>
-			<p className='realtorName'>Info about the realtor here</p>
+			<p style={{fontSize: '15px'}} className='realtorName'>Information about the realtor here:</p>
 			<ul className='realtorName' >
 				<li>realtorName@realtor.ca</li>
 				<li>(403)-123-4567</li>
