@@ -22,9 +22,12 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "no",
-    "photos": ["./Photos/insideHouse1.png", "./Photos/insideHouse1-1.png"],
+    "photos": [
+      "./Photos/insideHouse1.png",
+      "./Photos/insideHouse1-1.png"
+    ],
     "jackBooking": "yes",
-    "jackFovorite": "yes",
+    "jackFavourite": "no",
     "timeOfBooking": "2020-03-20T00:01 PM"
   },
   {
@@ -50,9 +53,13 @@
     "schoolsElementary": "1",
     "schoolsPreschool": "4",
     "pool": "yes",
-    "photos": ["./Photos/insideHouse2.png", "./Photos/insideHouse2-1.png", "./Photos/insideHouse2-2.png"],
+    "photos": [
+      "./Photos/insideHouse2.png",
+      "./Photos/insideHouse2-1.png",
+      "./Photos/insideHouse2-2.png"
+    ],
     "jackBooking": "yes",
-    "jackFovorite": "yes",
+    "jackFavourite": "yes",
     "timeOfBooking": "2020-03-20T00:00 PM"
   },
   {
@@ -78,9 +85,13 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "yes",
-    "photos": ["./Photos/insideHouse3.png", "./Photos/insideHouse3-1.png", "./Photos/insideHouse3-2.png"],
+    "photos": [
+      "./Photos/insideHouse3.png",
+      "./Photos/insideHouse3-1.png",
+      "./Photos/insideHouse3-2.png"
+    ],
     "jackBooking": "no",
-    "jackFovorite": "yes",
+    "jackFavourite": "yes",
     "timeOfBooking": "NA"
   },
   {
@@ -106,9 +117,12 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "no",
-    "photos": ["./Photos/insideHouse4.png", "./Photos/insideHousePhoto4-1.png"],
+    "photos": [
+      "./Photos/insideHouse4.png",
+      "./Photos/insideHousePhoto4-1.png"
+    ],
     "jackBooking": "no",
-    "jackFovorite": "no",
+    "jackFavourite": "no",
     "timeOfBooking": "NA"
   }
 ]

@@ -348,18 +348,30 @@ function PropertyDetailPage() {
     return `${bedrooms} Bedroom${bedrooms > 1 ? "s" : ""}, ${bathrooms} Bathroom${bathrooms > 1 ? "s" : ""}`;
   };
 
-  const handleAddToFavourites = (id) => {
-    if (user === undefined || user === "") {
-      console.log("User:", user);
-      navigate("/login", { state: { user } });
-    } else {
-      if (houseInfo.at(id).jackFovorite === "yes") {
-        setfavouriteMessage("You've already favourited this property");
+  const handleAddToFavourites = async (houseId) => {
+    
+    try {
+      const response = await fetch('http://localhost:5000/update-house-info', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id: houseId, 
+          updates: {
+            jackFavourite: "yes"
+          }
+        }),
+      });
+
+      if (response.ok) {
+        console.log('Success:', await response.json());
+        alert("Jack's favorite status updated successfully!");
       } else {
-        houseInfo.at(id).jackFovorite = "yes";
-        setfavouriteMessage("Added to favourites");
+        throw new Error('Failed to update Jack\'s favorite status.');
       }
-      openFavModal();
+    } catch (error) {
+      console.error('Error:', error);
     }
   };
 
