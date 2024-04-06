@@ -133,6 +133,10 @@ body {
 .favorite-btn:hover img {
   transform: scale(1.1);
 }
+
+.hover-label-container:hover span {
+  visibility: visible;
+}
 /* Style for the buttons */
 .btn-primary {
   width: 100%; /* Full width button for better touch targets */

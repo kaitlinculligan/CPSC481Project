@@ -8,89 +8,110 @@ import bath from "./Photos/Bath.png";
 import { useLocation } from "react-router-dom";
 import houseInfo from "./houseInfo.js";
 import { useEffect } from "react";
-import { Badge, OverlayTrigger, Tooltip, Row, Col } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Badge, OverlayTrigger, Tooltip, Row, Col } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import realtor from "./Photos/realtor.png";
+import heart from "./Photos/Heart-Emoji-PNG-Photos.png";
+
+const RealtorCard = ({ imageSrc, name, number, email }) => {
+  return (
+    <div className="card" style={{ width: "18rem", textAlign: "center" }}>
+      <img src={imageSrc} className="card-img-top" alt="Realtor" style={{ width: "100px", height: "100px", borderRadius: "50%", margin: "0 auto" }} />
+      <div className="card-body">
+        <h5 className="card-title">{name}</h5>
+        <p className="card-text">{number}</p>
+        <p className="card-text">{email}</p>
+        <a href="#" className="btn btn-primary">
+          Book Now
+        </a>
+      </div>
+    </div>
+  );
+};
 
 function RatingsGroup({ houseDetails }) {
-  const safetyTable ={
-    1: 'High crime rate',
-    2: 'Moderate crime rate',
-    3: 'Average crime rate',
-    4: 'Low crime rate',
-    5: 'Zero Crime :)',
-  }
-  const noiseTable ={
-    1: 'Very noisy 110-90 dB',
-    2: 'Noisy 90-70 dB',
-    3: 'Average noise 70-50 dB',
-    4: 'Quiet 50-30 dB',
-    5: 'Silent 30-0 dB',
-  }
-  const shoppingTable ={
-    1: 'No shopping nearby',
-    2: 'Few shops nearby',
-    3: 'Average shopping nearby',
-    4: 'Many shops nearby',
-    5: 'Shopping paradise in walking distance',
-  }
-  const transportationTable ={
-    1: 'No public transportation',
-    2: 'Few public transportation options',
-    3: 'Average public transportation options',
-    4: 'Many public transportation options',
-    5: 'Public transportation hub',
-  }
-  const highSchoolTable ={
-    1: 'no high school nearby',
-    2: '1-2 high schools nearby',
-    3: '3-4 high schools nearby',
-    4: '5-6 high schools nearby',
-    5: '7+ high schools nearby',
-  }
-  const middleSchoolTable ={
-    1: 'no middle school nearby',
-    2: '1-2 middle schools nearby',
-    3: '3-4 middle schools nearby',
-    4: '5-6 middle schools nearby',
-    5: '7+ middle schools nearby',
-  }
-  const elementarySchoolTable ={
-    1: 'no elementary school nearby',
-    2: '1-2 elementary schools nearby',
-    3: '3-4 elementary schools nearby',
-    4: '5-6 elementary schools nearby',
-    5: '7+ elementary schools nearby',
-  }
-  const preSchoolTable ={
-    1: 'no preschool nearby',
-    2: '1-2 preschools nearby',
-    3: '3-4 preschools nearby',
-    4: '5-6 preschools nearby',
-    5: '7+ preschools nearby',
-  }
-  const cleanlinessTable ={
-    1: 'Very dirty',
-    2: 'Dirty',
-    3: 'Average cleanliness',
-    4: 'Clean',
-    5: 'Spotless',
-  }
-  const walkabilityTable ={
-    1: 'No sidewalks',
-    2: 'Few sidewalks',
-    3: 'Average walkability',
-    4: 'Many sidewalks',
-    5: 'Pedestrian paradise',
-  }
-  const petFriendlyTable ={
-    1: 'No pets allowed',
-    2: 'small pets allowed',
-    3: 'cats and dogs are allowed',
-    4: 'Many pets allowed',
-    5: 'Pet paradise',
-  }
-
+  const safetyTable = {
+    1: "High crime rate",
+    2: "Moderate crime rate",
+    3: "Average crime rate",
+    4: "Low crime rate",
+    5: "Zero Crime :)",
+  };
+  const noiseTable = {
+    1: "Very noisy 110-90 dB",
+    2: "Noisy 90-70 dB",
+    3: "Average noise 70-50 dB",
+    4: "Quiet 50-30 dB",
+    5: "Silent 30-0 dB",
+  };
+  const shoppingTable = {
+    1: "No shopping nearby",
+    2: "Few shops nearby",
+    3: "Average shopping nearby",
+    4: "Many shops nearby",
+    5: "Shopping paradise in walking distance",
+  };
+  const transportationTable = {
+    1: "No public transportation",
+    2: "Few public transportation options",
+    3: "Average public transportation options",
+    4: "Many public transportation options",
+    5: "Public transportation hub",
+  };
+  const highSchoolTable = {
+    1: "no high school nearby",
+    2: "1-2 high schools nearby",
+    3: "3-4 high schools nearby",
+    4: "5-6 high schools nearby",
+    5: "7+ high schools nearby",
+  };
+  const middleSchoolTable = {
+    1: "no middle school nearby",
+    2: "1-2 middle schools nearby",
+    3: "3-4 middle schools nearby",
+    4: "5-6 middle schools nearby",
+    5: "7+ middle schools nearby",
+  };
+  const elementarySchoolTable = {
+    1: "no elementary school nearby",
+    2: "1-2 elementary schools nearby",
+    3: "3-4 elementary schools nearby",
+    4: "5-6 elementary schools nearby",
+    5: "7+ elementary schools nearby",
+  };
+  const preSchoolTable = {
+    1: "no preschool nearby",
+    2: "1-2 preschools nearby",
+    3: "3-4 preschools nearby",
+    4: "5-6 preschools nearby",
+    5: "7+ preschools nearby",
+  };
+  const cleanlinessTable = {
+    1: "Very dirty",
+    2: "Dirty",
+    3: "Average cleanliness",
+    4: "Clean",
+    5: "Spotless",
+  };
+  const poolTable = {
+    1: "No pool",
+    5: "Olympic pool",
+  };
+  const walkabilityTable = {
+    1: "No sidewalks",
+    2: "Few sidewalks",
+    3: "Average walkability",
+    4: "Many sidewalks",
+    5: "Pedestrian paradise",
+  };
+  const petFriendlyTable = {
+    1: "No pets allowed",
+    2: "small pets allowed",
+    3: "cats and dogs are allowed",
+    4: "Many pets allowed",
+    5: "Pet paradise",
+  };
 
   return (
     <Card className="my-3">
@@ -125,6 +146,8 @@ function RatingsGroup({ houseDetails }) {
           <Col>
             <Rating label="Walkability" value={parseInt(houseDetails.walkability, 10)} descriptions={walkabilityTable} />
           </Col>
+          <Col> <Rating label="pool" value={houseDetails.pool} descriptions={poolTable}></Rating></Col>
+          <Col></Col>
         </Row>
         <Row>
           <Card.Header>Health and Safety</Card.Header>
@@ -145,24 +168,36 @@ function RatingsGroup({ houseDetails }) {
 
 function Rating({ label, value, descriptions }) {
   const ratingBadgeClasses = {
-    1: 'bg-danger',
-    2: 'bg-warning',
-    3: 'bg-secondary',
-    4: 'bg-info',
-    5: 'bg-success',
+    1: "bg-danger",
+    2: "bg-warning",
+    3: "bg-secondary",
+    4: "bg-info",
+    5: "bg-success",
   };
 
   const ratingTexts = {
-    1: 'Poor',
-    2: 'Below Average',
-    3: 'Average',
-    4: 'Good',
-    5: 'Excellent',
+    1: "Poor",
+    2: "Below Average",
+    3: "Average",
+    4: "Good",
+    5: "Excellent",
   };
 
-  const description = descriptions[value] || 'Info not available';
-  const badgeClass = ratingBadgeClasses[value] || 'bg-light text-dark';
-  const text = ratingTexts[value] || 'Unknown';
+  var description = descriptions[value] || "Info not available";
+  var badgeClass = ratingBadgeClasses[value] || "bg-light text-dark";
+  var text = ratingTexts[value] || "Unknown";
+  if(value=== "yes"){
+    console.log("POOL:", value)
+    text = "Pool Included"
+    badgeClass = "bg-success"
+    description = "Pool included"
+  } 
+  if(value === "no"){
+    console.log("POOL:", value)  
+    text = "No Pool"
+    badgeClass = "bg-danger"
+    description = "No pool included"
+  }
 
   // Tooltip component
   const renderTooltip = (props) => (
@@ -172,11 +207,12 @@ function Rating({ label, value, descriptions }) {
   );
 
   return (
-    <OverlayTrigger
-      placement="top"
-      overlay={renderTooltip}
-    >
-      <Badge pill className={`${badgeClass} rating-badge p-2 fs-5 mx-1`} style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 'auto' }}>
+    <OverlayTrigger placement="top" overlay={renderTooltip}>
+      <Badge
+        pill
+        className={`${badgeClass} rating-badge p-2 fs-5 mx-1`}
+        style={{ cursor: "pointer", display: "inline-flex", alignItems: "center", justifyContent: "center", width: "auto" }}
+      >
         {label}: {text}
       </Badge>
     </OverlayTrigger>
@@ -184,7 +220,7 @@ function Rating({ label, value, descriptions }) {
 }
 function PropertyDetailPage() {
   const [showModal, setShowModal] = useState(false);
-  const [favouriteMessage, setfavouriteMessage] = useState('');
+  const [favouriteMessage, setfavouriteMessage] = useState("");
   const [showFavModal, setShowFavModal] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [activeTab, setActiveTab] = useState("description");
@@ -195,7 +231,7 @@ function PropertyDetailPage() {
     highSchool: "",
     elementarySchool: "",
     preSchool: "",
-    pool: "no", // Assuming a boolean value, adjust as necessary
+    pool: "NA", 
     shopping: "",
     transportation: "",
     safety: "",
@@ -207,7 +243,6 @@ function PropertyDetailPage() {
     cleanliness: "",
     walkability: "",
     petFriendly: "",
-
   });
   const location = useLocation();
   const { user, id } = location.state || {};
@@ -250,7 +285,7 @@ function PropertyDetailPage() {
           highSchool: property.schoolsHighschool || "",
           elementarySchool: property.schoolsElementary || "",
           preSchool: property.schoolsPreschool || "",
-          pool: property.pool || false,
+          pool: property.pool || "NA",
           shopping: property.shopping || "",
           transportation: property.transportation || "",
           safety: property.safety || "",
@@ -264,6 +299,7 @@ function PropertyDetailPage() {
           petFriendly: property.petFriendly || "",
         });
       }
+      console.log("House Details:", houseDetails);
     };
 
     getHouseDetails(houseId);
@@ -312,21 +348,19 @@ function PropertyDetailPage() {
     return `${bedrooms} Bedroom${bedrooms > 1 ? "s" : ""}, ${bathrooms} Bathroom${bathrooms > 1 ? "s" : ""}`;
   };
 
-  const handleAddToFavourites = (id)=>{
-    if(user === undefined || user === ""){
+  const handleAddToFavourites = (id) => {
+    if (user === undefined || user === "") {
       console.log("User:", user);
-      navigate('/login', { state: { user } });
-    }
-    else{
-      if(houseInfo.at(id).jackFovorite ==='yes'){
+      navigate("/login", { state: { user } });
+    } else {
+      if (houseInfo.at(id).jackFovorite === "yes") {
         setfavouriteMessage("You've already favourited this property");
-      }
-      else{
-        houseInfo.at(id).jackFovorite ='yes'
+      } else {
+        houseInfo.at(id).jackFovorite = "yes";
         setfavouriteMessage("Added to favourites");
       }
-      openFavModal()
-   }
+      openFavModal();
+    }
   };
 
   return (
@@ -338,10 +372,10 @@ function PropertyDetailPage() {
           <div className="w-100 h-50 d-flex flex-row justify-content-center" style={{ fontSize: "75px", fontWeight: "bold" }}>
             {houseDetails.address}
           </div>
-          <div className="w-100 h-100 d-flex flex-row justify-content-center" style={{ fontSize: "30px", fontWeight: "bold" }}>
-
-          <p>Square footage: {houseDetails.squareFeet}   |  Price: ${houseDetails.price}</p>
-
+          <div className="w-100 h-25 d-flex flex-row justify-content-center" style={{ fontSize: "30px", fontWeight: "bold" }}>
+            <p>
+              Square footage: {houseDetails.squareFeet} | Price: ${houseDetails.price}
+            </p>
           </div>
 
           <div className="w-100 h-25 d-flex flex-row justify-content-center  ">
@@ -390,9 +424,6 @@ function PropertyDetailPage() {
               </div>
             </div>
           </div>
-          <div className="w-50 h-100 d-flex flex-row justify-content-center text-lowercase" style={{ fontSize: "45px", fontWeight: "bold", padding:"5px" }}>
-          <Button  onClick={() => {handleAddToFavourites(houseDetails.id)}} style={{backgroundColor:"#10a690"}}>Add to Favourites</Button>
-          </div>
         </div>
         <div className="h-100 d-flex flex-row justify-content-evenly border border-5 border-black rounded-5 bg-black m-3" style={{ width: "45%" }}>
           <Carousel className=" property-images-carousel" style={{ maxWidth: "100%" }}>
@@ -405,7 +436,6 @@ function PropertyDetailPage() {
         </div>
       </div>
       <Container fluid className="p-0">
-
         <div className="property-realtor-wrapper mx-auto" style={{ maxWidth: "90%" }}>
           {/* Listing details taking up the majority of the width */}
           <div className="property-details">
@@ -428,7 +458,57 @@ function PropertyDetailPage() {
             </Tabs>
           </div>
           <div className="pictureButton w-50 h-100 d-flex flex-column align-items-left ">
-            <Button onClick={() => {openModal(0)}} style={{backgroundColor:"#10a690", marginTop:"25px",marginLeft:"5%", width:"75%"}}>View More Pictures</Button>
+            <Button
+              onClick={() => {
+                openModal(0);
+              }}
+              style={{ backgroundColor: "#10a690", marginTop: "25px", marginLeft: "5%", width: "75%" }}
+            >
+              View More Pictures
+            </Button>
+            <div className="w-100 h-100 d-flex flex-row justify-content-evenly ">
+              <div className="w-50 h-100 d-flex flex-column align-items-center ">
+                <h1 className="ps-5">Add To Favourites</h1>
+                <div className="hover-label-container" style={{ position: "relative", display: "inline-block" }}>
+                  <img
+                    src={heart}
+                    className="border border-4 border-black"
+                    alt="Heart"
+                    style={{
+                      cursor: "pointer",
+                      width: "100px",
+                      height: "100px",
+                      borderRadius: "50%",
+                      margin: "0 auto",
+                    }}
+                    onClick={() => handleAddToFavourites(id)}
+                  />
+                  <span
+                    style={{
+                      position: "absolute",
+                      bottom: "0",
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                      visibility: "hidden",
+                      whiteSpace: "nowrap",
+                      backgroundColor: "black",
+                      color: "white",
+                      padding: "5px 10px",
+                      borderRadius: "5px",
+                      fontSize: "14px",
+                    }}
+                  >
+                    Add to Favourites
+                  </span>
+                </div>
+                <p1 className=" border-bottom border-3 border-black" style={{ fontStyle: "italic" }}>
+                  Click me
+                </p1>
+              </div>
+              <div className="w-50 h-100 d-flex flex-row justify-content-center p-1">
+                <RealtorCard imageSrc={realtor} name="John Realtor" number="403-899-4547" email="JohnDoesHomes@gmail.com"></RealtorCard>
+              </div>
+            </div>
           </div>
         </div>
 
