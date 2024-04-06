@@ -8,6 +8,7 @@ import HouseCard from "./HouseCard";
 import houseInfo from "./houseInfo.js"
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 //check for implamentations on the hovering mechanism for the listing to map api
 
@@ -120,6 +121,10 @@ function SearchResults() {
     //advanced search popup control
     const [showModal, setShowModal] = useState(false);
 
+    const location = useLocation();
+  const user = location.state?.user;
+  const navigate = useNavigate();
+
     const openModal = () => {
       setShowModal(true);
     };
@@ -137,6 +142,11 @@ function SearchResults() {
       closeModal()
     };
 
+    const navigateToPage = (url) => {
+      // This will reload the page and navigate to the new URL.
+      window.location.href = url;
+    };
+
 
      // Function to reset the map view to its default center and zoom level
      const handleResetMap = () => {
@@ -144,6 +154,10 @@ function SearchResults() {
           mapInstanceRef.current.setZoom(10);
           mapInstanceRef.current.panTo({ lat: 51.0447, lng: -114.0719 });
         }
+      };
+
+      const handleViewHouse = () => {
+        navigate('/details', { state: { user,selectedPropertyId } });
       };
 
     //const selectedMarkerIcon = `${process.env.PUBLIC_URL}/icons/selectedMarkerIcon.png`;
@@ -187,7 +201,7 @@ function SearchResults() {
     */
 
 
-    //sorting by price funcrion 
+    //sorting by price funcrion
     const sortListingByPrice = (order) => {
       const sortedListings = [...setDisplayedListings].sort((a,b) => {
         const PriceA = parseInt(a.price.replace(/[,]/g, ''), 10)
@@ -279,7 +293,7 @@ function SearchResults() {
 				{/* Sort By Dropdown */}
 				<div className="sort-dropdown">
                     <DropdownButton id="sort-dropdown" title="Sort By">
-                        <Dropdown.Item onSelect={() => sortListingByPrice('lowest')}> Loswest Price</Dropdown.Item>
+                        <Dropdown.Item onSelect={() => sortListingByPrice('lowest')}> Lowest Price</Dropdown.Item>
                         <Dropdown.Item onSelect={() => sortListingByPrice('highest')}> Highest Price</Dropdown.Item>
                         {/* Add more sort options here */}
                     </DropdownButton>
@@ -323,6 +337,7 @@ function SearchResults() {
                 onMapLoad={(map) => mapInstanceRef.current = map} // Store the map instance when loaded
               />
             </Wrapper>
+            <Button onClick={handleViewHouse} style={{ margin: "10px" }}>View House Details</Button>
           </Col>
         </Row>
 
