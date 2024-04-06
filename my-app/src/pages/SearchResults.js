@@ -185,6 +185,26 @@ function SearchResults() {
       }, [selectedPropertyId]);
 
     */
+
+
+    //sorting by price funcrion 
+    const sortListingByPrice = (order) => {
+      const sortedListings = [...setDisplayedListings].sort((a,b) => {
+        const PriceA = parseInt(a.price.replace(/[,]/g, ''), 10)
+        const PriceB = parseInt(a.price.replace(/[,]/g, ''), 10)
+
+        if (order == 'lowest'){
+          return PriceA - PriceB
+        }
+        else if (order == 'highest'){
+          return PriceB - PriceA
+        }
+
+      });
+
+      setDisplayedListings(sortedListings);
+    }
+
 	// Helper function to create dropdown menus for Price, Beds, and Baths
 	const createDropdown = (title, options, className) => (
         <Dropdown className={className}>
@@ -258,8 +278,9 @@ function SearchResults() {
 			  <Col md={6} className="listings-column">
 				{/* Sort By Dropdown */}
 				<div className="sort-dropdown">
-                    <DropdownButton id="dropdown-item-button" title="Sort By">
-                        <Dropdown.Item as="button">Newest</Dropdown.Item>
+                    <DropdownButton id="sort-dropdown" title="Sort By">
+                        <Dropdown.Item onSelect={() => sortListingByPrice('lowest')}> Loswest Price</Dropdown.Item>
+                        <Dropdown.Item onSelect={() => sortListingByPrice('highest')}> Highest Price</Dropdown.Item>
                         {/* Add more sort options here */}
                     </DropdownButton>
                 </div>
