@@ -8,7 +8,7 @@ import HouseCard from "./HouseCard";
 import houseInfo from "./houseInfo.js"
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 
-
+//check for implamentations on the hovering mechanism for the listing to map api 
 
 // google maps rendering 
 const render = (status) => {
@@ -18,20 +18,26 @@ const render = (status) => {
   
 const MyMapComponent = ({ apiKey, listings, hoveredPropertyId, selectedPropertyId, onMapLoad }) => {
     const ref = useRef();
-    const mapRef = useRef(null); // Ref to store the map object
+    // Ref to store the map object
+    const mapRef = useRef(null); 
+    //ref to store all marker object 
+    const markersRef = useRef({});
   
+    //loads map as defult state
     useEffect(() => {
       if (ref.current && !mapRef.current) {
         const map = new window.google.maps.Map(ref.current, {
           center: { lat: 51.0447, lng: -114.0719 },
           zoom: 10,
         });
-  
-        mapRef.current = map; // Store the map object
+        
+        // Store the map object Pass the map object back to the parent component
+        mapRef.current = map; 
         if (onMapLoad) {
-          onMapLoad(map); // Pass the map object back to the parent component
+          onMapLoad(map); 
         }
-  
+        
+        //adds the markers on the google map
         const infoWindow = new window.google.maps.InfoWindow();
         listings.forEach((listing) => {
           const marker = new window.google.maps.Marker({
@@ -39,7 +45,8 @@ const MyMapComponent = ({ apiKey, listings, hoveredPropertyId, selectedPropertyI
             map: map,
             title: listing.houseName,
           });
-  
+          
+          //marker functionality
           marker.addListener('click', () => {
             infoWindow.setContent(`
               <div>
@@ -52,13 +59,37 @@ const MyMapComponent = ({ apiKey, listings, hoveredPropertyId, selectedPropertyI
             `);
             infoWindow.open(map, marker);
           });
+
+          //storing each marker by listing id 
+          markersRef.current[listing.id] = marker;
+        
         });
       }
     }, [listings, onMapLoad]);
   
     useEffect(() => {
+      Object.entries(markersRef.current).forEach(([id, marker]) => {
+        let icon = {
+          url: marker.getIcon()?.url || 'http://maps.google.com/mapfiles/ms/icons/red-dot.png', 
+
+        };
+    
+        // Adjust icon size based on hover state
+        if (id === hoveredPropertyId) {
+          // Enlarge the marker icon
+          icon.scaledSize = new window.google.maps.Size(42, 42); // Enlarged size
+        } else {
+          // Reset to original size
+          icon.scaledSize = new window.google.maps.Size(30, 30); // Original size
+        }
+    
+        // Re-apply the icon to the marker
+        marker.setIcon(icon);
+      });
+    }, [hoveredPropertyId]);
+
+    useEffect(() => {
       if (selectedPropertyId && mapRef.current) {
-        // Assume listings is a flat array where each item has an id
         const listing = listings.find(listing => listing.id === selectedPropertyId);
         if (listing) {
           mapRef.current.setZoom(15);
@@ -68,7 +99,7 @@ const MyMapComponent = ({ apiKey, listings, hoveredPropertyId, selectedPropertyI
     }, [selectedPropertyId, listings]);
   
     return <div ref={ref} style={{ height: "100%", width: "100%" }} />;
-  };
+};
     
   
 
