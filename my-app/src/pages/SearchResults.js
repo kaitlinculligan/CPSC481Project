@@ -379,7 +379,8 @@ function SearchResults() {
 
       const handleViewHouse = () => {
         if(selectedPropertyId!=null){
-         navigate('/details', { state: { user,selectedPropertyId } });
+          var id = selectedPropertyId
+         navigate('/details', { state: { user,id } });
         }
       };
 
