@@ -118,6 +118,17 @@ function SearchResults() {
     //store google maps instance
     const mapInstanceRef = useRef(null);
 
+    //regular searching states
+    const [minPrice, setMinPrice] = useState('');
+    const [maxPrice, setMaxPrice] = useState('');
+    const [bedrooms, setBedrooms] = useState('');
+    const [bathrooms, setBathrooms] = useState('');
+
+    //options for dropdown
+    const priceOptions = ['100,000', '200,000', '300,000', '400,000', '500,000', '600,000'];
+    const bedBathOptions = [1, 2, 3, 4, 5];
+    
+
     //advanced search popup control
     const [showModal, setShowModal] = useState(false);
 
@@ -125,8 +136,8 @@ function SearchResults() {
     const [sortTitle, setSortTitle] = useState('Sort By');
 
     const location = useLocation();
-  const user = location.state?.user;
-  const navigate = useNavigate();
+    const user = location.state?.user;
+    const navigate = useNavigate();
 
     const openModal = () => {
       setShowModal(true);
@@ -136,8 +147,109 @@ function SearchResults() {
       setShowModal(false);
     };
 
-    const search = () =>{
-      alert("Searching!")
+    const search = () => {
+      const minPriceValue = minPrice ? parseInt(minPrice.replace(/[,]/g, ''), 10) : 0;
+      const maxPriceValue = maxPrice ? parseInt(maxPrice.replace(/[,]/g, ''), 10) : Infinity;
+      const bedroomsValue = bedrooms ? parseInt(bedrooms, 10) : 0;
+      const bathroomsValue = bathrooms ? parseInt(bathrooms, 10) : 0;
+    
+      const filteredListings = houseInfo.filter(listing => {
+        const price = parseInt(listing.price.replace(/[$,]/g, ''), 10); 
+        const listingBedrooms = parseInt(listing.bedrooms, 10);
+        const listingBathrooms = parseInt(listing.bathrooms, 10);
+        return (
+          price >= minPriceValue &&
+          price <= maxPriceValue &&
+          listingBedrooms >= bedroomsValue &&
+          listingBathrooms >= bathroomsValue
+        );
+      });
+    
+      setDisplayedListings(filteredListings);
+    };
+    
+    
+    //advance search filtering conditions table 
+    const safetyTable = {
+      1: "100+ on crime severity index -Dangerous area",
+      2: "70-100 on crime severity index - High crime rate",
+      3: "50-70 on crime severity index - Average crime rate",
+      4: "20-50 on crime severity index - Low crime rate",
+      5: "0-20 on crime severity index - Safe area",
+    };
+    const noiseTable = {
+      1: "Very noisy 110-90 dB on average",
+      2: "Noisy 90-70 dB on average",
+      3: "Average noise 70-50 dB on average",
+      4: "Quiet 50-30 dB on average",
+      5: "Silent 30-0 dB on average",
+    };
+    const shoppingTable = {
+      1: "Only online shopping and major goods stores 10 minute drive away",
+      2: "Major goods within 10 minute drive",
+      3: "Major goods within 5 min drive and 5-10 shops in 5 minute walking distance",
+      4: "Major goods within 5 min drive and 10+ shops in 5 minute walking distance",
+      5: "Major shopping cnter within 5 min drive and 20+ shops in 5 minute walking distance",
+    };
+    const transportationTable = {
+      1: "No public transportation close by",
+      2: " 1-2 Bus stops within 5 minute walk, no train station nearby",
+      3: "3-4 Bus stops within 5 minute walk, no train station nearby",
+      4: "Train station within 5 minute walk, 5+ bus stops within 5 minute walk",
+      5: "Train station within 5 minute walk, 10+ bus stops within 5 minute walk",
+    };
+    const highSchoolTable = {
+      1: "no high school nearby",
+      2: "1-2 high schools nearby",
+      3: "3-4 high schools nearby",
+      4: "5-6 high schools nearby",
+      5: "7+ high schools nearby",
+    };
+    const middleSchoolTable = {
+      1: "no middle school nearby",
+      2: "1-2 middle schools nearby",
+      3: "3-4 middle schools nearby",
+      4: "5-6 middle schools nearby",
+      5: "7+ middle schools nearby",
+    };
+    const elementarySchoolTable = {
+      1: "no elementary school nearby",
+      2: "1-2 elementary schools nearby",
+      3: "3-4 elementary schools nearby",
+      4: "5-6 elementary schools nearby",
+      5: "7+ elementary schools nearby",
+    };
+    const preSchoolTable = {
+      1: "no preschool nearby",
+      2: "1-2 preschools nearby",
+      3: "3-4 preschools nearby",
+      4: "5-6 preschools nearby",
+      5: "7+ preschools nearby",
+    };
+    const cleanlinessTable = {
+      1: "1/5 on the Calgary cleanliness index - Very dirty - Garbage everywhere, graffiti, and vandalism",
+      2: "2/5 on the Calgary cleanliness index - Dirty - Garbage on the streets, some graffiti and vandalism",
+      3: "3/5 on the Calgary cleanliness index - Average - Some garbage on the streets, little graffiti and vandalism",
+      4: "4/5 on the Calgary cleanliness index - Clean - little garbage on the streets, no graffiti and vandalism",
+      5: "5/5 on the Calgary cleanliness index - Very clean - No garbage on the streets, no graffiti and vandalism",
+    };
+    const poolTable = {
+      1: "No pool",
+      5: "Olympic pool",
+    };
+    const walkabilityTable = {
+      1: "No sidewalks, no easy access to ammenities without transportation",
+      2: "Few sidewalks, some ammenities within walking distance",
+      3: "Some sidewalks, many ammenities within walking distance",
+      4: "Many sidewalks, most ammenities within walking distance",
+      5: "Pedestrian paradise, all ammenities within walking distance including parks, schools, shopping centers, health centers, etc.",
+    };
+    const petFriendlyTable = {
+      1: "No pets allowed",
+      2: "Small pets allowed - Such as fish, hamsters, etc.",
+      3: "Cats and dogs are allowed - Some restrictions apply",
+      4: "Exotic pets allowed - Some restrictions apply",
+      5: "All pets allowed - Within the bounds of the law",
     };
 
     const addAdvancedFilter = () =>{
@@ -149,6 +261,8 @@ function SearchResults() {
       // This will reload the page and navigate to the new URL.
       window.location.href = url;
     };
+
+    
 
 
      // Function to reset the map view to its default center and zoom level
@@ -164,47 +278,6 @@ function SearchResults() {
          navigate('/details', { state: { user,selectedPropertyId } });
         }
       };
-
-    //const selectedMarkerIcon = `${process.env.PUBLIC_URL}/icons/selectedMarkerIcon.png`;
-    //const defaultMarkerIcon = `${process.env.PUBLIC_URL}/icons/defaultMarkerIcon.png`;
-
-
-
-    /*
-    // Define customMarkerSize inside useEffect or directly in Marker component after confirming mapsApiLoaded
-    let customMarkerSize;
-    if (mapsApiLoaded) {
-        customMarkerSize = {
-            scaledSize: new window.google.maps.Size(30, 30),
-        };
-    }
-
-    //state for managing zoom level
-    const [zoom, setZoom] = useState(10);
-
-    // Ref for the map to enable programmatic control
-    const mapRef = useRef(null);
-
-    // Define a function to handle map load to access map instance
-    const handleMapLoad = (map) => {
-    mapRef.current = map;
-    };
-
-    useEffect(() => {
-        // If a property is selected, zoom in on it
-        if (selectedPropertyId) {
-          const selectedListing = houseInfo.find(listing => listing.id === selectedPropertyId);
-          if (selectedListing) {
-            mapRef.current.panTo({ lat: parseFloat(selectedListing.lat), lng: parseFloat(selectedListing.lng) });
-            setZoom(15); // Zoom in
-          }
-        } else {
-          setZoom(10); // Reset zoom to default when no selection
-        }
-      }, [selectedPropertyId]);
-
-    */
-
 
     //sorting by price funcrion
     const sortListingByPrice = (order) => {
@@ -225,7 +298,7 @@ function SearchResults() {
 
       setDisplayedListings(sortedListings);
 
-    }
+    };
 
 
 
@@ -248,6 +321,16 @@ function SearchResults() {
     const getPropertyDetails = (houseId) => {
         return houseInfo.find(property => property.id === houseId);
       }
+    
+    const BedBathDropdown = ({ title, onChange }) => (
+      <Form.Select aria-label={title} onChange={e => onChange(e.target.value)} className="me-2">
+        <option>{title}</option>
+        {[1, 2, 3, 4, 5].map(value => (
+          <option key={value} value={value}>{value}</option>
+        ))}
+      </Form.Select>
+    );
+      
 
 
 
@@ -256,27 +339,122 @@ function SearchResults() {
         <div style={{ height: "100vh", background: "linear-gradient(rgba(16, 166, 144, 0.5), white)" }}>
             {/* Navbar */}
             <NavBar/>
-            <Navbar expand="lg" className="bg-white">
+              <Navbar expand="lg" className="bg-white">
                 <Container>
-                        <InputGroup>
-                            <FormControl placeholder="City, Neighbourhood, Address or MLS number" aria-label="Search"style={{ width: "70vh" }} />
-                            <FormControl placeholder="Min Price" aria-label="Search" style={{ width: "15vh" }}/>
-                            <FormControl placeholder="Max Price" aria-label="Search"style={{ width: "15vh" }} />
-                            <FormControl placeholder="Beds" aria-label="Search" style={{ width: "10vh" }}/>
-                            <FormControl placeholder="Baths" aria-label="Search" style={{ width: "10vh" }}/>
-                            <Button variant="outline-secondary" onClick={()=>{openModal()}}>
-                                <img src={filterIcon} alt="Filter" width="24" height="24" />
-                            </Button>
-                            <Button variant="outline-secondary"  onClick={()=>{search()}}>
-                                <img src={searchIcon} alt="Search" width="24" height="24" />
-                            </Button>
-                        </InputGroup>
-                </Container>
-            </Navbar>
-            <div style={{display:"flex", paddingLeft:"10%"}}>
-                    <p>hi</p>
-                    <p>hi</p>
-            </div>
+                <Form className="d-flex align-items-center" style={{ gap: '0.5rem' }}>
+                  <InputGroup>
+                    <FormControl
+                      placeholder="City, Neighbourhood, Address or MLS number"
+                      aria-label="Search"
+                      className="me-2"
+                    />
+                    <Dropdown as={InputGroup.Append}>
+                      <Dropdown.Toggle variant="outline-secondary" id="dropdown-min-price">
+                        Min Price
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        {priceOptions.map((price, index) => (
+                          <Dropdown.Item key={index} onClick={() => setMinPrice(price)}>
+                            {price}
+                          </Dropdown.Item>
+                        ))}
+                      </Dropdown.Menu>
+                    </Dropdown>
+                    <Dropdown as={InputGroup.Append}>
+                      <Dropdown.Toggle variant="outline-secondary" id="dropdown-max-price">
+                        Max Price
+                        </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        {priceOptions.map((price, index) => (
+                          <Dropdown.Item key={index} onClick={() => setMaxPrice(price)}>
+                            {price}
+                          </Dropdown.Item>
+                        ))}
+                      </Dropdown.Menu>
+                    </Dropdown>
+                    <Dropdown as={InputGroup.Append}>
+                      <Dropdown.Toggle variant="outline-secondary" id="dropdown-beds">
+                        Beds
+                        </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        {bedBathOptions.map((number, index) => (
+                          <Dropdown.Item key={index} onClick={() => setBathrooms(number)}>
+                            {number}
+                          </Dropdown.Item>
+                        ))}
+                      </Dropdown.Menu>
+                    </Dropdown>
+                    <Dropdown as={InputGroup.Append}>
+                      <Dropdown.Toggle variant="outline-secondary" id="dropdown-baths">
+                        Baths
+                        </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        {bedBathOptions.map((number, index) => (
+                          <Dropdown.Item key={index} onClick={() => setBedrooms(number)}>
+                            {number}
+                          </Dropdown.Item>
+                        ))}
+                      </Dropdown.Menu>
+                    </Dropdown>
+                    <Button variant="outline-secondary" onClick={search}>
+                      <img src={searchIcon} alt="Search" width="24" height="24" />
+                    </Button>
+                  </InputGroup>
+                  <Button variant="outline-secondary" onClick={openModal}>
+                    <img src={filterIcon} alt="Filter" width="24" height="24" />
+                  </Button>
+                </Form>
+
+                  <Modal show={showModal} onHide={closeModal} size="md" centered>
+                    <Modal.Header closeButton>
+                    <Modal.Title>Advanced Search Options</Modal.Title>
+                    </Modal.Header>
+                      <Modal.Body>
+
+                        <Form style={{overflowY: "auto", maxHeight: "100%" }}>
+
+                            <label for='Filter'>Filter</label>
+                            <select id="Filter" >
+                            <option value=""> </option>
+                            <option value="noiseLevel">Noise Level</option>
+                            <option value="safety">Safety</option>
+                            <option value="walkability">Walkability</option>
+                            <option value="petFriendly">Pet Friendly</option>
+                            <option value="crimeRate">Crime Rate</option>
+                            <option value="airQuality">Air Quality</option>
+                            <option value="neighborhood">Neighbourhood</option>
+                            <option value="shopping">Shopping</option>
+                            <option value="transportation">Transportation</option>
+                            <option value="schoolsHighschool">High Schools</option>
+                            <option value="schoolsMiddle">Middle Schools</option>
+                            <option value="schoolsElementary">Elementary Schools</option>
+                            <option value="schoolsPreschools">Preschools</option>
+                          </select>
+                          <label for='Value'>Value</label>
+                            <select id="Value" >
+                            <option value=""> </option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                          </select>
+
+
+                        </Form>
+                      </Modal.Body>
+                    <Modal.Footer>
+                  <Button variant="primary" onClick={()=>addAdvancedFilter()}>
+                    Add Search Filter
+                  </Button>
+          </Modal.Footer>
+        </Modal>
+
+
+      </Container>
+      </Navbar>
+      
+
 
 		 {/* Content Area */}
 		 <Container fluid className="search-results-content">
@@ -334,50 +512,7 @@ function SearchResults() {
           </Col>
         </Row>
 
-        <Modal show={showModal} onHide={closeModal} size="md" centered>
-          <Modal.Header closeButton>
-            <Modal.Title>Advanced Search Options</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-
-          <Form style={{overflowY: "auto", maxHeight: "100%" }}>
-
-              <label for='Filter'>Filter</label>
-              <select id="Filter" >
-              <option value=""> </option>
-              <option value="noiseLevel">Noise Level</option>
-              <option value="safety">Safety</option>
-              <option value="walkability">Walkability</option>
-              <option value="petFriendly">Pet Friendly</option>
-              <option value="crimeRate">Crime Rate</option>
-              <option value="airQuality">Air Quality</option>
-              <option value="neighborhood">Neighbourhood</option>
-              <option value="shopping">Shopping</option>
-              <option value="transportation">Transportation</option>
-              <option value="schoolsHighschool">High Schools</option>
-              <option value="schoolsMiddle">Middle Schools</option>
-              <option value="schoolsElementary">Elementary Schools</option>
-              <option value="schoolsPreschools">Preschools</option>
-            </select>
-            <label for='Value'>Value</label>
-              <select id="Value" >
-              <option value=""> </option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select>
-
-
-          </Form>
-          </Modal.Body>
-          <Modal.Footer>
-          <Button variant="primary" onClick={()=>addAdvancedFilter()}>
-            Add Search Filter
-          </Button>
-          </Modal.Footer>
-        </Modal>
+       
       </Container>
     </div>
   );
