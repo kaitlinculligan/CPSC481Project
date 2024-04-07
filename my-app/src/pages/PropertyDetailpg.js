@@ -146,7 +146,10 @@ function RatingsGroup({ houseDetails }) {
           <Col>
             <Rating label="Walkability" value={parseInt(houseDetails.walkability, 10)} descriptions={walkabilityTable} />
           </Col>
-          <Col> <Rating label="pool" value={houseDetails.pool} descriptions={poolTable}></Rating></Col>
+          <Col>
+            {" "}
+            <Rating label="pool" value={houseDetails.pool} descriptions={poolTable}></Rating>
+          </Col>
           <Col></Col>
         </Row>
         <Row>
@@ -186,17 +189,17 @@ function Rating({ label, value, descriptions }) {
   var description = descriptions[value] || "Info not available";
   var badgeClass = ratingBadgeClasses[value] || "bg-light text-dark";
   var text = ratingTexts[value] || "Unknown";
-  if(value=== "yes"){
-    console.log("POOL:", value)
-    text = "Pool Included"
-    badgeClass = "bg-success"
-    description = "Pool included"
-  } 
-  if(value === "no"){
-    console.log("POOL:", value)  
-    text = "No Pool"
-    badgeClass = "bg-danger"
-    description = "No pool included"
+  if (value === "yes") {
+    console.log("POOL:", value);
+    text = "Pool Included";
+    badgeClass = "bg-success";
+    description = "Pool included";
+  }
+  if (value === "no") {
+    console.log("POOL:", value);
+    text = "No Pool";
+    badgeClass = "bg-danger";
+    description = "No pool included";
   }
 
   // Tooltip component
@@ -231,7 +234,7 @@ function PropertyDetailPage() {
     highSchool: "",
     elementarySchool: "",
     preSchool: "",
-    pool: "NA", 
+    pool: "NA",
     shopping: "",
     transportation: "",
     safety: "",
@@ -349,29 +352,28 @@ function PropertyDetailPage() {
   };
 
   const handleAddToFavourites = async (houseId) => {
-    
     try {
-      const response = await fetch('http://localhost:5000/update-house-info', {
-        method: 'POST',
+      const response = await fetch("http://localhost:5000/update-house-info", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          id: houseId, 
+          id: houseId,
           updates: {
-            jackFavourite: "yes"
-          }
+            jackFavourite: "yes",
+          },
         }),
       });
 
       if (response.ok) {
-        console.log('Success:', await response.json());
+        console.log("Success:", await response.json());
         alert("Jack's favorite status updated successfully!");
       } else {
-        throw new Error('Failed to update Jack\'s favorite status.');
+        throw new Error("Failed to update Jack's favorite status.");
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
 
@@ -391,7 +393,7 @@ function PropertyDetailPage() {
           </div>
 
           <div className="w-100 h-25 d-flex flex-row justify-content-center  ">
-            <div className="h-100 w-50 d-flex flex-row justify-content-evenly  border border-3 border-black">
+            <div className="h-100 w-50 d-flex flex-row justify-content-evenly  border border-3 border-black ms-3">
               <div className="w-50 h-100 col">
                 <div className="w-75 h-75">
                   <img
@@ -437,7 +439,7 @@ function PropertyDetailPage() {
             </div>
           </div>
         </div>
-        <div className="h-100 d-flex flex-row justify-content-evenly border border-5 border-black rounded-5 bg-black m-3" style={{ width: "45%" }}>
+        <div className="h-100 d-flex flex-row justify-content-evenly border border-5 border-black bg-black m-3" style={{ width: "45%" }}>
           <Carousel className=" property-images-carousel" style={{ maxWidth: "100%" }}>
             {propertyImages.map((src, index) => (
               <Carousel.Item className=" carousel-item" key={index} onClick={() => openModal(index)}>
@@ -479,19 +481,22 @@ function PropertyDetailPage() {
               View More Pictures
             </Button>
             <div className="w-100 h-100 d-flex flex-row justify-content-evenly ">
-              <div className="w-50 h-100 d-flex flex-column align-items-center ">
-                <h1 className="ps-5">Add To Favourites</h1>
-                <div className="hover-label-container" style={{ position: "relative", display: "inline-block" }}>
+              <div className="w-50 h-100 d-flex flex-row justify-content-evenly mt-5 ">
+                <div className="" style={{ fontWeight: " bold", fontSize: "20px" }}>
+                  Add To Favourites
+                </div>
+                <div className="hover-label-container justify-content-center" style={{ position: "relative", display: "inline-block" }}>
                   <img
                     src={heart}
-                    className="border border-4 border-black"
+                    className="border border-4 border-black img-hover-effect"
                     alt="Heart"
                     style={{
                       cursor: "pointer",
-                      width: "100px",
-                      height: "100px",
+                      width: "50px",
+                      height: "50px",
                       borderRadius: "50%",
                       margin: "0 auto",
+                      transform: "translate(0, -10px)",
                     }}
                     onClick={() => handleAddToFavourites(id)}
                   />
@@ -513,9 +518,6 @@ function PropertyDetailPage() {
                     Add to Favourites
                   </span>
                 </div>
-                <p1 className=" border-bottom border-3 border-black" style={{ fontStyle: "italic" }}>
-                  Click me
-                </p1>
               </div>
               <div className="w-50 h-100 d-flex flex-row justify-content-center p-1">
                 <RealtorCard imageSrc={realtor} name="John Realtor" number="403-899-4547" email="JohnDoesHomes@gmail.com"></RealtorCard>

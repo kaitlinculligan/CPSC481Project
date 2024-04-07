@@ -45,6 +45,15 @@ body {
   margin: 0 auto; /* Centers the container */
   width: 100%; /* Full width */
 }
+.img-hover-effect {
+  transition: filter 0.5s ease, transform 0.5s ease;
+  filter: brightness(100%);
+}
+
+.img-hover-effect:hover {
+  filter: brightness(50%);
+  transform: scale(2);
+}
 
 /* Adjust the icons and their alignment */
 .icon {
