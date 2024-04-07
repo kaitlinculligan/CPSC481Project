@@ -121,6 +121,9 @@ function SearchResults() {
     //advanced search popup control
     const [showModal, setShowModal] = useState(false);
 
+    //for updating sort dropdown title
+    const [sortTitle, setSortTitle] = useState('Sort By');
+
     const location = useLocation();
   const user = location.state?.user;
   const navigate = useNavigate();
@@ -157,7 +160,9 @@ function SearchResults() {
       };
 
       const handleViewHouse = () => {
-        navigate('/details', { state: { user,selectedPropertyId } });
+        if(selectedPropertyId!=null){
+         navigate('/details', { state: { user,selectedPropertyId } });
+        }
       };
 
     //const selectedMarkerIcon = `${process.env.PUBLIC_URL}/icons/selectedMarkerIcon.png`;
@@ -203,37 +208,25 @@ function SearchResults() {
 
     //sorting by price funcrion
     const sortListingByPrice = (order) => {
-      const sortedListings = [...setDisplayedListings].sort((a,b) => {
-        const PriceA = parseInt(a.price.replace(/[,]/g, ''), 10)
-        const PriceB = parseInt(a.price.replace(/[,]/g, ''), 10)
 
+      const sortedListings = displayedListings.sort((a,b) => {
+        var PriceA = parseInt(a.price.replace(/[,]/g, ''))
+        var PriceB = parseInt(b.price.replace(/[,]/g, ''))
         if (order == 'lowest'){
+          setSortTitle('Sort By: Price (Low to High)');
           return PriceA - PriceB
         }
         else if (order == 'highest'){
+          setSortTitle('Sort By: Price (High to Low)');
           return PriceB - PriceA
         }
 
       });
 
       setDisplayedListings(sortedListings);
+
     }
 
-	// Helper function to create dropdown menus for Price, Beds, and Baths
-	const createDropdown = (title, options, className) => (
-        <Dropdown className={className}>
-            <Dropdown.Toggle variant="outline-secondary" id={`dropdown-${title}`}>
-                {title}
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-                {options.map((option, idx) => (
-                    <Dropdown.Item key={idx} eventKey={option}>
-                        {option}
-                    </Dropdown.Item>
-                ))}
-            </Dropdown.Menu>
-        </Dropdown>
-    );
 
 
     //function to handle mouse enter on property card
@@ -292,9 +285,9 @@ function SearchResults() {
 			  <Col md={6} className="listings-column">
 				{/* Sort By Dropdown */}
 				<div className="sort-dropdown">
-                    <DropdownButton id="sort-dropdown" title="Sort By">
-                        <Dropdown.Item onSelect={() => sortListingByPrice('lowest')}> Lowest Price</Dropdown.Item>
-                        <Dropdown.Item onSelect={() => sortListingByPrice('highest')}> Highest Price</Dropdown.Item>
+                    <DropdownButton id="sort-dropdown" title={sortTitle}>
+                        <Dropdown.Item onClick={() => sortListingByPrice('lowest')}> Price (Low to High)</Dropdown.Item>
+                        <Dropdown.Item onClick={() => sortListingByPrice('highest')}> Price (High to Low)</Dropdown.Item>
                         {/* Add more sort options here */}
                     </DropdownButton>
                 </div>
