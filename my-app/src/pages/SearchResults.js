@@ -38,36 +38,54 @@ const MyMapComponent = ({ apiKey, listings, hoveredPropertyId, selectedPropertyI
         if (onMapLoad) {
           onMapLoad(map);
         }
-
-        //adds the markers on the google map
-        const infoWindow = new window.google.maps.InfoWindow();
-        listings.forEach((listing) => {
-          const marker = new window.google.maps.Marker({
-            position: { lat: parseFloat(listing.lat), lng: parseFloat(listing.lng) },
-            map: map,
-            title: listing.houseName,
-          });
-
-          //marker functionality
-          marker.addListener('click', () => {
-            infoWindow.setContent(`
-              <div>
-                <h5>${listing.houseName}</h5>
-                <img src="${listing.image}" alt="House image" style="width:100px;"><br>
-                Price: ${listing.price}<br>
-                Bedrooms: ${listing.bedrooms}<br>
-                Bathrooms: ${listing.bathrooms}
-              </div>
-            `);
-            infoWindow.open(map, marker);
-          });
-
-          //storing each marker by listing id
-          markersRef.current[listing.id] = marker;
-
-        });
       }
-    }, [listings, onMapLoad]);
+    },[onMapLoad]);
+
+        
+
+     // Update markers based on listings
+    useEffect(() => {
+      // Clear existing markers
+      Object.values(markersRef.current).forEach(marker => marker.setMap(null));
+      markersRef.current = {};
+
+      // Add new markers
+      const infoWindow = new window.google.maps.InfoWindow();
+      listings.forEach(listing => {
+          const marker = new window.google.maps.Marker({
+              position: { lat: parseFloat(listing.lat), lng: parseFloat(listing.lng) },
+              map: mapRef.current,
+              title: listing.houseName,
+          });
+
+          marker.addListener('click', () => {
+              infoWindow.setContent(`
+                  <div>
+                      <h5>${listing.houseName}</h5>
+                      <img src="${listing.image}" alt="House image" style="width:100px;"><br>
+                      Price: ${listing.price}<br>
+                      Bedrooms: ${listing.bedrooms}<br>
+                      Bathrooms: ${listing.bathrooms}
+                  </div>
+              `);
+              infoWindow.open(mapRef.current, marker);
+          });
+
+          markersRef.current[listing.id] = marker;
+      });
+
+      // Adjust map view to fit new markers
+      if (listings.length > 0) {
+          const bounds = new window.google.maps.LatLngBounds();
+          listings.forEach(listing => {
+              bounds.extend(new window.google.maps.LatLng(parseFloat(listing.lat), parseFloat(listing.lng)));
+          });
+          mapRef.current.fitBounds(bounds);
+      } else {
+          mapRef.current.setZoom(10);
+          mapRef.current.panTo({ lat: 51.0447, lng: -114.0719 });
+      }
+  }, [listings]);
 
     useEffect(() => {
       Object.entries(markersRef.current).forEach(([id, marker]) => {
@@ -100,6 +118,36 @@ const MyMapComponent = ({ apiKey, listings, hoveredPropertyId, selectedPropertyI
       }
     }, [selectedPropertyId, listings]);
 
+     // custom dropdown component to align correctly
+    const CustomDropdown = ({ id, title, options, selectedValue, onSelect, placeholder, isPrice }) => {
+      return (
+        <Dropdown as={InputGroup.Prepend} alignRight>
+          <Dropdown.Toggle variant="outline-secondary" id={id}>
+            {title}
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            {isPrice && (
+              <FormControl
+                autoFocus
+                placeholder={placeholder}
+                className="mx-3 my-2 w-auto"
+                onChange={(e) => onSelect(e.target.value)}
+                style={{ width: '95%' }}
+              />
+            )}
+            <Dropdown.Item eventKey="any" onSelect={() => onSelect('')}>
+              Any
+            </Dropdown.Item>
+            {options.map((option, index) => (
+              <Dropdown.Item key={index} eventKey={option} onSelect={() => onSelect(option)}>
+                {option}
+              </Dropdown.Item>
+            ))}
+          </Dropdown.Menu>
+        </Dropdown>
+      );
+    }
+
     return <div ref={ref} style={{ height: "100%", width: "100%" }} />;
 };
 
@@ -124,9 +172,16 @@ function SearchResults() {
     const [bedrooms, setBedrooms] = useState('');
     const [bathrooms, setBathrooms] = useState('');
 
+    //advance searching states 
+    const [noiseLevel, setNoiseLevel] = useState('');
+    const [pool, setPool] = useState('');
+    const [transportation, setTransportation] = useState('');
+    const [safety, setSafety] = useState('');
+
     //options for dropdown
-    const priceOptions = ['100,000', '200,000', '300,000', '400,000', '500,000', '600,000'];
-    const bedBathOptions = [1, 2, 3, 4, 5];
+    const priceOptions = ['0', '100,000', '200,000', '300,000', '400,000', '500,000', '600,000', '+600,000'];
+    const bedBathOptions = ['0', '1', '2', '3', '4', '5', '+5'];
+
     
 
     //advanced search popup control
@@ -148,13 +203,29 @@ function SearchResults() {
     };
 
     const search = () => {
-      const minPriceValue = minPrice ? parseInt(minPrice.replace(/[,]/g, ''), 10) : 0;
-      const maxPriceValue = maxPrice ? parseInt(maxPrice.replace(/[,]/g, ''), 10) : Infinity;
-      const bedroomsValue = bedrooms ? parseInt(bedrooms, 10) : 0;
-      const bathroomsValue = bathrooms ? parseInt(bathrooms, 10) : 0;
+      let minPriceValue = minPrice ? parseInt(minPrice.replace(/[,]/g, ''), 10) : 0;
+      let maxPriceValue = maxPrice ? parseInt(maxPrice.replace(/[,]/g, ''), 10) : Infinity;
+      let bedroomsValue = bedrooms ? parseInt(bedrooms, 10) : 0;
+      let bathroomsValue = bathrooms ? parseInt(bathrooms, 10) : 0;
+    
+      // Handle '+600,000' for min and max price
+      if (minPrice === '+600,000') {
+        minPriceValue = 600001;
+      }
+      if (maxPrice === '+600,000') {
+        maxPriceValue = Infinity;
+      }
+    
+      // Handle '+5' for bedrooms and bathrooms
+      if (bedrooms === '+5') {
+        bedroomsValue = 6;
+      }
+      if (bathrooms === '+5') {
+        bathroomsValue = 6;
+      }
     
       const filteredListings = houseInfo.filter(listing => {
-        const price = parseInt(listing.price.replace(/[$,]/g, ''), 10); 
+        const price = parseInt(listing.price.replace(/[$,]/g, ''), 10);
         const listingBedrooms = parseInt(listing.bedrooms, 10);
         const listingBathrooms = parseInt(listing.bathrooms, 10);
         return (
@@ -167,6 +238,7 @@ function SearchResults() {
     
       setDisplayedListings(filteredListings);
     };
+    
     
     
     //advance search filtering conditions table 
@@ -252,10 +324,42 @@ function SearchResults() {
       5: "All pets allowed - Within the bounds of the law",
     };
 
-    const addAdvancedFilter = () =>{
-      alert("Adding Filter!")
-      closeModal()
+    const applyAdvancedFilters = () => {
+      closeModal();
+    
+      // You must define these values inside the function to use them
+      const minPriceValue = minPrice ? parseInt(minPrice.replace(/[,]/g, ''), 10) : 0;
+      const maxPriceValue = maxPrice ? parseInt(maxPrice.replace(/[,]/g, ''), 10) : Infinity;
+      const bedroomsValue = bedrooms ? parseInt(bedrooms, 10) : 0;
+      const bathroomsValue = bathrooms ? parseInt(bathrooms, 10) : 0;
+    
+      const filteredListings = houseInfo.filter(listing => {
+      const price = parseInt(listing.price.replace(/[$,]/g, ''), 10); 
+      const listingBedrooms = parseInt(listing.bedrooms, 10);
+      const listingBathrooms = parseInt(listing.bathrooms, 10);
+  
+      //using the listing data
+      const listingNoiseLevel = listing.noiseLevel;
+      const listingTransportation = listing.transportation;
+      const listingSafety = listing.safety; 
+      const listingPool = listing.pool; 
+  
+      return (
+        price >= minPriceValue &&
+        price <= maxPriceValue &&
+        listingBedrooms >= bedroomsValue &&
+        listingBathrooms >= bathroomsValue &&
+        (!noiseLevel || listingNoiseLevel === noiseLevel) &&
+        (!transportation || listingTransportation === transportation) &&
+        (!safety || listingSafety === safety) && 
+        (!pool || listingPool === pool)
+        );
+      });
+    
+      setDisplayedListings(filteredListings);
     };
+    
+    
 
     const navigateToPage = (url) => {
       // This will reload the page and navigate to the new URL.
@@ -322,80 +426,111 @@ function SearchResults() {
         return houseInfo.find(property => property.id === houseId);
       }
     
-    const BedBathDropdown = ({ title, onChange }) => (
-      <Form.Select aria-label={title} onChange={e => onChange(e.target.value)} className="me-2">
-        <option>{title}</option>
-        {[1, 2, 3, 4, 5].map(value => (
-          <option key={value} value={value}>{value}</option>
-        ))}
-      </Form.Select>
-    );
+      // Use a custom dropdown component to align correctly
+      const handleSelect = (value, optionType) => {
+        // Update the corresponding state based on optionType
+        if (optionType === 'minPrice') {
+            setMinPrice(value);
+        } else if (optionType === 'maxPrice') {
+            setMaxPrice(value);
+        } else if (optionType === 'bedrooms') {
+            setBedrooms(value);
+        } else if (optionType === 'bathrooms') {
+            setBathrooms(value);
+        }
+    };
       
-
-
 
 	return (
 
         <div style={{ height: "100vh", background: "linear-gradient(rgba(16, 166, 144, 0.5), white)" }}>
+            
+            
+            
             {/* Navbar */}
             <NavBar/>
               <Navbar expand="lg" className="bg-white">
                 <Container>
-                <Form className="d-flex align-items-center" style={{ gap: '0.5rem' }}>
-                  <InputGroup>
+                <InputGroup >
                     <FormControl
                       placeholder="City, Neighbourhood, Address or MLS number"
                       aria-label="Search"
                       className="me-2"
                     />
-                    <Dropdown as={InputGroup.Append}>
-                      <Dropdown.Toggle variant="outline-secondary" id="dropdown-min-price">
-                        Min Price
-                      </Dropdown.Toggle>
-                      <Dropdown.Menu>
-                        {priceOptions.map((price, index) => (
-                          <Dropdown.Item key={index} onClick={() => setMinPrice(price)}>
-                            {price}
-                          </Dropdown.Item>
-                        ))}
-                      </Dropdown.Menu>
-                    </Dropdown>
-                    <Dropdown as={InputGroup.Append}>
-                      <Dropdown.Toggle variant="outline-secondary" id="dropdown-max-price">
-                        Max Price
-                        </Dropdown.Toggle>
-                      <Dropdown.Menu>
-                        {priceOptions.map((price, index) => (
-                          <Dropdown.Item key={index} onClick={() => setMaxPrice(price)}>
-                            {price}
-                          </Dropdown.Item>
-                        ))}
-                      </Dropdown.Menu>
-                    </Dropdown>
-                    <Dropdown as={InputGroup.Append}>
-                      <Dropdown.Toggle variant="outline-secondary" id="dropdown-beds">
-                        Beds
-                        </Dropdown.Toggle>
-                      <Dropdown.Menu>
-                        {bedBathOptions.map((number, index) => (
-                          <Dropdown.Item key={index} onClick={() => setBathrooms(number)}>
-                            {number}
-                          </Dropdown.Item>
-                        ))}
-                      </Dropdown.Menu>
-                    </Dropdown>
-                    <Dropdown as={InputGroup.Append}>
-                      <Dropdown.Toggle variant="outline-secondary" id="dropdown-baths">
-                        Baths
-                        </Dropdown.Toggle>
-                      <Dropdown.Menu>
-                        {bedBathOptions.map((number, index) => (
-                          <Dropdown.Item key={index} onClick={() => setBedrooms(number)}>
-                            {number}
-                          </Dropdown.Item>
-                        ))}
-                      </Dropdown.Menu>
-                    </Dropdown>
+                      {/* Min Price Dropdown */}
+                        <Dropdown as={InputGroup.Append}>
+                          <Dropdown.Toggle variant="outline-secondary" id="dropdown-min-price">
+                            Min Price: {minPrice}
+                          </Dropdown.Toggle>
+                          <Dropdown.Menu align="right">
+                            <FormControl
+                              autoFocus
+                              placeholder="Enter min price"
+                              className="mx-3 my-2 w-auto"
+                              onChange={e => setMinPrice(e.target.value)}
+                              style={{ width: '95%' }}
+                              value={minPrice}
+                            />
+                            <Dropdown.Divider />
+                            {priceOptions.map((option, index) => (
+                              <Dropdown.Item key={index} onClick={() => setMinPrice(option)}>
+                                {option}
+                              </Dropdown.Item>
+                            ))}
+                          </Dropdown.Menu>
+                        </Dropdown>
+                        
+                        {/* Max Price Dropdown */}
+                        <Dropdown as={InputGroup.Append}>
+                          <Dropdown.Toggle variant="outline-secondary" id="dropdown-max-price">
+                            Max Price: {maxPrice}
+                          </Dropdown.Toggle>
+                          <Dropdown.Menu align="right">
+                            <FormControl
+                              autoFocus
+                              placeholder="Enter max price"
+                              className="mx-3 my-2 w-auto"
+                              onChange={e => setMaxPrice(e.target.value)}
+                              style={{ width: '95%' }}
+                              value={maxPrice}
+                            />
+                            <Dropdown.Divider />
+                            {priceOptions.map((option, index) => (
+                              <Dropdown.Item key={index} onClick={() => setMaxPrice(option)}>
+                                {option}
+                              </Dropdown.Item>
+                            ))}
+                          </Dropdown.Menu>
+                        </Dropdown>
+                        
+                        {/* Beds Dropdown */}
+                        <Dropdown as={InputGroup.Append}>
+                          <Dropdown.Toggle variant="outline-secondary" id="dropdown-beds">
+                            Beds: {bedrooms || 'Any'}
+                          </Dropdown.Toggle>
+                          <Dropdown.Menu align="right">
+                            {bedBathOptions.map((option, index) => (
+                              <Dropdown.Item key={index} onClick={() => setBedrooms(option)}>
+                                {option === 0 ? 'any' : option}
+                              </Dropdown.Item>
+                            ))}
+                          </Dropdown.Menu>
+                        </Dropdown>
+                        
+                        {/* Baths Dropdown */}
+                        <Dropdown as={InputGroup.Append}>
+                          <Dropdown.Toggle variant="outline-secondary" id="dropdown-baths">
+                            Baths: {bathrooms || 'Any'}
+                          </Dropdown.Toggle>
+                          <Dropdown.Menu align="right">
+                            {bedBathOptions.map((option, index) => (
+                              <Dropdown.Item key={index} onClick={() => setBathrooms(option)}>
+                                {option === 0 ? 'any' : option}
+                              </Dropdown.Item>
+                            ))}
+                          </Dropdown.Menu>
+                        </Dropdown>
+
                     <Button variant="outline-secondary" onClick={search}>
                       <img src={searchIcon} alt="Search" width="24" height="24" />
                     </Button>
@@ -403,7 +538,6 @@ function SearchResults() {
                   <Button variant="outline-secondary" onClick={openModal}>
                     <img src={filterIcon} alt="Filter" width="24" height="24" />
                   </Button>
-                </Form>
 
                   <Modal show={showModal} onHide={closeModal} size="md" centered>
                     <Modal.Header closeButton>
@@ -413,38 +547,92 @@ function SearchResults() {
 
                         <Form style={{overflowY: "auto", maxHeight: "100%" }}>
 
-                            <label for='Filter'>Filter</label>
-                            <select id="Filter" >
-                            <option value=""> </option>
-                            <option value="noiseLevel">Noise Level</option>
-                            <option value="safety">Safety</option>
-                            <option value="walkability">Walkability</option>
+                            {/* Noise Level Filter */}
+                            <Form.Group controlId="noiseLevel">
+                              <Form.Label>Noise Level</Form.Label>
+                              <Form.Select
+                                aria-label="Noise Level"
+                                onChange={e => setNoiseLevel(e.target.value)}
+                                value={noiseLevel}
+                              >
+                                <option value="">Select Noise Level</option>
+                                {[1, 2, 3, 4, 5].map(level => (
+                                  <option key={level} value={level}>
+                                    {level} - {noiseTable[level]}
+                                  </option>
+                                ))}
+                              </Form.Select>
+                            </Form.Group>
+
+
+                            {/* Safety Filter */}
+                            <Form.Group controlId="safety">
+                              <Form.Label>Safety</Form.Label>
+                              <Form.Select
+                                aria-label="Safety"
+                                onChange={e => setSafety(e.target.value)}
+                                value={safety}
+                              >
+                                <option value="">Select Safety Level</option>
+                                {[1, 2, 3, 4, 5].map(level => (
+                                  <option key={level} value={level}>
+                                    {level} - {safetyTable[level]}
+                                  </option>
+                                ))}
+                              </Form.Select>
+                            </Form.Group>
+
+                            {/*<option value="walkability">Walkability</option>
                             <option value="petFriendly">Pet Friendly</option>
-                            <option value="crimeRate">Crime Rate</option>
+        
+
                             <option value="airQuality">Air Quality</option>
                             <option value="neighborhood">Neighbourhood</option>
                             <option value="shopping">Shopping</option>
-                            <option value="transportation">Transportation</option>
+                                */ }
+
+                             {/* Transportation Filter */}
+                              <Form.Group controlId="transportation">
+                                <Form.Label>Transportation</Form.Label>
+                                <Form.Select
+                                  aria-label="Transportation"
+                                  onChange={e => setTransportation(e.target.value)}
+                                  value={transportation}
+                                >
+                                  <option value="">Select Transportation Accessibility</option>
+                                  {[1, 2, 3, 4, 5].map(level => (
+                                    <option key={level} value={level}>
+                                      {level} - {transportationTable[level]}
+                                    </option>
+                                  ))}
+                                </Form.Select>
+                              </Form.Group>
+
+                              {/* Pool Filter */}
+                                <Form.Group controlId="pool">
+                                  <Form.Label>Pool</Form.Label>
+                                  <Form.Select
+                                    aria-label="Pool"
+                                    onChange={e => setPool(e.target.value)}
+                                    value={pool}
+                                  >
+                                    <option value="">Select Pool Availability</option>
+                                    <option value="1">No pool</option>
+                                    <option value="5">Olympic pool</option>
+                                  </Form.Select>
+                                </Form.Group>
+
+                            {/* 
                             <option value="schoolsHighschool">High Schools</option>
                             <option value="schoolsMiddle">Middle Schools</option>
                             <option value="schoolsElementary">Elementary Schools</option>
                             <option value="schoolsPreschools">Preschools</option>
-                          </select>
-                          <label for='Value'>Value</label>
-                            <select id="Value" >
-                            <option value=""> </option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                          </select>
-
+                            */}
 
                         </Form>
                       </Modal.Body>
                     <Modal.Footer>
-                  <Button variant="primary" onClick={()=>addAdvancedFilter()}>
+                  <Button variant="primary" onClick={()=>applyAdvancedFilters()}>
                     Add Search Filter
                   </Button>
           </Modal.Footer>
@@ -494,7 +682,7 @@ function SearchResults() {
                 })}
             </div>
 		</Col>
-
+ 
 
         {/* Map Column */}
         <Col md={6} className="map-column">
@@ -502,7 +690,7 @@ function SearchResults() {
             <Wrapper apiKey={apiKey} render={render}>
               <MyMapComponent
                 apiKey={apiKey}
-                listings={houseInfo}
+                listings={displayedListings}
                 hoveredPropertyId={hoveredPropertyId}
                 selectedPropertyId={selectedPropertyId}
                 onMapLoad={(map) => mapInstanceRef.current = map} // Store the map instance when loaded
