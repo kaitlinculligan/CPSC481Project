@@ -15,7 +15,7 @@ To run our website you will need to do the following:
 - Install cors
     - Done using: npm install cors
 - Install concurrently (potentially)
-      - Done using: npm install concurrently
+    - Done using: npm install concurrently
 
 After navigating to the my-app folder in the project, the whole system can be started with:
   npm run dev
