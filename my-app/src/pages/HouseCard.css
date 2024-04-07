@@ -1,4 +1,6 @@
+
 .ellipsis-multiline {  
+
     overflow: hidden;
     text-overflow: ellipsis;
     font-Style: "italic";

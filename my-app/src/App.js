@@ -5,8 +5,8 @@ import MainPage from './pages/MainPage.js'; // Fix the casing of the import stat
 import LoginPage from './pages/loginPage.js'; // Fix the casing of the import statement
 import Favourites from './pages/Favourites.js';
 import SearchPage from './pages/SearchPage.js';
-import SearchResults from './pages/SearchResults.js';
-import ProfilePage from './pages/ProfilePage.js';
+import SearchResults from './pages/SearchResults.js'; 
+import ProfilePage from './pages/ProfilePage.js'; 
 import Appointment from './pages/Appointment.js';
 import PropertyDetailPage from './pages/PropertyDetailpg.js';
 import Fitlers from "./pages/Filters.js"
@@ -14,6 +14,7 @@ import CreateAccount from './pages/CreateAccount.js';
 
 import HouseCard from './pages/HouseCard.js';
 import Test from './pages/Test.js';
+
 
 function App() {
   return (
@@ -32,7 +33,6 @@ function App() {
         <Route path='/filters' element={<Fitlers/>}/>
         <Route path='/create' element={<CreateAccount/>}/>
         <Route path='/test' element={<Test/>}/>
-
       </Routes>
     </div>
 

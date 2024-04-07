@@ -25,14 +25,14 @@ function SearchPage() {
 	<br></br>
 	<div className='row justify-content-center' style={{padding:"5px"}} >
 		<div className='col SearchBox' style={{height:"200px",maxWidth:"500px",border: '2px solid black',padding:"5px",backgroundColor:"#10a690", borderRadius:"10px"}} >
-			<h2><img src={dollarsign} className="img-fluid img-thumbnail rounded-circle" style={{width:"30px",height:"30px",borderColor:"black"}}></img>Price</h2>
-			<input type="text" placeholder='Min' className='searchForm'></input>
-			<input type="text" placeholder='Max' className='searchForm'></input>
+			<h2 style={{padding: "6px"}}><img src={dollarsign} className="img-fluid img-thumbnail rounded-circle" style={{width:"30px",height:"30px",borderColor:"black", margin: '6px'}}></img>Price</h2>
+			<input type="text" style={{ margin: '10px' }} placeholder='Min' className='searchForm'></input>
+			<input type="text" style={{ margin: '10px' }} placeholder='Max' className='searchForm'></input>
 		</div>
 		<div className='col' style={{maxWidth:"2px"}}></div>
 		<div className='col' style={{height:"200px",maxWidth:"500px",border: '2px solid black',padding:"5px",backgroundColor:"#10a690", borderRadius:"10px"}} >
-			<h2><img src={pin} className="img-fluid img-thumbnail rounded-circle" style={{width:"30px",height:"30px",borderColor:"black" }}></img>Location</h2>
-			<input type="text" placeholder='Neighborhood' className='searchForm'></input>
+			<h2 style={{padding: "6px"}}><img src={pin} className="img-fluid img-thumbnail rounded-circle" style={{width:"30px",height:"30px",borderColor:"black", margin: '6px'}}></img>Location</h2>
+			<input type="text" style={{ margin: '10px', padding: "11px"}} placeholder='Neighborhood' className='searchForm'></input>
 		</div>
 	</div>
 	<div className='row justify-content-center' >
