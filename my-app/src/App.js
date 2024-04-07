@@ -5,8 +5,8 @@ import MainPage from './pages/MainPage.js'; // Fix the casing of the import stat
 import LoginPage from './pages/loginPage.js'; // Fix the casing of the import statement
 import Favourites from './pages/Favourites.js';
 import SearchPage from './pages/SearchPage.js';
-import SearchResults from './pages/SearchResults.js'; 
-import ProfilePage from './pages/ProfilePage.js'; 
+import SearchResults from './pages/SearchResults.js';
+import ProfilePage from './pages/ProfilePage.js';
 import Appointment from './pages/Appointment.js';
 import PropertyDetailPage from './pages/PropertyDetailpg.js';
 import Fitlers from "./pages/Filters.js"
@@ -24,7 +24,7 @@ function App() {
         <Route path="/" element={<MainPage/>} />
         <Route path="/login" element={<LoginPage/>} />
         <Route path="/favourites" element={<Favourites/>} />
-        <Route path="/search" element={<SearchPage/>} />
+        <Route path="/search" element={<SearchResults/>} />
         <Route path="/results" element={<SearchResults/>} />
         <Route path="/profile" element={<ProfilePage/>} />
         <Route path="*" element={<h1>Not Found</h1>} />

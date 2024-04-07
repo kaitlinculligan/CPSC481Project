@@ -127,5 +127,5 @@ function Favourites() {
     </div>
   );
 }
-
+}
 export default Favourites;

@@ -96,61 +96,61 @@ function MainPage() {
             <TypingAnimation text={textForAnimation} typingSpeed={50} fontSize={38} fontFamily={"Lucida Console"} colorOfText={"#000000"}></TypingAnimation>
           </div>
           <div className="ps-5">
-            <Button style={{ width: "200px", backgroundColor: "green" }}>Search</Button>
+            <Button onClick={()=>handleSearch()}style={{ width: "200px", backgroundColor: "green" }}>Search</Button>
           </div>
         </div>
       </div>
       <div className="d-flex flex-row justify-content-evenly h-50  " style={{ width: "99.8%" }}>
-        <div className=" h-100 d-flex flex-row justify-content-center " onClick={() => handleHouseNav(1)} style={{ width: "20%" }}>
-          <HouseCard
-            Name="Brentwood Opporunity"
-            Photo="./Photos/house1.png"
-            Price="$500,000"
-            Description="A small but important property with a great view of the beltline"
-            NumBath={3}
-            NumBed={2}
-          />
-        </div>
         <div className=" h-100 d-flex flex-row justify-content-center " onClick={() => handleHouseNav(2)} style={{ width: "20%" }}>
           <HouseCard
-            Name="Brentwood Opporunity"
-            Photo=  "./Photos/house2.png"
-            Price="$500,000"
-            Description="A small but important property with a great view of the beltline"
-            NumBath={3}
+            Name="8085 19th ave sw"
+            Photo="./Photos/house2.png"
+            Price="$200,000"
+            Description="This is a beautiful house in a great neighborhood.  It has a large backyard and a one car garage."
+            NumBath={2}
             NumBed={2}
           />
         </div>
         <div className=" h-100 d-flex flex-row justify-content-center " onClick={() => handleHouseNav(3)} style={{ width: "20%" }}>
           <HouseCard
-            Name="Brentwood Opporunity"
-            Photo="./Photos/house3.png"
-            Price="$500,000"
-            Description="A small but important property with a great view of the beltline.asgdsagdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
-            NumBath={3}
-            NumBed={2}
-            
+            Name="2024 44th ave Nw"
+            Photo=  "./Photos/house3.png"
+            Price="$300,000"
+            Description="This is a beautiful house in a great neighborhood.  It has a large backyard and a two car garage."
+            NumBath={2}
+            NumBed={3}
           />
         </div>
         <div className=" h-100 d-flex flex-row justify-content-center " onClick={() => handleHouseNav(4)} style={{ width: "20%" }}>
           <HouseCard
-            Name="Brentwood Opporunity"
+            Name="10325 Bonaventure Dr SE"
             Photo="./Photos/house4.png"
-            Price="$500,000"
-            Description="A small but important property with a great view of the beltline"
-            NumBath={3}
-            NumBed={2}
-          
+            Price="$400,000"
+            Description="This is a beautiful house in a great neighborhood. It has a large backyard and a two car garage."
+            NumBath={2}
+            NumBed={3}
+
           />
         </div>
-        <div className=" h-100 d-flex flex-row justify-content-center " onClick={() => handleHouseNav(5)}style={{ width: "20%" }}>
+        <div className=" h-100 d-flex flex-row justify-content-center " onClick={() => handleHouseNav(5)} style={{ width: "20%" }}>
           <HouseCard
-            Name="Brentwood Opporunity"
-            Photo="./Photos/house1.png"
-            Price="$500,000"
-            Description="A small but important property with a great view of the beltline"
-            NumBath={3}
-            NumBed={2}
+            Name="1236 12 Ave SW"
+            Photo="./Photos/house4.png"
+            Price="$600,000"
+            Description="This is a beautiful house in a great neighborhood.  It has a large backyard and a two car garage."
+            NumBath={4}
+            NumBed={5}
+
+          />
+        </div>
+        <div className=" h-100 d-flex flex-row justify-content-center " onClick={() => handleHouseNav(6)}style={{ width: "20%" }}>
+          <HouseCard
+            Name="1126 Memorial Dr NW"
+            Photo="./Photos/house4.png"
+            Price="$700,000"
+            Description="This is a beautiful house in a great neighborhood.  It has a large backyard and a two car garage."
+            NumBath={2}
+            NumBed={3}
           />
         </div>
       </div>

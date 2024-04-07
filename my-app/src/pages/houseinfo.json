@@ -112,7 +112,7 @@
 {
 
     "id": "4",
-    "houseName": "10325 Bonaventure Dr SE, Calgary, AB T2J 5R8",
+    "houseName": "10325 Bonaventure Dr SE",
     "price": "400,000",
     "bedrooms": "3",
     "bathrooms": "2",
@@ -142,7 +142,7 @@
 
 {
     "id": "5",
-    "houseName": "1236 12 Ave SW, Calgary, AB T3C 1A7",
+    "houseName": "1236 12 Ave SW",
     "price": "600,000",
     "bedrooms": "5",
     "bathrooms": "4",
@@ -174,7 +174,7 @@
 
 {
     "id": "6",
-    "houseName": "1126 Memorial Dr NW, Calgary, AB T2N 3E3",
+    "houseName": "1126 Memorial Dr NW",
     "price": "700,000",
     "bedrooms": "3",
     "bathrooms": "2",
@@ -204,7 +204,7 @@
 
 {
     "id": "7",
-    "houseName": "315 8 Ave SW, Calgary, AB T2P 4K1",
+    "houseName": "315 8 Ave SW",
     "price": "800,000",
     "bedrooms": "3",
     "bathrooms": "2",
@@ -238,7 +238,7 @@
 
 {
     "id": "8",
-    "houseName": "5920 Macleod Trail SW #100, Calgary, AB T2H 0K2",
+    "houseName": "5920 Macleod Trail SW #100",
     "price": "900,000",
     "bedrooms": "3",
     "bathrooms": "2",
@@ -268,7 +268,7 @@
 
 {
     "id": "9",
-    "houseName": "703 6 Ave SW #120, Calgary,",
+    "houseName": "703 6 Ave SW #120",
     "price": "1,000,000",
     "bedrooms": "3",
     "bathrooms": "2",
