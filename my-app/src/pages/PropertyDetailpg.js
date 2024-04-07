@@ -362,8 +362,32 @@ function PropertyDetailPage() {
     console.log("houseDetails:", houseDetails);
   
     if (houseDetails.jackFavourite === "yes") {
-      setAlertColor("#b5ae2d");
-      showAlert("Already Added To Favourites!");
+      try {
+        const response = await fetch("http://localhost:5000/update-house-info", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: houseId,
+            updates: { jackFavourite: "no" },
+          }),
+        });
+  
+        if (response.ok) {
+          console.log("Success:", await response.json());
+          setAlertColor("#a1712f");
+          showAlert("Removed form favourites!");
+        } else {
+          // Assuming a non-ok response is an error condition
+          setAlertColor("#b03c30")
+          showAlert("Failed to update Jack's favorite status.");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        setAlertColor("#b03c30")
+        showAlert(error.toString());
+      }
       return;
     }
   
@@ -416,7 +440,7 @@ const showAlert = (message) => {
     setTimeout(() => {
       setAlertVisible(false);
     }, 1000); // This should match the fade-out animation time
-  }, 4000); // Adjust time based on how long you want the alert to be visible before fading out
+  }, 1500); // Adjust time based on how long you want the alert to be visible before fading out
 };
 
   return (

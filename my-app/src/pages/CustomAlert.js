@@ -10,7 +10,7 @@ const CustomAlert = ({ message, onClose, fadeClass, color }) => {
     return (
         <div className={`custom-alert ${fadeClass}`} style={divStyle}>
             <p>{message}</p>
-            <Button onClick={onClose}>Close</Button>
+            <Button className=' border border-4 border-black rounded-3' onClick={onClose}>Close</Button>
         </div>
     );
 };
