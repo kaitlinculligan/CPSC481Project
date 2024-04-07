@@ -5,7 +5,7 @@ import NavBar from './NavBar.js';
 import searchIcon from "./Photos/searchIcon.png";
 import filterIcon from "./Photos/filterIcon.png";
 import HouseCard from "./HouseCard";
-import houseInfo from "./houseInfo.js"
+import houseInfo from "./houseinfo.json"
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -41,7 +41,7 @@ const MyMapComponent = ({ apiKey, listings, hoveredPropertyId, selectedPropertyI
       }
     },[onMapLoad]);
 
-        
+
 
      // Update markers based on listings
     useEffect(() => {
@@ -172,17 +172,17 @@ function SearchResults() {
     const [bedrooms, setBedrooms] = useState('');
     const [bathrooms, setBathrooms] = useState('');
 
-    //advance searching states 
+    //advance searching states
     const [noiseLevel, setNoiseLevel] = useState('');
     const [pool, setPool] = useState('');
     const [transportation, setTransportation] = useState('');
     const [safety, setSafety] = useState('');
 
     //options for dropdown
-    const priceOptions = ['0', '100,000', '200,000', '300,000', '400,000', '500,000', '600,000', '+600,000'];
-    const bedBathOptions = ['0', '1', '2', '3', '4', '5', '+5'];
+    const priceOptions = ['0', '100,000', '200,000', '300,000', '400,000', '500,000', '600,000', '600,000+'];
+    const bedBathOptions = ['0', '1', '2', '3', '4', '5', '5+'];
 
-    
+
 
     //advanced search popup control
     const [showModal, setShowModal] = useState(false);
@@ -207,23 +207,23 @@ function SearchResults() {
       let maxPriceValue = maxPrice ? parseInt(maxPrice.replace(/[,]/g, ''), 10) : Infinity;
       let bedroomsValue = bedrooms ? parseInt(bedrooms, 10) : 0;
       let bathroomsValue = bathrooms ? parseInt(bathrooms, 10) : 0;
-    
+
       // Handle '+600,000' for min and max price
-      if (minPrice === '+600,000') {
+      if (minPrice === '600,000+') {
         minPriceValue = 600001;
       }
-      if (maxPrice === '+600,000') {
+      if (maxPrice === '600,000+') {
         maxPriceValue = Infinity;
       }
-    
+
       // Handle '+5' for bedrooms and bathrooms
-      if (bedrooms === '+5') {
+      if (bedrooms === '5+') {
         bedroomsValue = 6;
       }
-      if (bathrooms === '+5') {
+      if (bathrooms === '5+') {
         bathroomsValue = 6;
       }
-    
+
       const filteredListings = houseInfo.filter(listing => {
         const price = parseInt(listing.price.replace(/[$,]/g, ''), 10);
         const listingBedrooms = parseInt(listing.bedrooms, 10);
@@ -235,13 +235,13 @@ function SearchResults() {
           listingBathrooms >= bathroomsValue
         );
       });
-    
+
       setDisplayedListings(filteredListings);
     };
-    
-    
-    
-    //advance search filtering conditions table 
+
+
+
+    //advance search filtering conditions table
     const safetyTable = {
       1: "100+ on crime severity index -Dangerous area",
       2: "70-100 on crime severity index - High crime rate",
@@ -326,24 +326,24 @@ function SearchResults() {
 
     const applyAdvancedFilters = () => {
       closeModal();
-    
+
       // You must define these values inside the function to use them
       const minPriceValue = minPrice ? parseInt(minPrice.replace(/[,]/g, ''), 10) : 0;
       const maxPriceValue = maxPrice ? parseInt(maxPrice.replace(/[,]/g, ''), 10) : Infinity;
       const bedroomsValue = bedrooms ? parseInt(bedrooms, 10) : 0;
       const bathroomsValue = bathrooms ? parseInt(bathrooms, 10) : 0;
-    
+
       const filteredListings = houseInfo.filter(listing => {
-      const price = parseInt(listing.price.replace(/[$,]/g, ''), 10); 
+      const price = parseInt(listing.price.replace(/[$,]/g, ''), 10);
       const listingBedrooms = parseInt(listing.bedrooms, 10);
       const listingBathrooms = parseInt(listing.bathrooms, 10);
-  
+
       //using the listing data
       const listingNoiseLevel = listing.noiseLevel;
       const listingTransportation = listing.transportation;
-      const listingSafety = listing.safety; 
-      const listingPool = listing.pool; 
-  
+      const listingSafety = listing.safety;
+      const listingPool = listing.pool;
+
       return (
         price >= minPriceValue &&
         price <= maxPriceValue &&
@@ -351,22 +351,22 @@ function SearchResults() {
         listingBathrooms >= bathroomsValue &&
         (!noiseLevel || listingNoiseLevel === noiseLevel) &&
         (!transportation || listingTransportation === transportation) &&
-        (!safety || listingSafety === safety) && 
+        (!safety || listingSafety === safety) &&
         (!pool || listingPool === pool)
         );
       });
-    
+
       setDisplayedListings(filteredListings);
     };
-    
-    
+
+
 
     const navigateToPage = (url) => {
       // This will reload the page and navigate to the new URL.
       window.location.href = url;
     };
 
-    
+
 
 
      // Function to reset the map view to its default center and zoom level
@@ -425,7 +425,7 @@ function SearchResults() {
     const getPropertyDetails = (houseId) => {
         return houseInfo.find(property => property.id === houseId);
       }
-    
+
       // Use a custom dropdown component to align correctly
       const handleSelect = (value, optionType) => {
         // Update the corresponding state based on optionType
@@ -439,14 +439,14 @@ function SearchResults() {
             setBathrooms(value);
         }
     };
-      
+
 
 	return (
 
         <div style={{ height: "100vh", background: "linear-gradient(rgba(16, 166, 144, 0.5), white)" }}>
-            
-            
-            
+
+
+
             {/* Navbar */}
             <NavBar/>
               <Navbar expand="lg" className="bg-white">
@@ -479,7 +479,7 @@ function SearchResults() {
                             ))}
                           </Dropdown.Menu>
                         </Dropdown>
-                        
+
                         {/* Max Price Dropdown */}
                         <Dropdown as={InputGroup.Append}>
                           <Dropdown.Toggle variant="outline-secondary" id="dropdown-max-price">
@@ -502,11 +502,11 @@ function SearchResults() {
                             ))}
                           </Dropdown.Menu>
                         </Dropdown>
-                        
+
                         {/* Beds Dropdown */}
                         <Dropdown as={InputGroup.Append}>
                           <Dropdown.Toggle variant="outline-secondary" id="dropdown-beds">
-                            Beds: {bedrooms || 'Any'}
+                            Min Beds: {bedrooms || 'Any'}
                           </Dropdown.Toggle>
                           <Dropdown.Menu align="right">
                             {bedBathOptions.map((option, index) => (
@@ -516,11 +516,11 @@ function SearchResults() {
                             ))}
                           </Dropdown.Menu>
                         </Dropdown>
-                        
+
                         {/* Baths Dropdown */}
                         <Dropdown as={InputGroup.Append}>
                           <Dropdown.Toggle variant="outline-secondary" id="dropdown-baths">
-                            Baths: {bathrooms || 'Any'}
+                            Min Baths: {bathrooms || 'Any'}
                           </Dropdown.Toggle>
                           <Dropdown.Menu align="right">
                             {bedBathOptions.map((option, index) => (
@@ -584,7 +584,7 @@ function SearchResults() {
 
                             {/*<option value="walkability">Walkability</option>
                             <option value="petFriendly">Pet Friendly</option>
-        
+
 
                             <option value="airQuality">Air Quality</option>
                             <option value="neighborhood">Neighbourhood</option>
@@ -622,7 +622,7 @@ function SearchResults() {
                                   </Form.Select>
                                 </Form.Group>
 
-                            {/* 
+                            {/*
                             <option value="schoolsHighschool">High Schools</option>
                             <option value="schoolsMiddle">Middle Schools</option>
                             <option value="schoolsElementary">Elementary Schools</option>
@@ -641,7 +641,7 @@ function SearchResults() {
 
       </Container>
       </Navbar>
-      
+
 
 
 		 {/* Content Area */}
@@ -682,11 +682,14 @@ function SearchResults() {
                 })}
             </div>
 		</Col>
- 
+
 
         {/* Map Column */}
         <Col md={6} className="map-column">
-            <Button onClick={handleResetMap} style={{ margin: "10px" }}>Reset Map View</Button>
+          <div className='flex-row d-flex'>
+            <Button onClick={handleResetMap} style={{ margin: "10px",width:"50%", }}>Reset Map View</Button>
+            <Button onClick={handleViewHouse} style={{ margin: "10px" ,width:"50%"}}>View House Details</Button>
+            </div>
             <Wrapper apiKey={apiKey} render={render}>
               <MyMapComponent
                 apiKey={apiKey}
@@ -696,11 +699,11 @@ function SearchResults() {
                 onMapLoad={(map) => mapInstanceRef.current = map} // Store the map instance when loaded
               />
             </Wrapper>
-            <Button onClick={handleViewHouse} style={{ margin: "10px" }}>View House Details</Button>
+
           </Col>
         </Row>
 
-       
+
       </Container>
     </div>
   );
