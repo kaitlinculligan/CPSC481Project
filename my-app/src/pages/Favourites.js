@@ -19,16 +19,21 @@ function Favourites() {
   const navigate = useNavigate();
 
   const [show, setShow] = useState(false);
-  const [id, setId] = useState("-1");
+  const [house, setHouse] = useState("-1");
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const openModal = (id) => {setId(id)
+  const openModal = (hId) => {setHouse(hId)
     handleShow()
   };
 
   const navigateToPage = (url) => {
     // This will reload the page and navigate to the new URL.
     window.location.href = url;
+  };
+
+  const handleNavigateDetails = (i) => {
+    var id = i
+    navigate("/details", {state: {user,id}})
   };
 
   const handleDeleteFavourite = async (id) => {
@@ -48,13 +53,14 @@ function Favourites() {
 
       if (response.ok) {
         console.log("Success:", await response.json());
+        handleClose()
       } else {
         throw new Error("Failed to update Jack's favorite status.");
       }
     } catch (error) {
       console.error("Error:", error);
 
-    handleClose()
+
     navigate('/favourites', { state: { user } });
 };
 }
@@ -94,7 +100,7 @@ function Favourites() {
                 <Row>
 
                 <button className="button"
-              onClick={() => {navigate("/details", {state: user, house: house.id})}}
+              onClick={() => {handleNavigateDetails(house.id)}}
               style={{width:"80%", height:"40%", backgroundColor:"blue", color:"white" }}>View Details</button>
               </Row>
                 <Row>
@@ -114,12 +120,12 @@ function Favourites() {
 <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
 
-          <Modal.Title>Remove {houseInfo.at(id-1).houseName} from favorites?</Modal.Title>
+          <Modal.Title>Remove {houseInfo.at(house-1).houseName} from favorites?</Modal.Title>
 
         </Modal.Header>
         <Modal.Body>
         <button className="button"
-              onClick={() => {handleDeleteFavourite(id)}}
+              onClick={() => {handleDeleteFavourite(house)}}
               style={{width:"55%", height:"65%", backgroundColor:"#10a690", color:"white",margin: "0 20%" }}>Remove from favourites</button>
         </Modal.Body>
       </Modal>
