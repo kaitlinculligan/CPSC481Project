@@ -26,9 +26,9 @@
       "./Photos/insideHouse1.png",
       "./Photos/insideHouse1-1.png"
     ],
-    "jackBooking": "yes",
+    "jackBooking": "no",
     "jackFavourite": "no",
-    "timeOfBooking": "2020-03-20T00:01 PM"
+    "timeOfBooking": "NA"
   },
   {
     "id": "2",
@@ -64,7 +64,7 @@
   },
   {
     "id": "3",
-    "houseName": "2023 40th ave sw",
+    "houseName": "3023 40th ave sw",
     "price": "100,000",
     "bedrooms": "3",
     "bathrooms": "2",
@@ -90,9 +90,9 @@
       "./Photos/insideHouse3-1.png",
       "./Photos/insideHousePhoto3-2.png"
     ],
-    "jackBooking": "no",
+    "jackBooking": "yes",
     "jackFavourite": "yes",
-    "timeOfBooking": "NA"
+    "timeOfBooking": "2024-04-23T11:53"
   },
   {
     "id": "4",
@@ -121,8 +121,8 @@
       "./Photos/insideHouse4.png",
       "./Photos/insideHousePhoto4-1.png"
     ],
-    "jackBooking": "no",
+    "jackBooking": "yes",
     "jackFavourite": "no",
-    "timeOfBooking": "NA"
+    "timeOfBooking": "2024-04-24T2:24 PM"
   }
 ]

@@ -23,7 +23,7 @@
 .appointmentSubmit {
 
 	width: 100%;
-	background-color: #10a690;
+	background-color: #2112f8;
 	color: white;
 	padding: 14px 20px;
 	margin: 8px 0;
@@ -34,7 +34,7 @@
 
   /* Add a background color to the submit button on mouse-over */
   .appointmentSubmit:hover {
-	background-color: #106e60;
+	background-color: #2112f8;
   }
 
 .realtorInfo{
