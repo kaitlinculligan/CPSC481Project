@@ -52,7 +52,7 @@ body {
 
 .img-hover-effect:hover {
   filter: brightness(50%);
-  transform: scale(2);
+  transform: scale(1.4);
 }
 
 /* Adjust the icons and their alignment */

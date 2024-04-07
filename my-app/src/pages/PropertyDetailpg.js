@@ -2,22 +2,22 @@ import React, { useState } from "react";
 import "./PropertyDetailpg.css";
 import { Carousel, Container, Navbar, Nav, Card, Modal, Button, Tab, Tabs } from "react-bootstrap";
 import NavBar from "./NavBar.js";
-import realtorImage from "./Photos/profileLogo.png";
 import bed from "./Photos/Bed.png";
 import bath from "./Photos/Bath.png";
 import { useLocation } from "react-router-dom";
-import houseInfo from "./houseInfo.js";
+import houseInfo from "./houseinfo.json";
 import { useEffect } from "react";
 import { Badge, OverlayTrigger, Tooltip, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import realtor from "./Photos/realtor.png";
 import heart from "./Photos/Heart-Emoji-PNG-Photos.png";
+import CustomAlert from "./CustomAlert";
 
 const RealtorCard = ({ imageSrc, name, number, email }) => {
   return (
     <div className="card" style={{ width: "18rem", textAlign: "center" }}>
-      <img src={imageSrc} className="card-img-top" alt="Realtor" style={{ width: "100px", height: "100px", borderRadius: "50%", margin: "0 auto" }} />
+      <img src={imageSrc} className="card-img-top pt-1" alt="Realtor" style={{ width: "100px", height: "100px", borderRadius: "50%", margin: "0 auto" }} />
       <div className="card-body">
         <h5 className="card-title">{name}</h5>
         <p className="card-text">{number}</p>
@@ -32,32 +32,32 @@ const RealtorCard = ({ imageSrc, name, number, email }) => {
 
 function RatingsGroup({ houseDetails }) {
   const safetyTable = {
-    1: "High crime rate",
-    2: "Moderate crime rate",
-    3: "Average crime rate",
-    4: "Low crime rate",
-    5: "Zero Crime :)",
+    1: "100+ on crime severity index -Dangerous area",
+    2: "70-100 on crime severity index - High crime rate",
+    3: "50-70 on crime severity index - Average crime rate",
+    4: "20-50 on crime severity index - Low crime rate",
+    5: "0-20 on crime severity index - Safe area",
   };
   const noiseTable = {
-    1: "Very noisy 110-90 dB",
-    2: "Noisy 90-70 dB",
-    3: "Average noise 70-50 dB",
-    4: "Quiet 50-30 dB",
-    5: "Silent 30-0 dB",
+    1: "Very noisy 110-90 dB on average",
+    2: "Noisy 90-70 dB on average",
+    3: "Average noise 70-50 dB on average",
+    4: "Quiet 50-30 dB on average",
+    5: "Silent 30-0 dB on average",
   };
   const shoppingTable = {
-    1: "No shopping nearby",
-    2: "Few shops nearby",
-    3: "Average shopping nearby",
-    4: "Many shops nearby",
-    5: "Shopping paradise in walking distance",
+    1: "Only online shopping and major goods stores 10 minute drive away",
+    2: "Major goods within 10 minute drive",
+    3: "Major goods within 5 min drive and 5-10 shops in 5 minute walking distance",
+    4: "Major goods within 5 min drive and 10+ shops in 5 minute walking distance",
+    5: "Major shopping cnter within 5 min drive and 20+ shops in 5 minute walking distance",
   };
   const transportationTable = {
-    1: "No public transportation",
-    2: "Few public transportation options",
-    3: "Average public transportation options",
-    4: "Many public transportation options",
-    5: "Public transportation hub",
+    1: "No public transportation close by",
+    2: " 1-2 Bus stops within 5 minute walk, no train station nearby",
+    3: "3-4 Bus stops within 5 minute walk, no train station nearby",
+    4: "Train station within 5 minute walk, 5+ bus stops within 5 minute walk",
+    5: "Train station within 5 minute walk, 10+ bus stops within 5 minute walk",
   };
   const highSchoolTable = {
     1: "no high school nearby",
@@ -88,29 +88,29 @@ function RatingsGroup({ houseDetails }) {
     5: "7+ preschools nearby",
   };
   const cleanlinessTable = {
-    1: "Very dirty",
-    2: "Dirty",
-    3: "Average cleanliness",
-    4: "Clean",
-    5: "Spotless",
+    1: "1/5 on the Calgary cleanliness index - Very dirty - Garbage everywhere, graffiti, and vandalism",
+    2: "2/5 on the Calgary cleanliness index - Dirty - Garbage on the streets, some graffiti and vandalism",
+    3: "3/5 on the Calgary cleanliness index - Average - Some garbage on the streets, little graffiti and vandalism",
+    4: "4/5 on the Calgary cleanliness index - Clean - little garbage on the streets, no graffiti and vandalism",
+    5: "5/5 on the Calgary cleanliness index - Very clean - No garbage on the streets, no graffiti and vandalism",
   };
   const poolTable = {
     1: "No pool",
     5: "Olympic pool",
   };
   const walkabilityTable = {
-    1: "No sidewalks",
-    2: "Few sidewalks",
-    3: "Average walkability",
-    4: "Many sidewalks",
-    5: "Pedestrian paradise",
+    1: "No sidewalks, no easy access to ammenities without transportation",
+    2: "Few sidewalks, some ammenities within walking distance",
+    3: "Some sidewalks, many ammenities within walking distance",
+    4: "Many sidewalks, most ammenities within walking distance",
+    5: "Pedestrian paradise, all ammenities within walking distance including parks, schools, shopping centers, health centers, etc.",
   };
   const petFriendlyTable = {
     1: "No pets allowed",
-    2: "small pets allowed",
-    3: "cats and dogs are allowed",
-    4: "Many pets allowed",
-    5: "Pet paradise",
+    2: "Small pets allowed - Such as fish, hamsters, etc.",
+    3: "Cats and dogs are allowed - Some restrictions apply",
+    4: "Exotic pets allowed - Some restrictions apply",
+    5: "All pets allowed - Within the bounds of the law",
   };
 
   return (
@@ -148,7 +148,7 @@ function RatingsGroup({ houseDetails }) {
           </Col>
           <Col>
             {" "}
-            <Rating label="pool" value={houseDetails.pool} descriptions={poolTable}></Rating>
+            <Rating label="Pool" value={houseDetails.pool} descriptions={poolTable}></Rating>
           </Col>
           <Col></Col>
         </Row>
@@ -246,6 +246,7 @@ function PropertyDetailPage() {
     cleanliness: "",
     walkability: "",
     petFriendly: "",
+    jackFavourite: "",
   });
   const location = useLocation();
   const { user, id } = location.state || {};
@@ -300,6 +301,7 @@ function PropertyDetailPage() {
           cleanliness: property.cleanliness || "",
           walkability: property.walkability || "",
           petFriendly: property.petFriendly || "",
+          jackFavourite: property.jackFavourite || "",
         });
       }
       console.log("House Details:", houseDetails);
@@ -351,7 +353,17 @@ function PropertyDetailPage() {
     return `${bedrooms} Bedroom${bedrooms > 1 ? "s" : ""}, ${bathrooms} Bathroom${bathrooms > 1 ? "s" : ""}`;
   };
 
-  const handleAddToFavourites = async (houseId) => {
+  const handleAddToFavourites = async (houseId, houseDetails) => {
+    if (user === "" || user === undefined) {
+      navigate("/login");
+      return;
+    }
+    console.log("houseDetails:", houseDetails);
+    if (houseDetails.jackFavourite === "yes") {
+      setMessage("Already Added To Favourites!");
+      setAlertVisible(true);
+      return;
+    }
     try {
       const response = await fetch("http://localhost:5000/update-house-info", {
         method: "POST",
@@ -360,21 +372,34 @@ function PropertyDetailPage() {
         },
         body: JSON.stringify({
           id: houseId,
-          updates: {
-            jackFavourite: "yes",
-          },
+          updates: { jackFavourite: "yes" },
         }),
       });
-
+  
       if (response.ok) {
         console.log("Success:", await response.json());
-        alert("Jack's favorite status updated successfully!");
+        setMessage("Added To Favourites!");
+        setAlertVisible(true);
       } else {
         throw new Error("Failed to update Jack's favorite status.");
       }
     } catch (error) {
       console.error("Error:", error);
+      setMessage(error.toString());
+      setAlertVisible(true);
     }
+  };
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const showAlert = (message) => {
+    setMessage(message);
+    setAlertVisible(true);
+
+    // Optionally auto-hide the alert after 5 seconds
+    setTimeout(() => {
+      setAlertVisible(false);
+    }, 5000);
   };
 
   return (
@@ -449,7 +474,7 @@ function PropertyDetailPage() {
           </Carousel>
         </div>
       </div>
-      <Container fluid className="p-0">
+      <Container fluid className="pt-2">
         <div className="property-realtor-wrapper mx-auto" style={{ maxWidth: "90%" }}>
           {/* Listing details taking up the majority of the width */}
           <div className="property-details">
@@ -476,7 +501,7 @@ function PropertyDetailPage() {
               onClick={() => {
                 openModal(0);
               }}
-              style={{ backgroundColor: "#10a690", marginTop: "25px", marginLeft: "5%", width: "75%" }}
+              style={{ marginBottom: "10px", marginTop: "25px", marginLeft: "5%", width: "75%" }}
             >
               View More Pictures
             </Button>
@@ -496,16 +521,17 @@ function PropertyDetailPage() {
                       height: "50px",
                       borderRadius: "50%",
                       margin: "0 auto",
-                      transform: "translate(0, -10px)",
+                      transition: "transform 0.3s ease", // Add transition for smoothness
                     }}
-                    onClick={() => handleAddToFavourites(id)}
+                    onClick={() => handleAddToFavourites(id, houseDetails)}
                   />
                   <span
+                    className="favourite-label" // Added class for styling
                     style={{
                       position: "absolute",
                       bottom: "0",
                       left: "50%",
-                      transform: "translateX(-50%)",
+                      transform: "translateX(-50%) translateY(100%)", // Adjusted for visibility below the heart
                       visibility: "hidden",
                       whiteSpace: "nowrap",
                       backgroundColor: "black",
@@ -513,8 +539,11 @@ function PropertyDetailPage() {
                       padding: "5px 10px",
                       borderRadius: "5px",
                       fontSize: "14px",
+                      transition: "visibility 0.3s, opacity 0.3s ease", // Transition for a smooth effect
+                      opacity: 0, // Start as invisible
                     }}
                   >
+                    {alertVisible && <CustomAlert message={message} onClose={() => setAlertVisible(false)} />}
                     Add to Favourites
                   </span>
                 </div>
