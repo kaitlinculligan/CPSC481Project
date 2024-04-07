@@ -5,8 +5,10 @@ import { Row, Col, FormControl, InputGroup, Navbar, Container, Card, Nav, Dropdo
 import hypeImage from "./Photos/hype.png";
 import NavBar from './NavBar.js';
 import house2 from "./Photos/house2.png"
-import  houseInfo  from './houseInfo.js';
-import HouseCard from "./HouseCard.js";
+
+import  houseInfo  from './houseinfo.json';
+import HouseCardFav from "./HouseCardFav.js";
+
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
@@ -29,12 +31,29 @@ function Favourites() {
     window.location.href = url;
   };
 
-  const handleDeleteFavourite = (id) => {
-    const houseToUpdate = houseInfo.find(house => house.id === id);
-    alert(houseToUpdate.jackFovorite)
-    houseToUpdate.jackFovorite = "no";
+  const handleDeleteFavourite = async (id) => {
+    try {
+      var houseId = String(id)
+      const response = await fetch("http://localhost:5000/update-house-info", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: houseId,
+          updates: { jackFavourite: "no" },
+        }),
+      });
 
-    alert(houseInfo.find(house => house.id === id).jackFovorite)
+
+      if (response.ok) {
+        console.log("Success:", await response.json());
+      } else {
+        throw new Error("Failed to update Jack's favorite status.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+
     handleClose()
     navigate('/favourites', { state: { user } });
 };
@@ -51,15 +70,17 @@ function Favourites() {
 
       {/* Favorites Listings */}
 
-      {houseInfo.filter((house) => house.jackFovorite === "yes")
-                    .map((house) =>(
-        <div className="row justify-content-center" style={{ margin: "5px 0", padding: "3px", width:"75%"}}>
-          <Card className="listing-card">
-					<Card.Body>
-						<Row style={{height:"50%"}}>
-              <Col onClick={() => {navigate("/details", {state: user, house: house.id})}}>
 
-            <HouseCard
+      {houseInfo.filter((house) => house.jackFavourite === "yes")
+                    .map((house) =>(
+        <div className="row justify-content-center" style={{margin:"5px, 0",  width:"75%",height:"100%", maxHeight:"100%"}}>
+          <Card className="listing-card justify-content-center"style={{ height:"100%"}}>
+
+					<Card.Body>
+						<Row style={{height:"65%"}}>
+              <Col >
+
+            <HouseCardFav
                           Name={house.houseName}
                           Photo={house.photos[0]}
                           Price={house.price}
@@ -71,9 +92,16 @@ function Favourites() {
               <Col md={4} className="row justify-content-center">
                 <Row></Row>
                 <Row>
+
+                <button className="button"
+              onClick={() => {navigate("/details", {state: user, house: house.id})}}
+              style={{width:"80%", height:"40%", backgroundColor:"blue", color:"white" }}>View Details</button>
+              </Row>
+                <Row>
                 <button className="button"
               onClick={() => {openModal(house.id)}}
-              style={{width:"80%", height:"30%", backgroundColor:"red", color:"white" }}>Delete</button>
+              style={{width:"80%", height:"40%", backgroundColor:"red", color:"white" }}>Delete</button>
+
               </Row>
               <Row></Row>
               </Col>
@@ -85,7 +113,9 @@ function Favourites() {
 
 <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Remove {houseInfo.at(id).houseName} from favorites?</Modal.Title>
+
+          <Modal.Title>Remove {houseInfo.at(id-1).houseName} from favorites?</Modal.Title>
+
         </Modal.Header>
         <Modal.Body>
         <button className="button"

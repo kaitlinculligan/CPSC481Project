@@ -1,3 +1,4 @@
+
 const houseInfo=[{
     "id": "1",
     "houseName": "2026 40th ave sw",

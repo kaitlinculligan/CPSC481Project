@@ -1,4 +1,5 @@
-[{
+[
+  {
     "id": "1",
     "houseName": "2026 40th ave sw",
     "price": "100,000",
@@ -11,7 +12,12 @@
     "safety": "4",
     "walkability": "5",
     "petFriendly": "3",
+
     "airQuality": "4",
+
+    "crimeRate": "3",
+    "cleanliness": "4",
+
     "neighborhood": "4",
     "shopping": "5",
     "transportation": "4",
@@ -20,14 +26,16 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "no",
+
     "photos": ["./Photos/insideHouse1.png", "./Photos/insideHouse1-1.png"],
     "jackBooking": "yes",
-    "jackFovorite": "yes",
+    "jackFovourite": "yes",
     "timeOfBooking": "2020-03-20T00:01 PM",
     "lat" : "50.99082427487876",
     "lng" : "-114.11832951558249"
 },
 {
+
     "id": "2",
     "houseName": "8085 19th ave sw",
     "price": "200,000",
@@ -40,18 +48,29 @@
     "safety": "4",
     "walkability": "5",
     "petFriendly": "3",
+
     "airQuality": "4",
+
+    "crimeRate": "3",
+    "cleanliness": "4",
+
     "neighborhood": "4",
     "shopping": "5",
-    "transportation": "4",
+    "transportation": "2",
     "schoolsHighschool": "4",
-    "schoolsMiddle": "4",
-    "schoolsElementary": "4",
+    "schoolsMiddle": "2",
+    "schoolsElementary": "1",
     "schoolsPreschool": "4",
-    "pool": "no",
-    "photos": ["./Photos/insideHouse2.png", "./Photos/insideHouse2-1.png", "./Photos/insideHouse2-2.png"],
+    "pool": "yes",
+    "photos": [
+      "./Photos/house2.png",
+      "./Photos/insideHouse2.png",
+      "./Photos/insideHouse2-1.png",
+      "./Photos/insideHouse2-2.png"
+    ],
     "jackBooking": "yes",
-    "jackFovorite": "yes",
+
+    "jackFavourite": "yes",
     "timeOfBooking": "2020-03-20T00:00 PM",
     "lat" : "51.14722309638639",
     "lng" : "-114.07073863792215"
@@ -60,6 +79,7 @@
     "id": "3",
     "houseName": "2024 44th ave Nw",
     "price": "300,000",
+
     "bedrooms": "3",
     "bathrooms": "2",
     "sqft": "2000",
@@ -70,6 +90,8 @@
     "walkability": "5",
     "petFriendly": "3",
     "airQuality": "4",
+    "crimeRate": "3",
+    "cleanliness": "4",
     "neighborhood": "4",
     "shopping": "5",
     "transportation": "4",
@@ -78,22 +100,24 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "yes",
+
     "photos": ["./Photos/insideHouse3.png", "./Photos/insideHouse3-1.png", "./Photos/insideHouse3-2.png"],
     "jackBooking": "no",
-    "jackFovorite": "yes",
+    "jackFovourite": "yes",
     "timeOfBooking": "NA",
     "lat" : "51.1001302774115",
     "lng" : "-114.26005033583782"
 
 },
 {
+
     "id": "4",
     "houseName": "10325 Bonaventure Dr SE, Calgary, AB T2J 5R8",
     "price": "400,000",
     "bedrooms": "3",
     "bathrooms": "2",
     "sqft": "2000",
-    "description": "This is a beautiful house in a great neighborhood.  It has a large backyard and a two car garage.",
+    "description": "This is a beautiful house in a great neighborhood. It has a large backyard and a two car garage.",
     "image": "./Photos/house4.png",
     "noiseLevel": "5",
     "safety": "3",
@@ -130,6 +154,8 @@
     "walkability": "5",
     "petFriendly": "3",
     "airQuality": "4",
+    "crimeRate": "3",
+    "cleanliness": "4",
     "neighborhood": "4",
     "shopping": "5",
     "transportation": "4",
@@ -198,9 +224,13 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "no",
-    "photos": ["./Photos/insideHouse4.png", "./Photos/insideHouse4-1.png"],
+    "photos": [
+      "./Photos/insideHouse4.png",
+      "./Photos/insideHousePhoto4-1.png"
+    ],
     "jackBooking": "no",
-    "jackFovorite": "no",
+
+    "jackFovourite": "no",
     "timeOfBooking": "NA",
     "lat" : "51.03872490575816",
     "lng" : "-114.19126300609804"
@@ -230,7 +260,7 @@
     "pool": "5",
     "photos": ["./Photos/insideHouse4.png", "./Photos/insideHouse4-1.png"],
     "jackBooking": "no",
-    "jackFovorite": "no",
+    "jackFovourite": "no",
     "timeOfBooking": "NA",
     "lat" : "50.969591917847644",
     "lng" : "-114.1253450398127"
@@ -260,12 +290,11 @@
     "pool": "5",
     "photos": ["./Photos/insideHouse4.png", "./Photos/insideHouse4-1.png"],
     "jackBooking": "no",
-    "jackFovorite": "no",
+    "jackFovourite": "no",
     "timeOfBooking": "NA",
     "lat" : "51.02792966720807",
     "lng" : "-114.12122516691987"
 }
-
 
 
 ]

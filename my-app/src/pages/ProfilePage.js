@@ -62,8 +62,41 @@ function ProfilePage() {
     navigate("/login", { state: { user: "" } });
   };
 
-  console.log("House Beds:", houseInfo.map(house => house.bedrooms));
-  console.log("House Baths:", houseInfo.map(house => house.bathrooms));
+
+  const handleSelect = (selectedIndex, e) => {
+    const selectedId = filteredHouseIds[selectedIndex];
+    setId(selectedId);
+  };
+
+  console.log(
+    "House Beds:",
+    houseInfo.map((house) => house.bedrooms)
+  );
+  console.log(
+    "House Baths:",
+    houseInfo.map((house) => house.bathrooms)
+  );
+  console.log(
+    "House images:",
+    houseInfo.map((house) => house.image)
+  );
+  console.log("house1:", house1);
+  if(id === ""){setId("1")}
+  if(id === undefined){setId("1")}
+  let booking = houseInfo.filter((house) => house.id === id).map((house) => house.timeOfBooking);
+  let time, date;
+  if (booking.length > 0) {
+    let dateNtime = booking[0].split("T");
+    date = dateNtime[0];
+    time = dateNtime[1];
+  }
+  console.log("Date:", date, "Time:", time);
+  if (date === "NA" || date === undefined || date === "") {
+    date = "2023-08-20";
+    time = "3:15 PM"
+  }
+  console.log("Booking:", booking);
+
   return (
     <div>
       <NavBar />
