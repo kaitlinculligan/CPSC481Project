@@ -125,7 +125,7 @@ function MainPage() {
             Name="Brentwood Opporunity"
             Photo={"./Photos/house3.png"}
             Price="$500,000"
-            Description="A small but important property with a great view of the beltline"
+            Description="A small but important property with a great view of the beltline.asgdsagdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
             NumBath={3}
             NumBed={2}
             
