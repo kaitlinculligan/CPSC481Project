@@ -14,7 +14,8 @@ import realtor from "./Photos/realtor.png";
 import heart from "./Photos/Heart-Emoji-PNG-Photos.png";
 import CustomAlert from "./CustomAlert";
 
-const RealtorCard = ({ imageSrc, name, number, email }) => {
+const RealtorCard = ({ imageSrc, name, number, email, user, id }) => {
+  const navigate = useNavigate();
   return (
     <div className="card" style={{ width: "18rem", textAlign: "center" }}>
       <img src={imageSrc} className="card-img-top pt-1" alt="Realtor" style={{ width: "100px", height: "100px", borderRadius: "50%", margin: "0 auto" }} />
@@ -22,9 +23,9 @@ const RealtorCard = ({ imageSrc, name, number, email }) => {
         <h5 className="card-title">{name}</h5>
         <p className="card-text">{number}</p>
         <p className="card-text">{email}</p>
-        <a href="#" className="btn btn-primary">
+        <button className="btn btn-primary" onClick={()=>navigate(("/appointment", {state: {user,id}}))}>
           Book Now
-        </a>
+        </button>
       </div>
     </div>
   );
@@ -353,6 +354,11 @@ function PropertyDetailPage() {
     return `${bedrooms} Bedroom${bedrooms > 1 ? "s" : ""}, ${bathrooms} Bathroom${bathrooms > 1 ? "s" : ""}`;
   };
   const [alertColor, setAlertColor] = useState("#FFFFFF");
+
+  const handleBooking = (id) => {
+    navigate('/appointment', { state: { user,id } });
+  };
+
   const handleAddToFavourites = async (houseId, houseDetails) => {
     if (user === "" || user === undefined) {
       navigate("/login");
@@ -590,7 +596,18 @@ const showAlert = (message) => {
                 </div>
               </div>
               <div className="w-50 h-100 d-flex flex-row justify-content-center p-1">
-                <RealtorCard imageSrc={realtor} name="John Realtor" number="403-899-4547" email="JohnDoesHomes@gmail.com"></RealtorCard>
+              <div className="card" style={{ width: "18rem", textAlign: "center" }}>
+                <img src={realtor} className="card-img-top pt-1" alt="Realtor" style={{ width: "100px", height: "100px", borderRadius: "50%", margin: "0 auto" }} />
+                <div className="card-body">
+                  <h5 className="card-title">John Realtor</h5>
+                  <p className="card-text">403-899-4547</p>
+                  <p className="card-text">JohnDoesHomes@gmail.com</p>
+                  <button className="btn btn-primary" onClick={() =>handleBooking(id)}>
+                    Book Now
+                  </button>
+                </div>
+              </div>
+
               </div>
             </div>
           </div>

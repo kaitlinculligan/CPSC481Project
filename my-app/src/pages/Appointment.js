@@ -23,7 +23,7 @@ const RealtorCard = ({ imageSrc, name, number, email }) => {
 
 function Appointment() {
   const location = useLocation();
-  const { user, id } = location.state || { id: 2 };
+  const { user, id } = location.state;
   let houseId = String(id);
   console.log("id:", id);
   const navigate = useNavigate();
