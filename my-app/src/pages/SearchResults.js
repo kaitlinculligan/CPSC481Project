@@ -652,7 +652,7 @@ function SearchResults() {
 			  <Col md={6} className="listings-column">
 				{/* Sort By Dropdown */}
 				<div className="sort-dropdown">
-                    <DropdownButton id="sort-dropdown" title={sortTitle}>
+                    <DropdownButton id="sort-dropdown" title={sortTitle} >
                         <Dropdown.Item onClick={() => sortListingByPrice('lowest')}> Price (Low to High)</Dropdown.Item>
                         <Dropdown.Item onClick={() => sortListingByPrice('highest')}> Price (High to Low)</Dropdown.Item>
                         {/* Add more sort options here */}

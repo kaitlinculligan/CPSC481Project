@@ -101,7 +101,7 @@ function Favourites() {
 
                 <button className="button"
               onClick={() => {handleNavigateDetails(house.id)}}
-              style={{width:"80%", height:"40%", backgroundColor:"blue", color:"white" }}>View Details</button>
+              style={{width:"80%", height:"40%", backgroundColor:"#0056b3", color:"white" }}>View Details</button>
               </Row>
                 <Row>
                 <button className="button"
@@ -126,7 +126,7 @@ function Favourites() {
         <Modal.Body>
         <button className="button"
               onClick={() => {handleDeleteFavourite(house)}}
-              style={{width:"55%", height:"65%", backgroundColor:"#10a690", color:"white",margin: "0 20%" }}>Remove from favourites</button>
+              style={{width:"55%", height:"65%", backgroundColor:"#0056b3", color:"white",margin: "0 20%" }}>Remove from favourites</button>
         </Modal.Body>
       </Modal>
 

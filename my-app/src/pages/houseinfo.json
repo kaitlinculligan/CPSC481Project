@@ -12,12 +12,9 @@
     "safety": "4",
     "walkability": "5",
     "petFriendly": "3",
-
     "airQuality": "4",
-
     "crimeRate": "3",
     "cleanliness": "4",
-
     "neighborhood": "4",
     "shopping": "5",
     "transportation": "4",
@@ -26,16 +23,17 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "no",
-
-    "photos": ["./Photos/insideHouse1.png", "./Photos/insideHouse1-1.png"],
+    "photos": [
+      "./Photos/insideHouse1.png",
+      "./Photos/insideHouse1-1.png"
+    ],
     "jackBooking": "yes",
-    "jackFovourite": "yes",
+    "jackFavourite": "yes",
     "timeOfBooking": "2020-03-20T00:01 PM",
-    "lat" : "50.99082427487876",
-    "lng" : "-114.11832951558249"
-},
-{
-
+    "lat": "50.99082427487876",
+    "lng": "-114.11832951558249"
+  },
+  {
     "id": "2",
     "houseName": "8085 19th ave sw",
     "price": "200,000",
@@ -48,12 +46,9 @@
     "safety": "4",
     "walkability": "5",
     "petFriendly": "3",
-
     "airQuality": "4",
-
     "crimeRate": "3",
     "cleanliness": "4",
-
     "neighborhood": "4",
     "shopping": "5",
     "transportation": "2",
@@ -69,17 +64,15 @@
       "./Photos/insideHousePhoto2-2.png"
     ],
     "jackBooking": "yes",
-
-    "jackFavourite": "yes",
+    "jackFavourite": "no",
     "timeOfBooking": "2020-03-20T00:00 PM",
-    "lat" : "51.14722309638639",
-    "lng" : "-114.07073863792215"
-},
-{
+    "lat": "51.14722309638639",
+    "lng": "-114.07073863792215"
+  },
+  {
     "id": "3",
     "houseName": "2024 44th ave Nw",
     "price": "300,000",
-
     "bedrooms": "3",
     "bathrooms": "2",
     "sqft": "2000",
@@ -100,17 +93,18 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "yes",
-
-    "photos": ["./Photos/insideHouse3.png", "./Photos/insideHousePhoto3-1.png", "./Photos/insideHousePhoto3-2.png"],
+    "photos": [
+      "./Photos/insideHouse3.png",
+      "./Photos/insideHousePhoto3-1.png",
+      "./Photos/insideHousePhoto3-2.png"
+    ],
     "jackBooking": "no",
-    "jackFovourite": "yes",
+    "jackFavourite": "no",
     "timeOfBooking": "NA",
-    "lat" : "51.1001302774115",
-    "lng" : "-114.26005033583782"
-
-},
-{
-
+    "lat": "51.1001302774115",
+    "lng": "-114.26005033583782"
+  },
+  {
     "id": "4",
     "houseName": "10325 Bonaventure Dr SE",
     "price": "400,000",
@@ -132,15 +126,17 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "5",
-    "photos": ["./Photos/insideHousePhoto4.png", "./Photos/insideHousePhoto4-1.png"],
+    "photos": [
+      "./Photos/insideHousePhoto4.png",
+      "./Photos/insideHousePhoto4-1.png"
+    ],
     "jackBooking": "no",
-    "jackFovorite": "no",
+    "jackFavourite": "no",
     "timeOfBooking": "NA",
-    "lat" : "51.13212065795928",
-    "lng" : "-114.25638624110948"
-},
-
-{
+    "lat": "51.13212065795928",
+    "lng": "-114.25638624110948"
+  },
+  {
     "id": "5",
     "houseName": "1236 12 Ave SW",
     "price": "600,000",
@@ -164,15 +160,17 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "1",
-    "photos": ["./Photos/insideHousePhoto4.png", "./Photos/insideHousePhoto4-1.png"],
+    "photos": [
+      "./Photos/insideHousePhoto4.png",
+      "./Photos/insideHousePhoto4-1.png"
+    ],
     "jackBooking": "no",
-    "jackFovorite": "no",
+    "jackFavourite": "no",
     "timeOfBooking": "NA",
-    "lat" : "50.978671493187264",
-    "lng" : "-114.08483295616112"
-},
-
-{
+    "lat": "50.978671493187264",
+    "lng": "-114.08483295616112"
+  },
+  {
     "id": "6",
     "houseName": "1126 Memorial Dr NW",
     "price": "700,000",
@@ -194,15 +192,17 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "5",
-    "photos": ["./Photos/insideHousePhoto4.png", "./Photos/insideHousePhoto4-1.png"],
+    "photos": [
+      "./Photos/insideHousePhoto4.png",
+      "./Photos/insideHousePhoto4-1.png"
+    ],
     "jackBooking": "no",
-    "jackFovorite": "no",
+    "jackFavourite": "no",
     "timeOfBooking": "NA",
-    "lat" : "51.13232195619895",
-    "lng" : "-114.16105060488393"
-},
-
-{
+    "lat": "51.13232195619895",
+    "lng": "-114.16105060488393"
+  },
+  {
     "id": "7",
     "houseName": "315 8 Ave SW",
     "price": "800,000",
@@ -229,14 +229,12 @@
       "./Photos/insideHousePhoto4-1.png"
     ],
     "jackBooking": "no",
-
-    "jackFovourite": "no",
+    "jackFavourite": "no",
     "timeOfBooking": "NA",
-    "lat" : "51.03872490575816",
-    "lng" : "-114.19126300609804"
-},
-
-{
+    "lat": "51.03872490575816",
+    "lng": "-114.19126300609804"
+  },
+  {
     "id": "8",
     "houseName": "5920 Macleod Trail SW #100",
     "price": "900,000",
@@ -258,15 +256,17 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "5",
-    "photos": ["./Photos/insideHousePhoto4.png", "./Photos/insideHousePhoto4-1.png"],
+    "photos": [
+      "./Photos/insideHousePhoto4.png",
+      "./Photos/insideHousePhoto4-1.png"
+    ],
     "jackBooking": "no",
-    "jackFovourite": "no",
+    "jackFavourite": "no",
     "timeOfBooking": "NA",
-    "lat" : "50.969591917847644",
-    "lng" : "-114.1253450398127"
-},
-
-{
+    "lat": "50.969591917847644",
+    "lng": "-114.1253450398127"
+  },
+  {
     "id": "9",
     "houseName": "703 6 Ave SW #120",
     "price": "1,000,000",
@@ -288,13 +288,14 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "5",
-    "photos": ["./Photos/insideHousePhoto4.png", "./Photos/insideHousePhoto4-1.png"],
+    "photos": [
+      "./Photos/insideHousePhoto4.png",
+      "./Photos/insideHousePhoto4-1.png"
+    ],
     "jackBooking": "no",
-    "jackFovourite": "no",
+    "jackFavourite": "no",
     "timeOfBooking": "NA",
-    "lat" : "51.02792966720807",
-    "lng" : "-114.12122516691987"
-}
-
-
+    "lat": "51.02792966720807",
+    "lng": "-114.12122516691987"
+  }
 ]

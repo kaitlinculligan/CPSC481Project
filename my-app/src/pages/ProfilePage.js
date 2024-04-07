@@ -114,10 +114,10 @@ function ProfilePage() {
               <h1 className=" py-3">{user === "Jack" ? "Jack Haden" : "Mr. User"}</h1>
               <span className=" py-1">{user === "Jack" ? `Email: ${email}` : "Email: UserEmail1@gmail.com"}</span>
               <span className=" py-2">{user === "Jack" ? `Phone: ${phone}` : "Phone: 403-787-9987"}</span>
-              <Button onClick={handleShow} className="w-50 mx-auto my-2" style={{ height: "50px", backgroundColor: "#10a690" }}>
+              <Button onClick={handleShow} className="w-50 mx-auto my-2" style={{ height: "50px", backgroundColor: "#0056b3" }}>
                 Edit Profile
               </Button>
-              <Button onClick={handleLogout} className="w-50 mx-auto my-2" style={{ height: "50px", backgroundColor: "#10a690" }}>
+              <Button onClick={handleLogout} className="w-50 mx-auto my-2" style={{ height: "50px", backgroundColor: "#0056b3" }}>
                 Logout
               </Button>
             </div>
