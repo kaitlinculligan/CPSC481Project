@@ -1,5 +1,5 @@
-// TruncatedText.js
 import React, { useRef, useEffect } from 'react';
+import HouseCard from './HouseCard';
 
 function TruncatedText({ description, maxLines }) {
   const textRef = useRef(null);
@@ -29,7 +29,7 @@ function TruncatedText({ description, maxLines }) {
     }
   }, [description, maxLines]);
 
-  return <div ref={textRef} style={{ width: '100%', lineHeight: '1.4em' }}>{description}</div>;
+  return <div className=' ellipsis-multiline' ref={textRef}>{description}</div>;
 }
 
 export default TruncatedText;

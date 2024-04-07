@@ -11,7 +11,7 @@ function HouseCard({ Name, Photo, Price, Description, NumBath, NumBed }) {
     Photo = "./Photos/Bed.png";
   }
   const dynamicPhoto = typeof Photo === "string" ? require(`${Photo}`) : Photo;
-  
+
   return (
     <div className="w-100 h-100  d-flex align-content-center border-3 border ">
       <Card
@@ -56,8 +56,8 @@ function HouseCard({ Name, Photo, Price, Description, NumBath, NumBed }) {
               </div>
             </div>
           </div>
-          <div className="w-100 h-75 ellipsis-multiline" style={{ fontStyle: "italic", fontWeight: "lighter", fontSize: "13px" }}>
-          <TruncatedText description={Description} maxLines={3} />
+          <div className="w-100 ellipsis-multiline " style={{ fontStyle: "italic", fontWeight: "lighter", fontSize: "13px" }}>
+            <TruncatedText description={Description} maxLines={3} />
           </div>
         </div>
       </Card>
