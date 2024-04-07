@@ -15,7 +15,7 @@ import { useState } from "react";
 function Favourites() {
 
   const location = useLocation();
-  const user = location.state?.user;
+  const { user} = location.state
   const navigate = useNavigate();
 
   const [show, setShow] = useState(false);
@@ -57,7 +57,7 @@ function Favourites() {
     handleClose()
     navigate('/favourites', { state: { user } });
 };
-
+}
   return (
     <div style={{height: "100vh", background: "linear-gradient(rgba(16, 166, 144, 0.5), white)" }}>
       <NavBar/>
@@ -126,6 +126,6 @@ function Favourites() {
 
     </div>
   );
-}
+
 }
 export default Favourites;
