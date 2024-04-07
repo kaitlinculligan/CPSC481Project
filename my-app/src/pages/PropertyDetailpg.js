@@ -352,18 +352,21 @@ function PropertyDetailPage() {
   const formatRooms = (bedrooms, bathrooms) => {
     return `${bedrooms} Bedroom${bedrooms > 1 ? "s" : ""}, ${bathrooms} Bathroom${bathrooms > 1 ? "s" : ""}`;
   };
-
+  const [alertColor, setAlertColor] = useState("#FFFFFF");
   const handleAddToFavourites = async (houseId, houseDetails) => {
     if (user === "" || user === undefined) {
       navigate("/login");
       return;
     }
+  
     console.log("houseDetails:", houseDetails);
+  
     if (houseDetails.jackFavourite === "yes") {
-      setMessage("Already Added To Favourites!");
-      setAlertVisible(true);
+      setAlertColor("#b5ae2d");
+      showAlert("Already Added To Favourites!");
       return;
     }
+  
     try {
       const response = await fetch("http://localhost:5000/update-house-info", {
         method: "POST",
@@ -378,29 +381,43 @@ function PropertyDetailPage() {
   
       if (response.ok) {
         console.log("Success:", await response.json());
-        setMessage("Added To Favourites!");
-        setAlertVisible(true);
+        setAlertColor("#4dba32");
+        showAlert("Added To Favourites!");
       } else {
-        throw new Error("Failed to update Jack's favorite status.");
+        // Assuming a non-ok response is an error condition
+        setAlertColor("#b03c30")
+        showAlert("Failed to update Jack's favorite status.");
       }
     } catch (error) {
       console.error("Error:", error);
-      setMessage(error.toString());
-      setAlertVisible(true);
+      setAlertColor("#b03c30")
+      showAlert(error.toString());
     }
   };
   const [alertVisible, setAlertVisible] = useState(false);
   const [message, setMessage] = useState("");
+  let alertTimeout = null;
+  const [fadeClass, setFadeClass] = useState('');
 
-  const showAlert = (message) => {
-    setMessage(message);
-    setAlertVisible(true);
+const showAlert = (message) => {
+  setMessage(message);
+  setAlertVisible(true);
+  setFadeClass(''); // Reset fade class to remove any previous fade-out animation
 
-    // Optionally auto-hide the alert after 5 seconds
+  // Clear any existing timeout to avoid unexpected behavior
+  if (alertTimeout) {
+    clearTimeout(alertTimeout);
+  }
+
+  // Wait 4 seconds, then start the fade-out animation
+  alertTimeout = setTimeout(() => {
+    setFadeClass('fade-out'); // Start fade-out
+    // Then, after 1 second (duration of the fade-out), hide the alert completely
     setTimeout(() => {
       setAlertVisible(false);
-    }, 5000);
-  };
+    }, 1000); // This should match the fade-out animation time
+  }, 4000); // Adjust time based on how long you want the alert to be visible before fading out
+};
 
   return (
     <div style={{ height: "700px", background: "linear-gradient(rgba(16, 166, 144, 0.5), white)" }}>
@@ -543,9 +560,9 @@ function PropertyDetailPage() {
                       opacity: 0, // Start as invisible
                     }}
                   >
-                    {alertVisible && <CustomAlert message={message} onClose={() => setAlertVisible(false)} />}
                     Add to Favourites
                   </span>
+                  {alertVisible && <CustomAlert message={message} fadeClass={fadeClass} color={alertColor} onClose={() => setAlertVisible(false)} />}
                 </div>
               </div>
               <div className="w-50 h-100 d-flex flex-row justify-content-center p-1">
