@@ -34,7 +34,7 @@ const NavBar = () => {
     else{
       navigate('/profile', { state: { user } });
     }
-    
+
   }
 
   const handleSearch=()=>{

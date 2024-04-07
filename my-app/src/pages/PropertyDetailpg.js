@@ -378,7 +378,7 @@ function PropertyDetailPage() {
           updates: { jackFavourite: "yes" },
         }),
       });
-  
+
       if (response.ok) {
         console.log("Success:", await response.json());
         setAlertColor("#4dba32");
