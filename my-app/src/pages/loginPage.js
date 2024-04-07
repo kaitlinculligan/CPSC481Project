@@ -75,8 +75,8 @@ return <div className='col justify-conent-center' style={{ height: '100vh', widt
                         onChange={handlePasswordChange} />
                     </div>
                     <div className="felx-row d-flex justify-content-evenly ">
-                    <button type='submit' className='btn btn-primary w-25' style={{ backgroundColor: "#10a690" }} onClick={handleSubmit}>Login</button>
-                    <button onClick={handleCreateAccount} type='submit' className='btn btn-primary w-25' style={{ backgroundColor: "#10a690" }}>Create </button>
+                    <button type='submit' className='btn btn-primary w-25' style={{ backgroundColor: "#0056b3" }} onClick={handleSubmit}>Login</button>
+                    <button onClick={handleCreateAccount} type='submit' className='btn btn-primary w-25' style={{ backgroundColor: "#0056b3" }}>Create </button>
                     <p1 onClick={handleForgotPassword} style={{ cursor: "pointer", textDecoration: 'underline', color: 'blue' }}>Forgot Password?</p1>
                     </div>
                 </form>

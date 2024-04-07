@@ -15,15 +15,17 @@ import { Carousel } from "react-bootstrap";
 import houseInfo from "./houseinfo.json";
 import HouseCard from "./HouseCard.js";
 import house1 from "./Photos/house1.png";
+import { useMemo } from "react";
 import house2 from "./Photos/house2.png";
 
 function ProfilePage() {
   const [show, setShow] = useState(false); // State to control the visibility of the modal
   const [email, setEmail] = useState(""); // Assuming you want to edit the email, for example
   const [phone, setPhone] = useState("");
+  const [id, setId] = useState("1");
   const [profilePic, setProfilePic] = useState(null);
 
-  
+
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -61,9 +63,41 @@ function ProfilePage() {
   const handleLogout = () => {
     navigate("/login", { state: { user: "" } });
   };
+  const filteredHouseIds = useMemo(() => houseInfo.filter((house) => house.jackBooking === "yes").map((house) => house.id), [houseInfo]);
 
-  console.log("House Beds:", houseInfo.map(house => house.bedrooms));
-  console.log("House Baths:", houseInfo.map(house => house.bathrooms));
+  const handleSelect = (selectedIndex, e) => {
+    const selectedId = filteredHouseIds[selectedIndex];
+    setId(selectedId);
+  };
+
+  console.log(
+    "House Beds:",
+    houseInfo.map((house) => house.bedrooms)
+  );
+  console.log(
+    "House Baths:",
+    houseInfo.map((house) => house.bathrooms)
+  );
+  console.log(
+    "House images:",
+    houseInfo.map((house) => house.image)
+  );
+  console.log("house1:", house1);
+  if(id === ""){setId("1")}
+  if(id === undefined){setId("1")}
+  let booking = houseInfo.filter((house) => house.id === id).map((house) => house.timeOfBooking);
+  let time, date;
+  if (booking.length > 0) {
+    let dateNtime = booking[0].split("T");
+    date = dateNtime[0];
+    time = dateNtime[1];
+  }
+  console.log("Date:", date, "Time:", time);
+  if (date === "NA" || date === undefined || date === "") {
+    date = "2023-08-20";
+    time = "3:15 PM"
+  }
+  console.log("Booking:", booking);
   return (
     <div>
       <NavBar />
@@ -80,10 +114,10 @@ function ProfilePage() {
               <h1 className=" py-3">{user === "Jack" ? "Jack Haden" : "Mr. User"}</h1>
               <span className=" py-1">{user === "Jack" ? `Email: ${email}` : "Email: UserEmail1@gmail.com"}</span>
               <span className=" py-2">{user === "Jack" ? `Phone: ${phone}` : "Phone: 403-787-9987"}</span>
-              <Button onClick={handleShow} className="w-50 mx-auto my-2" style={{ height: "50px", backgroundColor: "#10a690" }}>
+              <Button onClick={handleShow} className="w-50 mx-auto my-2" style={{ height: "50px", backgroundColor: "#0056b3" }}>
                 Edit Profile
               </Button>
-              <Button onClick={handleLogout} className="w-50 mx-auto my-2" style={{ height: "50px", backgroundColor: "#10a690" }}>
+              <Button onClick={handleLogout} className="w-50 mx-auto my-2" style={{ height: "50px", backgroundColor: "#0056b3" }}>
                 Logout
               </Button>
             </div>
@@ -92,27 +126,34 @@ function ProfilePage() {
         <div className="w-75 d-flex flex-column align-items-center pt-5">
           <Card className="p-5 rounded-3 w-75">
             <h1>Current House Bookings</h1>
-            <div className="h-auto border-5 border-black border bg-black rounded-2 p-2 mt-5 justify-content-center d-flex felx-row" style={{ minHeight: "100px" }}>
-              {user ==="Jack" ? (
-                <Carousel className="w-50">
-                  {houseInfo
-                    .filter((house) => house.id === "1" || house.id === "2")
-                    .map((house) => (
-                      <Carousel.Item key={house.id}>
-                        <HouseCard
-                          Name={house.houseName}
-                          Photo={house1}
-                          Price={house.price}
-                          NumBath={house.bathrooms}
-                          Description={house.description}
-                          NumBed={house.bedrooms}
-                        />
-                      </Carousel.Item>
-                    ))}
-                </Carousel>
-              ) : (<div style={{color:"#FFFFFF"}}>
-                "There are no current house bookings."
-                </div>
+            <div className="h-auto border-5 border-black border bg-black rounded-2 p-2 mt-5 d-flex flex-column align-items-center  " style={{ minHeight: "100px" }}>
+              {user === "Jack" ? (
+                <>
+                  <div className="h-25" style={{ color: "white" }}>
+                    {date} at {time}
+                  </div>
+                  <Carousel className="w-50" onSelect={handleSelect}>
+                    {houseInfo
+                      .filter((house) => house.jackBooking === "yes")
+                      .map((house, index) => (
+                        <Carousel.Item key={house.id}>
+                          <HouseCard
+                            Name={house.houseName}
+                            Photo={house.image}
+                            Price={house.price}
+                            NumBath={house.bathrooms}
+                            Description={house.description}
+                            NumBed={house.bedrooms}
+                            onClick={() => {
+                              navigate("/details", { state: { user, house: house.id } });
+                            }}
+                          />
+                        </Carousel.Item>
+                      ))}
+                  </Carousel>
+                </>
+              ) : (
+                <div style={{ color: "#FFFFFF" }}>"There are no current house bookings."</div>
               )}
             </div>
           </Card>

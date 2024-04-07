@@ -6,12 +6,53 @@
 body {
   margin: 0; /* Removes the default margin of the body */
 }
+.rating-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  padding: .5em 1em;
+  border-radius: 999px; /* Pill shape */
+  font-size: 1em; /* Adjust as needed */
+  margin: .5em; /* Spacing between badges */
+  cursor: pointer;
+}
+/* Define your custom colors */
+.rating-1 {
+  background-color: #d9534f; /* Bootstrap danger color */
+}
+.rating-2 {
+  background-color: #f0ad4e; /* Bootstrap warning color */
+}
+.rating-3 {
+  background-color: #6c757d; /* Bootstrap secondary color */
+}
+.rating-4 {
+  background-color: #5cb85c; /* Lighter Bootstrap success color */
+}
+.rating-5 {
+  background-color: #28a745; /* Bootstrap success color */
+}
+
+/* Optional: Add hover effect to provide more interactivity */
+.badge:hover {
+  opacity: 0.8;
+}
 
 /* Ensure full width for container and no side paddings */
 .container-fluid {
   padding: 0; 
   margin: 0 auto; /* Centers the container */
   width: 100%; /* Full width */
+}
+.img-hover-effect {
+  transition: filter 0.5s ease, transform 0.5s ease;
+  filter: brightness(100%);
+}
+
+.img-hover-effect:hover {
+  filter: brightness(50%);
+  transform: scale(1.4);
 }
 
 /* Adjust the icons and their alignment */
@@ -34,7 +75,7 @@ body {
 .property-images-carousel .carousel-item img {
   object-fit: contain; /* Covers the element's box while maintaining aspect ratio */
   cursor: pointer; /* Indicates that the item is interactive */
-  max-height: 48vh; /* Maximum height to ensure it does not push content out of the viewport */
+  max-height: 46vh; /* Maximum height to ensure it does not push content out of the viewport */
 }
 
 /* Wrapping container for property details and realtor card */
@@ -100,6 +141,10 @@ body {
 
 .favorite-btn:hover img {
   transform: scale(1.1);
+}
+
+.hover-label-container:hover span {
+  visibility: visible;
 }
 /* Style for the buttons */
 .btn-primary {

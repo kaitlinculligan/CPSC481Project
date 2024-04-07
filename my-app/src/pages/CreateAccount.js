@@ -166,7 +166,7 @@ function CreatePage() {
               </div>
               {validationMessage && <div className="text-danger mb-3">{validationMessage}</div>}
               <div className="flex-row d-flex justify-content-evenly ">
-                <button type="submit" className="btn btn-primary w-50" style={{ backgroundColor: "#10a690" }}>
+                <button type="submit" className="btn btn-primary w-50" style={{ backgroundColor: "#0056b3" }}>
                   Create Account
                 </button>
               </div>

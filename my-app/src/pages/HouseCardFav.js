@@ -3,19 +3,13 @@ import Bed from "./Photos/Bed.png";
 import Bath from "./Photos/Bath.png";
 import React from "react";
 import "./HouseCard.css";
-import { useRef, useEffect } from "react";
-import TruncatedText from "./TruncatedText.js";
 
-function HouseCard({ Name, Photo, Price, Description, NumBath, NumBed }) {
-  if (!Photo) {
-    Photo = "./Photos/Bed.png";
-  }
-  const dynamicPhoto = typeof Photo === "string" ? require(`${Photo}`) : Photo;
-
+function HouseCardFav({ Name, Photo, Price, Description,NumBath,NumBed }) {
+  const dynamicPhoto = typeof Photo === 'string' ? require(`${Photo}`) : Photo;
   return (
-    <div className="w-100 h-100  d-flex align-content-center border-3 border ">
+    <div className="w-75 h-75  d-flex align-content-center mt-5  pt-5">
       <Card
-        className="w-100 w-100 d-flex flex-column  align-items-center h-100 border-3 border border-white "
+        className="w-100 w-100 d-flex flex-column  align-items-center h-100 border-3 border border-white"
         style={{ borderColor: "grey", cursor: "pointer", height: "100%", height: "100%", background: "#FFFFFF" }}
       >
         <div
@@ -43,7 +37,7 @@ function HouseCard({ Name, Photo, Price, Description, NumBath, NumBed }) {
               <div className="w-50 h-100 col justify-content-start ">
                 <img src={Bed} alt="House Photo" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
               </div>
-              <div className="w-50 h-100 col justify-content-start" style={{ fontSize: "17px", fontWeight: "bolder" }}>
+              <div className="w-50 h-100 col justify-content-start"style={{fontSize:"17px",fontWeight:"bolder"}}>
                 {NumBed}
               </div>
             </div>
@@ -51,17 +45,18 @@ function HouseCard({ Name, Photo, Price, Description, NumBath, NumBed }) {
               <div className="w-50 h-100 col justify-content-start  ">
                 <img src={Bath} alt="House Photo" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
               </div>
-              <div className="w-50 h-100 col justify-content-start " style={{ fontSize: "17px", fontWeight: "bolder" }}>
+              <div className="w-50 h-100 col justify-content-start " style={{fontSize:"17px",fontWeight:"bolder"}}>
                 {NumBath}
               </div>
             </div>
           </div>
-          <div className="w-100 ellipsis-multiline " style={{ fontStyle: "italic", fontWeight: "lighter", fontSize: "13px" }}>
-            <TruncatedText description={Description} maxLines={3} />
+          <div className="w-100 h-75 ellipsis-multiline" style={{ fontStyle:"italic", fontWeight:"lighter", fontSize:"13px" }}>
+            {Description}
           </div>
+
         </div>
       </Card>
     </div>
   );
 }
-export default HouseCard;
+export default HouseCardFav;
