@@ -1,5 +1,6 @@
 import React from 'react';
 import './CustomAlert.css';
+import { Button } from 'react-bootstrap';
 
 const CustomAlert = ({ message, onClose, fadeClass, color }) => {
     const divStyle = {
@@ -9,7 +10,7 @@ const CustomAlert = ({ message, onClose, fadeClass, color }) => {
     return (
         <div className={`custom-alert ${fadeClass}`} style={divStyle}>
             <p>{message}</p>
-            <button onClick={onClose}>Close</button>
+            <Button onClick={onClose}>Close</Button>
         </div>
     );
 };

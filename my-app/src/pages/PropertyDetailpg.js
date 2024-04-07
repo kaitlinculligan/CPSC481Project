@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./PropertyDetailpg.css";
-import { Carousel, Container, Navbar, Nav, Card, Modal, Button, Tab, Tabs } from "react-bootstrap";
+import { Carousel, Container, Card, Modal, Button, Tab, Tabs } from "react-bootstrap";
 import NavBar from "./NavBar.js";
 import bed from "./Photos/Bed.png";
 import bath from "./Photos/Bath.png";
