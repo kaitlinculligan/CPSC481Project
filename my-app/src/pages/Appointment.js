@@ -14,43 +14,172 @@ import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
-import profilepic1 from "./Photos/profileLogo.png";
+import realtor from "./Photos/realtor.png";
 import { Form } from "react-bootstrap";
 import houseInfo from "./houseinfo.json";
 import HouseCard from "./HouseCard.js";
 
+const RealtorCard = ({ imageSrc, name, number, email }) => {
+	return (
+	  <div className="card" style={{ width: "18rem", textAlign: "center" }}>
+		<img src={imageSrc} className="card-img-top pt-1" alt="Realtor" style={{ width: "100px", height: "100px", borderRadius: "50%", margin: "0 auto" }} />
+		<div className="card-body">
+		  <h5 className="card-title">{name}</h5>
+		  <p className="card-text">{number}</p>
+		  <p className="card-text">{email}</p>
+		</div>
+	  </div>
+	);
+  };
+
 function Appointment() {
 
 	const location = useLocation();
-	const user = location.state?.user;
-	const house = location.state?.house;
+	const { user, id } = location.state || {id:2};
+	let houseId = String(id);
+	console.log("id:", id);
 	const navigate = useNavigate();
 	const [email, setEmail] = useState(""); // Assuming you want to edit the email, for example
   	const [phone, setPhone] = useState("");
 	  const [date, setDate] = useState(""); // Assuming you want to edit the email, for example
   	const [time, setTime] = useState("");
 
+	  const [propertyImages, setPropertyImages] = useState([]);
+	  useEffect(() => {
+		// Function to find the property by ID and set images
+		const getPropertyImages = (houseId) => {
+		  const property = houseInfo.find((property) => property.id === houseId);
+		  if (property && property.photos) {
+			// Dynamically require the images based on paths
+			const loadedImages = property.photos
+			  .map((photoPath) => {
+				try {
+				  return require(`${photoPath}`);
+				} catch (err) {
+				  console.error(`Failed to load image at ${photoPath}`, err);
+				  return null;
+				}
+			  })
+			  .filter((image) => image != null); // Filter out any nulls in case of errors
+
+			setPropertyImages(loadedImages);
+			console.log(propertyImages)
+		  }
+		};
+
+		getPropertyImages(houseId);
+	  }, [houseId]);
+
+	  const [houseDetails, setHouseDetails] = useState({
+		id:"",
+		address: "",
+		price: "",
+		middleSchool: "",
+		highSchool: "",
+		elementarySchool: "",
+		preSchool: "",
+		pool: "NA",
+		shopping: "",
+		transportation: "",
+		safety: "",
+		squareFeet: "",
+		bedrooms: 0,
+		bathrooms: 0,
+		noiseLevel: "",
+		description: "",
+		cleanliness: "",
+		walkability: "",
+		petFriendly: "",
+		jackBooking:""
+	  });
+	  useEffect(() => {
+		const getHouseDetails = (houseId) => {
+			console.log("id at search:", houseId)
+		  const property = houseInfo.find((property) => property.id === houseId);
+		  if (property) {
+			setHouseDetails({
+				id: property.id||"",
+			  address: property.houseName || "",
+			  price: property.price || "",
+			  middleSchool: property.schoolsMiddle || "",
+			  highSchool: property.schoolsHighschool || "",
+			  elementarySchool: property.schoolsElementary || "",
+			  preSchool: property.schoolsPreschool || "",
+			  pool: property.pool || "NA",
+			  shopping: property.shopping || "",
+			  transportation: property.transportation || "",
+			  safety: property.safety || "",
+			  squareFeet: property.sqft || "",
+			  bedrooms: property.bedrooms || 0,
+			  bathrooms: property.bathrooms || 0,
+			  noiseLevel: property.noiseLevel || "",
+			  description: property.description || "",
+			  cleanliness: property.cleanliness || "",
+			  walkability: property.walkability || "",
+			  petFriendly: property.petFriendly || "",
+			  jackBooking: property.jackBooking || "",
+			});
+		  }
+		  console.log("House Details:", houseDetails);
+		};
+
+		getHouseDetails(houseId);
+	  }, [houseId]);
+
 	  useEffect(() => {
 		if (user === "Jack") {
 		  setEmail("JackH88@gmail.com");
 		  setPhone("403-787-9987");
+		}
+		else{
+			setEmail()
+			setPhone()
 		}
 	  }, [user]);
 
 	const navigateToPage = (url) => {
 		window.location.href = url;
 	  };
-	  const handleSubmit = (event) => {
-	   if(houseInfo.at(house).jackBooking = 'yes'){
+	  const handleSubmit = async () => {
+	   if(houseDetails.jackBooking == 'yes'){
 		alert("A booking for this house already exists")
 	   }
 	   else{
-		houseInfo.at(house).jackBooking = 'yes'
-		houseInfo.at(house).timeOfBooking = date+'T'+time
-		alert("Request submitted")
+			var timePieces = time.split(":").map(Number)
+			if(timePieces[0]>12){
+				var hourAsInt = timePieces[0] -12
+				var bookTime = date+"T"+hourAsInt+":"+timePieces[1]+" PM"
+			}
+			else{
+				var bookTime = date+"T"+timePieces[0]+":"+timePieces[1]+" AM"
+			}
+			alert(id)
+			alert(bookTime)
+		try {
+			const response = await fetch("http://localhost:5000/update-house-info", {
+			  method: "POST",
+			  headers: {
+				"Content-Type": "application/json",
+			  },
+			  body: JSON.stringify({
+				id: houseId,
+				updates: {
+					jackBooking: "yes",
+					timeOfBooking: bookTime,
+				},
+			  }),
+			});
+
+			if (response.ok) {
+			  console.log("Success:", await response.json());
+			} else {
+			  throw new Error("Failed to update Jack's favorite status.");
+			}
+		  } catch (error) {
+			console.error("Error:", error);
+		  }
 	   }
-	   navigate("/", { state: { user} });
-    }
+    };
 
 
 	return(
@@ -60,16 +189,8 @@ function Appointment() {
 		<div className='row'>
 		<div className="w-25 d-flex flex-column justify-content-between">
           <div className="h-100">
-            <div className="w-100 px-2 flex-column d-flex align-items-center py-2 justify-content-start">
-              <img
-                src={ profilepic1}
-                className="img-fluid rounded-circle pt-2"
-                alt="Profile"
-                style={{ width: "200px", height: "200px", objectFit: "contain" }}
-              ></img>
-              <h1 className=" py-3">Jill Realtor</h1>
-              <span className=" py-1">Email: JillRealtor@CalgaryHomes.com</span>
-              <span className=" py-2">Phone: 403-787-9987</span>
+            <div className="w-100 px-2 flex-column d-flex align-items-center py-2 justify-content-start pt-5">
+			<RealtorCard imageSrc={realtor} name="John Realtor" number="403-899-4547" email="JohnDoesHomes@gmail.com"></RealtorCard>
             </div>
           </div>
         </div>
@@ -82,8 +203,8 @@ function Appointment() {
 					<input className='appointmentForm' type='text' placeholder='Name' value={user}></input>
 					<input className='appointmentForm' type='text' placeholder='Phone #'value={phone}></input>
 					<input className='appointmentForm' type='text' placeholder='Email'value={email}></input>
-					<input className='appointmentForm' type='date' onChange={(e) => setDate(e.target.value)}></input>
-					<input className='appointmentForm' type='time' min="09:00:00" max="19:00:00" onChange={(e) => setTime(e.target.value)}></input>
+					<input className='appointmentForm' type='date' onChange={(e) => setDate(e.target.value)} required></input>
+					<input className='appointmentForm' type='time' min="09:00:00" max="19:00:00" onChange={(e) => setTime(e.target.value)} required></input>
 					<button type='submit' className='appointmentSubmit'>Submit Request</button>
 				</form>
 			</div>
@@ -91,12 +212,13 @@ function Appointment() {
           <div className="h-100">
             <div className="w-100 h-100 px-2 flex-column d-flex align-items-center py-2 justify-content-start">
 			<h3 className=" py-3">Request viewing for:</h3>
-              <HouseCard Name={houseInfo.at(house).houseName}
-                          Photo={houseInfo.at(house).photos[0]}
-                          Price={houseInfo.at(house).price}
-                          NumBath={houseInfo.at(house).bathrooms}
-                          Description={houseInfo.at(house).description}
-                          NumBed={houseInfo.at(house).bedrooms}/>
+
+              <HouseCard Name={houseDetails.address}
+
+                          Price={houseDetails.price}
+                          NumBath={houseDetails.bathrooms}
+                          Description={houseDetails.description}
+                          NumBed={houseDetails.bedrooms}/>
             </div>
           </div>
         </div>
