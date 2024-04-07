@@ -1,7 +1,7 @@
 # Calgary Homes
 
 To run our website you will need to do the following:
-- Have node.js installed. It can be downloaded (here)[https://nodejs.org/en/download/current]
+- Have node.js installed. It can be downloaded [here](https://nodejs.org/en/download/current)
 - Install react
     Done using: npm install react
 - Install bootstrap
