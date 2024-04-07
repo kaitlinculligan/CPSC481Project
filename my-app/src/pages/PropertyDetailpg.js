@@ -5,7 +5,7 @@ import NavBar from "./NavBar.js";
 import bed from "./Photos/Bed.png";
 import bath from "./Photos/Bath.png";
 import { useLocation } from "react-router-dom";
-import houseInfo from "./houseInfo.js";
+import houseInfo from "./houseinfo.json";
 import { useEffect } from "react";
 import { Badge, OverlayTrigger, Tooltip, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -271,7 +271,7 @@ function PropertyDetailPage() {
             }
           })
           .filter((image) => image != null); // Filter out any nulls in case of errors
-
+          console.log("loadedImages ",loadedImages)
         setPropertyImages(loadedImages);
       }
     };
@@ -358,9 +358,9 @@ function PropertyDetailPage() {
       navigate("/login");
       return;
     }
-  
+
     console.log("houseDetails:", houseDetails);
-  
+
     if (houseDetails.jackFavourite === "yes") {
       try {
         const response = await fetch("http://localhost:5000/update-house-info", {
@@ -373,7 +373,7 @@ function PropertyDetailPage() {
             updates: { jackFavourite: "no" },
           }),
         });
-  
+
         if (response.ok) {
           console.log("Success:", await response.json());
           setAlertColor("#a1712f");
@@ -390,7 +390,7 @@ function PropertyDetailPage() {
       }
       return;
     }
-  
+
     try {
       const response = await fetch("http://localhost:5000/update-house-info", {
         method: "POST",
@@ -449,7 +449,7 @@ const showAlert = (message) => {
       <NavBar />
       <div className="h-50 w-100 d-flex flex-row  ">
         <div className="h-100 w-50 d-flex flex-column align-items-center">
-          <div className="w-100 h-50 d-flex flex-row justify-content-center" style={{ fontSize: "75px", fontWeight: "bold" }}>
+          <div className="w-100 h-50 d-flex flex-row justify-content-center" style={{ fontSize: "55px", fontWeight: "bold" }}>
             {houseDetails.address}
           </div>
           <div className="w-100 h-25 d-flex flex-row justify-content-center" style={{ fontSize: "30px", fontWeight: "bold" }}>

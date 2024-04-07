@@ -65,8 +65,8 @@
     "photos": [
       "./Photos/house2.png",
       "./Photos/insideHouse2.png",
-      "./Photos/insideHouse2-1.png",
-      "./Photos/insideHouse2-2.png"
+      "./Photos/insideHousePhoto2-1.png",
+      "./Photos/insideHousePhoto2-2.png"
     ],
     "jackBooking": "yes",
 
@@ -101,7 +101,7 @@
     "schoolsPreschool": "4",
     "pool": "yes",
 
-    "photos": ["./Photos/insideHouse3.png", "./Photos/insideHouse3-1.png", "./Photos/insideHouse3-2.png"],
+    "photos": ["./Photos/insideHouse3.png", "./Photos/insideHousePhoto3-1.png", "./Photos/insideHousePhoto3-2.png"],
     "jackBooking": "no",
     "jackFovourite": "yes",
     "timeOfBooking": "NA",
@@ -132,7 +132,7 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "5",
-    "photos": ["./Photos/insideHouse4.png", "./Photos/insideHouse4-1.png"],
+    "photos": ["./Photos/insideHousePhoto4.png", "./Photos/insideHousePhoto4-1.png"],
     "jackBooking": "no",
     "jackFovorite": "no",
     "timeOfBooking": "NA",
@@ -164,7 +164,7 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "1",
-    "photos": ["./Photos/insideHouse4.png", "./Photos/insideHouse4-1.png"],
+    "photos": ["./Photos/insideHousePhoto4.png", "./Photos/insideHousePhoto4-1.png"],
     "jackBooking": "no",
     "jackFovorite": "no",
     "timeOfBooking": "NA",
@@ -194,7 +194,7 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "5",
-    "photos": ["./Photos/insideHouse4.png", "./Photos/insideHouse4-1.png"],
+    "photos": ["./Photos/insideHousePhoto4.png", "./Photos/insideHousePhoto4-1.png"],
     "jackBooking": "no",
     "jackFovorite": "no",
     "timeOfBooking": "NA",
@@ -225,7 +225,7 @@
     "schoolsPreschool": "4",
     "pool": "no",
     "photos": [
-      "./Photos/insideHouse4.png",
+      "./Photos/insideHousePhoto4.png",
       "./Photos/insideHousePhoto4-1.png"
     ],
     "jackBooking": "no",
@@ -258,7 +258,7 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "5",
-    "photos": ["./Photos/insideHouse4.png", "./Photos/insideHouse4-1.png"],
+    "photos": ["./Photos/insideHousePhoto4.png", "./Photos/insideHousePhoto4-1.png"],
     "jackBooking": "no",
     "jackFovourite": "no",
     "timeOfBooking": "NA",
@@ -288,7 +288,7 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "5",
-    "photos": ["./Photos/insideHouse4.png", "./Photos/insideHouse4-1.png"],
+    "photos": ["./Photos/insideHousePhoto4.png", "./Photos/insideHousePhoto4-1.png"],
     "jackBooking": "no",
     "jackFovourite": "no",
     "timeOfBooking": "NA",
