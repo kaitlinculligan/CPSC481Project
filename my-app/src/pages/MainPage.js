@@ -70,7 +70,7 @@ function MainPage() {
         <div className=" d-felx flex-column me-4" style={{fontFamily:"Lucida Console"}}>
           Favourites
           <div
-            onClick={user === "" ? handleLogin : handleFavourites}
+            onClick={((user === "") ||(user === undefined)) ? handleLogin : handleFavourites}
             style={{
               cursor: "pointer",
               marginLeft: "1px",

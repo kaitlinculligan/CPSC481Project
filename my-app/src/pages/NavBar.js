@@ -21,7 +21,12 @@ const NavBar = () => {
     navigate('/', { state: { user } });
   }
   const handleFavourites=()=>{
+    if(user === undefined || user === ""){
+      navigate('/login', { state: { user } });
+    }
+    else{
     navigate('/favourites', { state: { user } });
+    }
   }
   const handleBack=()=>{
     navigate(-1, { state: { user} });
