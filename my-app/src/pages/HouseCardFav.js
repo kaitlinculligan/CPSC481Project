@@ -29,7 +29,7 @@ function HouseCardFav({ Name, Photo, Price, Description,NumBath,NumBed }) {
           className=" bg-black row w-100 border-2 border-white border justify-content-center"
           style={{ fontSize: "25px", minHeight: "10%", color: "#FFFFFF", fontFamily: "Times New Roman", borderRadius: "10px" }}
         >
-          {Price}
+          ${Price}
         </div>
         <div className="row w-100 border-5 border-black border bg-white " style={{ minHeight: "35%" }}>
           <div className="w-100 h-25 row justify-content-evenly ">

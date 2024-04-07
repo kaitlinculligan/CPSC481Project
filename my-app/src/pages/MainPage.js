@@ -105,7 +105,7 @@ function MainPage() {
           <HouseCard
             Name="8085 19th ave sw"
             Photo="./Photos/house2.png"
-            Price="$200,000"
+            Price="200,000"
             Description="This is a beautiful house in a great neighborhood.  It has a large backyard and a one car garage."
             NumBath={2}
             NumBed={2}
@@ -115,7 +115,7 @@ function MainPage() {
           <HouseCard
             Name="2024 44th ave Nw"
             Photo=  "./Photos/house3.png"
-            Price="$300,000"
+            Price="300,000"
             Description="This is a beautiful house in a great neighborhood.  It has a large backyard and a two car garage."
             NumBath={2}
             NumBed={3}
@@ -125,7 +125,7 @@ function MainPage() {
           <HouseCard
             Name="10325 Bonaventure Dr SE"
             Photo="./Photos/house4.png"
-            Price="$400,000"
+            Price="400,000"
             Description="This is a beautiful house in a great neighborhood. It has a large backyard and a two car garage."
             NumBath={2}
             NumBed={3}
@@ -136,7 +136,7 @@ function MainPage() {
           <HouseCard
             Name="1236 12 Ave SW"
             Photo="./Photos/house4.png"
-            Price="$600,000"
+            Price="600,000"
             Description="This is a beautiful house in a great neighborhood.  It has a large backyard and a two car garage."
             NumBath={4}
             NumBed={5}
@@ -147,7 +147,7 @@ function MainPage() {
           <HouseCard
             Name="1126 Memorial Dr NW"
             Photo="./Photos/house4.png"
-            Price="$700,000"
+            Price="700,000"
             Description="This is a beautiful house in a great neighborhood.  It has a large backyard and a two car garage."
             NumBath={2}
             NumBed={3}
