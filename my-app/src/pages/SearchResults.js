@@ -62,7 +62,6 @@ const MyMapComponent = ({ apiKey, listings, hoveredPropertyId, selectedPropertyI
               infoWindow.setContent(`
                   <div>
                       <h5>${listing.houseName}</h5>
-                      <img src="${listing.image}" alt="House image" style="width:100px;"><br>
                       Price: ${listing.price}<br>
                       Bedrooms: ${listing.bedrooms}<br>
                       Bathrooms: ${listing.bathrooms}
@@ -646,12 +645,13 @@ function SearchResults() {
 
 
 		 {/* Content Area */}
+     <div style={{width:"90%",  paddingLeft:"5%"}}>
 		 <Container fluid className="search-results-content">
 		 <Row className="no-gutters content-row">
               {/* Listings Column */}
 			  <Col md={6} className="listings-column">
 				{/* Sort By Dropdown */}
-				<div className="sort-dropdown">
+				<div className="sort-dropdown" style={{paddingTop:"5px"}}>
                     <DropdownButton id="sort-dropdown" title={sortTitle} >
                         <Dropdown.Item onClick={() => sortListingByPrice('lowest')}> Price (Low to High)</Dropdown.Item>
                         <Dropdown.Item onClick={() => sortListingByPrice('highest')}> Price (High to Low)</Dropdown.Item>
@@ -660,7 +660,7 @@ function SearchResults() {
                 </div>
 
                 {/* Scrollable Listings Container */}
-                <div className="scrollable-listings">
+                <div className="scrollable-listings" style={{overflowY: "auto",height: "500px",paddingTop:"5px"}}>
                     {displayedListings.map((listing) => {
                     const details = getPropertyDetails(listing.id);
                     return (
@@ -668,7 +668,9 @@ function SearchResults() {
                             onMouseEnter={() => handleMouseEnter(listing.id)}
                             onMouseLeave={handleMouseLeave}
                             onClick={() => handleClick(listing.id)}
-                            key={listing.id}>
+                            key={listing.id}
+                            style={{height:"90%"}}
+                            >
                             <HouseCard
                                 className="listing-card"
                                 Name={details.houseName}
@@ -691,7 +693,8 @@ function SearchResults() {
             <Button onClick={handleResetMap} style={{ margin: "10px",width:"50%", }}>Reset Map View</Button>
             <Button onClick={handleViewHouse} style={{ margin: "10px" ,width:"50%"}}>View House Details</Button>
             </div>
-            <Wrapper apiKey={apiKey} render={render}>
+            <div style={{height: "500px"}}>
+            <Wrapper apiKey={apiKey} render={render} >
               <MyMapComponent
                 apiKey={apiKey}
                 listings={displayedListings}
@@ -700,12 +703,13 @@ function SearchResults() {
                 onMapLoad={(map) => mapInstanceRef.current = map} // Store the map instance when loaded
               />
             </Wrapper>
-
+            </div>
           </Col>
         </Row>
 
 
       </Container>
+      </div>
     </div>
   );
 }
