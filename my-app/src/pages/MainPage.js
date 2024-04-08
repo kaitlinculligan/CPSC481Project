@@ -64,7 +64,7 @@ function MainPage() {
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
-              transform: (user=="Jack") ? "translateX(-8px)" :"translateX(-18px)",
+              transform: (user==="Jack") ? "translateX(-8px)" :"translateX(-18px)",
               borderRadius: "50%", // Add this line to make the image circle
               border: (user === "Jack") ? "3px solid black" : "none",
             }}
