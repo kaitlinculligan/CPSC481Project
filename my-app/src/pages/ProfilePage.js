@@ -69,6 +69,10 @@ function ProfilePage() {
     const selectedId = filteredHouseIds[selectedIndex];
     setId(selectedId);
   };
+  const handleClickedHouse= (num) => {
+    console.log("WHATTTT");
+    navigate("/details", { state: { user , id: num} });
+  }
 
   console.log(
     "House Beds:",
@@ -129,14 +133,16 @@ function ProfilePage() {
             <div className="h-auto border-5 border-black border bg-black rounded-2 p-2 mt-5 d-flex flex-column align-items-center  " style={{ minHeight: "100px" }}>
               {user === "Jack" ? (
                 <>
-                  <div className="h-25" style={{ color: "white" }}>
-                    {date} at {time}
+                  <div className="h-25 w-100 d-flex flex-row justify-content-center" style={{ color: "white" }}>
+                    <div style={{fontWeight:"bold", fontSize:"20px"}}>BOOKING TIME: {date} at {time} </div> 
                   </div>
                   <Carousel className="w-50" onSelect={handleSelect}>
                     {houseInfo
                       .filter((house) => house.jackBooking === "yes")
                       .map((house, index) => (
-                        <Carousel.Item key={house.id}>
+                        <Carousel.Item key={house.id} onClick={() => {
+                          handleClickedHouse(house.id);
+                        }}>
                           <HouseCard
                             Name={house.houseName}
                             Photo={house.image}
@@ -144,9 +150,7 @@ function ProfilePage() {
                             NumBath={house.bathrooms}
                             Description={house.description}
                             NumBed={house.bedrooms}
-                            onClick={() => {
-                              navigate("/details", { state: { user, house: house.id } });
-                            }}
+                          
                           />
                         </Carousel.Item>
                       ))}
