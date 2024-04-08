@@ -14,6 +14,7 @@ import HouseCard from "./HouseCard";
 import TypingAnimation from "./TypingAnimation.js";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import jackImage from "./Photos/profile2.jpg";
 
 function MainPage() {
   const location = useLocation();
@@ -57,13 +58,15 @@ function MainPage() {
               marginLeft: "1px",
               marginBottom: "40px",
               padding: "20px",
-              width: "85px",
-              height: "85px",
-              backgroundImage: `url(${profilePic})`,
+              width: "75px",
+              height: "75px",
+              backgroundImage: `url(${(user === "Jack") ? jackImage : profilePic})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
-              transform: "translateX(-18px)",
+              transform: (user=="Jack") ? "translateX(-8px)" :"translateX(-18px)",
+              borderRadius: "50%", // Add this line to make the image circle
+              border: (user === "Jack") ? "3px solid black" : "none",
             }}
           ></div>
         </div>
@@ -75,8 +78,8 @@ function MainPage() {
               cursor: "pointer",
               marginLeft: "1px",
               padding: "20px",
-              width: "75px",
-              height: "80px",
+              width: (user === "Jack") ? "75px" : "75px",
+              height: (user === "Jack") ? "80px" : "75px",
               backgroundImage: `url(${favourites})`,
               backgroundSize: "cover",
               backgroundPosition: "center",

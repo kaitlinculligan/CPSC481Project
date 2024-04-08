@@ -6,7 +6,7 @@
     "bedrooms": "1",
     "bathrooms": "1",
     "sqft": "2000",
-    "description": "This is a beautiful house in a great neighborhood.  It has a large backyard and a two car garage.",
+    "description": "One of the nicest neighborhoods in Calgary.  This house is a great starter home for a young couple.  It has a large backyard and a one car garage.  The house is close to shopping and public transportation.  The schools are all within walking distance. Book now to have a look at this great house with one of the best views in Calgary. Book Now!",
     "image": "./Photos/house1.png",
     "noiseLevel": "3",
     "safety": "4",
@@ -23,10 +23,7 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "no",
-    "photos": [
-      "./Photos/insideHouse1.png",
-      "./Photos/insideHouse1-1.png"
-    ],
+    "photos": ["./Photos/house1.png", "./Photos/insideHouse1.png", "./Photos/insideHouse1-1.png"],
     "jackBooking": "yes",
     "jackFavourite": "yes",
     "timeOfBooking": "2020-03-20T00:01 PM",
@@ -40,9 +37,9 @@
     "bedrooms": "2",
     "bathrooms": "2",
     "sqft": "2000",
-    "description": "This is a beautiful house in a great neighborhood.  It has a large backyard and a one car garage.",
+    "description": "This is the perfect house for those interested in a quiet neighborhood. Details provided in neighborhood section.",
     "image": "./Photos/house2.png",
-    "noiseLevel": "3",
+    "noiseLevel": "5",
     "safety": "4",
     "walkability": "5",
     "petFriendly": "3",
@@ -57,12 +54,7 @@
     "schoolsElementary": "1",
     "schoolsPreschool": "4",
     "pool": "yes",
-    "photos": [
-      "./Photos/house2.png",
-      "./Photos/insideHouse2.png",
-      "./Photos/insideHousePhoto2-1.png",
-      "./Photos/insideHousePhoto2-2.png"
-    ],
+    "photos": ["./Photos/house2.png", "./Photos/insideHouse2.png", "./Photos/insideHousePhoto2-1.png", "./Photos/insideHousePhoto2-2.png"],
     "jackBooking": "yes",
     "jackFavourite": "no",
     "timeOfBooking": "2020-03-20T00:00 PM",
@@ -75,16 +67,16 @@
     "price": "300,000",
     "bedrooms": "3",
     "bathrooms": "2",
-    "sqft": "2000",
-    "description": "This is a beautiful house in a great neighborhood.  It has a large backyard and a two car garage.",
+    "sqft": "6000",
+    "description": "With a house like this, ",
     "image": "./Photos/house3.png",
     "noiseLevel": "3",
-    "safety": "4",
+    "safety": "1",
     "walkability": "5",
     "petFriendly": "3",
     "airQuality": "4",
-    "crimeRate": "3",
-    "cleanliness": "4",
+    "crimeRate": "1",
+    "cleanliness": "1",
     "neighborhood": "4",
     "shopping": "5",
     "transportation": "4",
@@ -93,11 +85,7 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "yes",
-    "photos": [
-      "./Photos/insideHouse3.png",
-      "./Photos/insideHousePhoto3-1.png",
-      "./Photos/insideHousePhoto3-2.png"
-    ],
+    "photos": ["./Photos/insideHouse3.png", "./Photos/insideHousePhoto3-1.png", "./Photos/insideHousePhoto3-2.png"],
     "jackBooking": "no",
     "jackFavourite": "no",
     "timeOfBooking": "NA",
@@ -126,10 +114,7 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "5",
-    "photos": [
-      "./Photos/insideHousePhoto4.png",
-      "./Photos/insideHousePhoto4-1.png"
-    ],
+    "photos": ["./Photos/insideHousePhoto4.png", "./Photos/insideHousePhoto4-1.png"],
     "jackBooking": "no",
     "jackFavourite": "no",
     "timeOfBooking": "NA",
@@ -160,10 +145,7 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "1",
-    "photos": [
-      "./Photos/insideHousePhoto4.png",
-      "./Photos/insideHousePhoto4-1.png"
-    ],
+    "photos": ["./Photos/insideHousePhoto4.png", "./Photos/insideHousePhoto4-1.png"],
     "jackBooking": "no",
     "jackFavourite": "no",
     "timeOfBooking": "NA",
@@ -192,10 +174,7 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "5",
-    "photos": [
-      "./Photos/insideHousePhoto4.png",
-      "./Photos/insideHousePhoto4-1.png"
-    ],
+    "photos": ["./Photos/insideHousePhoto4.png", "./Photos/insideHousePhoto4-1.png"],
     "jackBooking": "no",
     "jackFavourite": "no",
     "timeOfBooking": "NA",
@@ -224,10 +203,7 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "no",
-    "photos": [
-      "./Photos/insideHousePhoto4.png",
-      "./Photos/insideHousePhoto4-1.png"
-    ],
+    "photos": ["./Photos/insideHousePhoto4.png", "./Photos/insideHousePhoto4-1.png"],
     "jackBooking": "no",
     "jackFavourite": "no",
     "timeOfBooking": "NA",
@@ -256,10 +232,7 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "5",
-    "photos": [
-      "./Photos/insideHousePhoto4.png",
-      "./Photos/insideHousePhoto4-1.png"
-    ],
+    "photos": ["./Photos/insideHousePhoto4.png", "./Photos/insideHousePhoto4-1.png"],
     "jackBooking": "no",
     "jackFavourite": "no",
     "timeOfBooking": "NA",
@@ -288,10 +261,7 @@
     "schoolsElementary": "4",
     "schoolsPreschool": "4",
     "pool": "5",
-    "photos": [
-      "./Photos/insideHousePhoto4.png",
-      "./Photos/insideHousePhoto4-1.png"
-    ],
+    "photos": ["./Photos/insideHousePhoto4.png", "./Photos/insideHousePhoto4-1.png"],
     "jackBooking": "no",
     "jackFavourite": "no",
     "timeOfBooking": "NA",
