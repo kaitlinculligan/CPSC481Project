@@ -25,8 +25,6 @@ function ProfilePage() {
   const [id, setId] = useState("1");
   const [profilePic, setProfilePic] = useState(null);
 
-
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleProfilePicChange = (event) => {
@@ -69,10 +67,10 @@ function ProfilePage() {
     const selectedId = filteredHouseIds[selectedIndex];
     setId(selectedId);
   };
-  const handleClickedHouse= (num) => {
+  const handleClickedHouse = (num) => {
     console.log("WHATTTT");
-    navigate("/details", { state: { user , id: num} });
-  }
+    navigate("/details", { state: { user, id: num } });
+  };
 
   console.log(
     "House Beds:",
@@ -87,8 +85,12 @@ function ProfilePage() {
     houseInfo.map((house) => house.image)
   );
   console.log("house1:", house1);
-  if(id === ""){setId("1")}
-  if(id === undefined){setId("1")}
+  if (id === "") {
+    setId("1");
+  }
+  if (id === undefined) {
+    setId("1");
+  }
   let booking = houseInfo.filter((house) => house.id === id).map((house) => house.timeOfBooking);
   let time, date;
   if (booking.length > 0) {
@@ -99,7 +101,7 @@ function ProfilePage() {
   console.log("Date:", date, "Time:", time);
   if (date === "NA" || date === undefined || date === "") {
     date = "2023-08-20";
-    time = "3:15 PM"
+    time = "3:15 PM";
   }
   console.log("Booking:", booking);
   return (
@@ -109,12 +111,15 @@ function ProfilePage() {
         <div className="w-25 d-flex flex-column justify-content-between">
           <div className="h-100">
             <div className="w-100 px-2 flex-column d-flex align-items-center py-2 justify-content-start">
-              <img
-                src={user === "Jack" ? profilePic2 : profilepic1}
-                className="img-fluid rounded-circle pt-2"
-                alt="Profile"
-                style={{ width: "200px", height: "200px", objectFit: "contain" }}
-              ></img>
+              <div className="w-75 ">
+                <img
+                  src={user === "Jack" ? profilePic2 : profilepic1}
+                  className="img-fluid rounded-circle pt-2 shadow-lg"
+                  alt="Profile"
+                  style={{ width: "100%", height: "100%", objectFit: "contain" }}
+                ></img>
+              </div>
+
               <h1 className=" py-3">{user === "Jack" ? "Jack Haden" : "Mr. User"}</h1>
               <span className=" py-1">{user === "Jack" ? `Email: ${email}` : "Email: UserEmail1@gmail.com"}</span>
               <span className=" py-2">{user === "Jack" ? `Phone: ${phone}` : "Phone: 403-787-9987"}</span>
@@ -134,15 +139,20 @@ function ProfilePage() {
               {user === "Jack" ? (
                 <>
                   <div className="h-25 w-100 d-flex flex-row justify-content-center" style={{ color: "white" }}>
-                    <div style={{fontWeight:"bold", fontSize:"20px"}}>BOOKING TIME: {date} at {time} </div> 
+                    <div style={{ fontWeight: "bold", fontSize: "20px" }}>
+                      BOOKING TIME: {date} at {time}{" "}
+                    </div>
                   </div>
                   <Carousel className="w-50" onSelect={handleSelect}>
                     {houseInfo
                       .filter((house) => house.jackBooking === "yes")
                       .map((house, index) => (
-                        <Carousel.Item key={house.id} onClick={() => {
-                          handleClickedHouse(house.id);
-                        }}>
+                        <Carousel.Item
+                          key={house.id}
+                          onClick={() => {
+                            handleClickedHouse(house.id);
+                          }}
+                        >
                           <HouseCard
                             Name={house.houseName}
                             Photo={house.image}
@@ -150,7 +160,6 @@ function ProfilePage() {
                             NumBath={house.bathrooms}
                             Description={house.description}
                             NumBed={house.bedrooms}
-                          
                           />
                         </Carousel.Item>
                       ))}
