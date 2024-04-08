@@ -134,6 +134,7 @@ function Appointment() {
   const handleSubmit = async () => {
     if (houseDetails.jackBooking == "yes") {
       alert("A booking for this house already exists");
+      navigate("/")
     } else {
       var timePieces = time.split(":").map(Number);
       if (timePieces[0] > 12) {
@@ -142,8 +143,6 @@ function Appointment() {
       } else {
         var bookTime = date + "T" + timePieces[0] + ":" + timePieces[1] + " AM";
       }
-      alert(id);
-      alert(bookTime);
       try {
         const response = await fetch("http://localhost:5000/update-house-info", {
           method: "POST",
@@ -161,6 +160,7 @@ function Appointment() {
 
         if (response.ok) {
           console.log("Success:", await response.json());
+          alert("A request to view this house has been submitted. A realtor will verify your request and email a confirmation shortly.")
         } else {
           throw new Error("Failed to update Jack's favorite status.");
         }
@@ -192,9 +192,9 @@ function Appointment() {
               <label className="" for="virtual">
                 Virtual Viewing
               </label>
-              <input className="appointmentForm" type="text" placeholder="Name" value={user}></input>
-              <input className="appointmentForm" type="text" placeholder="Phone #" value={phone}></input>
-              <input className="appointmentForm" type="text" placeholder="Email" value={email}></input>
+              <input className="appointmentForm" type="text" placeholder="Name" value={user} required></input>
+              <input className="appointmentForm" type="text" placeholder="Phone #" value={phone} required></input>
+              <input className="appointmentForm" type="text" placeholder="Email" value={email} required></input>
               <input className="appointmentForm" type="date" onChange={(e) => setDate(e.target.value)} required></input>
               <input className="appointmentForm" type="time" min="09:00:00" max="19:00:00" onChange={(e) => setTime(e.target.value)} required></input>
               <button type="submit" className="appointmentSubmit">
