@@ -106,7 +106,7 @@ function MainPage() {
       <div className="d-flex flex-row justify-content-evenly h-50  " style={{ width: "99.8%" }}>
         <div className=" h-100 d-flex flex-row justify-content-center " onClick={() => handleHouseNav(2)} style={{ width: "20%" }}>
           <HouseCard
-            Name="8085 19th ave sw"
+            Name="8085 19th Ave SW"
             Photo="./Photos/house2.png"
             Price="200,000"
             Description="This is a beautiful house in a great neighborhood.  It has a large backyard and a one car garage."
@@ -116,7 +116,7 @@ function MainPage() {
         </div>
         <div className=" h-100 d-flex flex-row justify-content-center " onClick={() => handleHouseNav(3)} style={{ width: "20%" }}>
           <HouseCard
-            Name="2024 44th ave Nw"
+            Name="2024 44th Ave NW"
             Photo=  "./Photos/house3.png"
             Price="300,000"
             Description="This is a beautiful house in a great neighborhood.  It has a large backyard and a two car garage."
