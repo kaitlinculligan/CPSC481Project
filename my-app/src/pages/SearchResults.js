@@ -595,28 +595,32 @@ function SearchResults() {
 
               {/* Scrollable Listings Container */}
               <div className="scrollable-listings" style={{ overflowY: "auto", height: "500px", paddingTop: "5px" }}>
-                {displayedListings.map((listing) => {
-                  const details = getPropertyDetails(listing.id);
-                  return (
-                    <div
-                      onMouseEnter={() => handleMouseEnter(listing.id)}
-                      onMouseLeave={handleMouseLeave}
-                      onClick={() => handleClick(listing.id)}
-                      key={listing.id}
-                      style={{ height: "90%" }}
-                    >
-                      <HouseCard
-                        className="listing-card"
-                        Name={details.houseName}
-                        Photo={details.image}
-                        Price={details.price}
-                        Description={details.description}
-                        NumBath={details.bathrooms}
-                        NumBed={details.bedrooms}
-                      />
-                    </div>
-                  );
-                })}
+                {displayedListings.length > 0 ? (
+                  displayedListings.map((listing) => {
+                    const details = getPropertyDetails(listing.id);
+                    return (
+                      <div
+                        onMouseEnter={() => handleMouseEnter(listing.id)}
+                        onMouseLeave={handleMouseLeave}
+                        onClick={() => handleClick(listing.id)}
+                        key={listing.id}
+                        style={{ height: "90%" }}
+                      >
+                        <HouseCard
+                          className="listing-card"
+                          Name={details.houseName}
+                          Photo={details.image}
+                          Price={details.price}
+                          Description={details.description}
+                          NumBath={details.bathrooms}
+                          NumBed={details.bedrooms}
+                        />
+                      </div>
+                    );
+                  })
+                ) : (
+                  <h1 style={{ textAlign: "center" }}>No Listings Found 😢</h1>
+                )}
               </div>
             </Col>
 
