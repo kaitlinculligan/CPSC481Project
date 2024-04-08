@@ -17,6 +17,7 @@ import HouseCard from "./HouseCard.js";
 import house1 from "./Photos/house1.png";
 import { useMemo } from "react";
 import house2 from "./Photos/house2.png";
+import "./ProfilePage.css";
 
 function ProfilePage() {
   const [show, setShow] = useState(false); // State to control the visibility of the modal

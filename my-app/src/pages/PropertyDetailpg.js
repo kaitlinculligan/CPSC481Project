@@ -13,6 +13,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import realtor from "./Photos/realtor.png";
 import heart from "./Photos/Heart-Emoji-PNG-Photos.png";
 import CustomAlert from "./CustomAlert";
+import "./ProfilePage.css";
 
 const RealtorCard = ({ imageSrc, name, number, email, user, id }) => {
   const navigate = useNavigate();

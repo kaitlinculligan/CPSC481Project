@@ -1,0 +1,17 @@
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(100%);
+}
+/* Customizing carousel indicators to black */
+.carousel-indicators li {
+    background-color: black; /* Or any color you prefer */
+}
+
+/* Active indicator customization */
+.carousel-indicators .active {
+    background-color: #222; /* Slightly different shade or your choice for active indicator */
+}
+
+.carousel-indicators li:not(.active) {
+    background-color: #333; /* Gray color for non-active indicators */
+}
