@@ -5,7 +5,6 @@ import NavBar from "./NavBar.js";
 import bed from "./Photos/Bed.png";
 import bath from "./Photos/Bath.png";
 import { useLocation } from "react-router-dom";
-import houseInfo from "./houseinfo.json";
 import { useEffect } from "react";
 import { Badge, OverlayTrigger, Tooltip, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -251,7 +250,7 @@ function PropertyDetailPage() {
     jackFavourite: "",
   });
   const location = useLocation();
-  const { user, id } = location.state || {};
+  const { user, houseInfo, id } = location.state || {};
   const navigate = useNavigate();
   let houseId = String(id);
   console.log("id:", id);
@@ -357,68 +356,31 @@ function PropertyDetailPage() {
   const [alertColor, setAlertColor] = useState("#FFFFFF");
 
   const handleBooking = (id) => {
-    navigate('/appointment', { state: { user,id } });
+    navigate('/appointment', { state: { user,houseInfo,id } });
   };
 
   const handleAddToFavourites = async (houseId, houseDetails) => {
-    if (user === "" || user === undefined) {
+    if (user !="Jack") {
       navigate("/login");
       return;
     }
 
     console.log("houseDetails:", houseDetails);
 
-    if (houseDetails.jackFavourite === "yes") {
-      try {
-        const response = await fetch("http://localhost:5000/update-house-info", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            id: houseId,
-            updates: { jackFavourite: "no" },
-          }),
-        });
-
-        if (response.ok) {
-          console.log("Success:", await response.json());
-          setAlertColor("#a1712f");
+    if (houseInfo.at(houseId-1).jackFavourite === "yes") {
+      houseInfo.at(houseId-1).jackFavourite = "no"
+      setAlertColor("#a1712f");
           showAlert("Removed form favourites!");
-        } else {
-          // Assuming a non-ok response is an error condition
-          setAlertColor("#b03c30")
-          showAlert("Failed to update Jack's favorite status.");
-        }
-      } catch (error) {
-        console.error("Error:", error);
-        setAlertColor("#b03c30")
-        showAlert("Favourites functionality failed to function");
-      }
+
       return;
     }
 
     try {
-      const response = await fetch("http://localhost:5000/update-house-info", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id: houseId,
-          updates: { jackFavourite: "yes" },
-        }),
-      });
+      houseInfo.at(houseId-1).jackFavourite = "yes"
 
-      if (response.ok) {
-        console.log("Success:", await response.json());
         setAlertColor("#4dba32");
         showAlert("Added To Favourites!");
-      } else {
-        // Assuming a non-ok response is an error condition
-        setAlertColor("#b03c30")
-        showAlert("Failed to update Jack's favorite status.");
-      }
+
     } catch (error) {
       console.error("Error:", error);
       setAlertColor("#b03c30")

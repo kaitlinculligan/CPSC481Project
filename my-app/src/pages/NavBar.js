@@ -12,39 +12,40 @@ import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 const NavBar = () => {
   const location = useLocation();
-  const user = location.state?.user;
+  var user = location.state?.user;
+  var houseInfo = location.state?.houseInfo;
   const navigate = useNavigate();
   const navigateToPage = (url) => {
     // This will reload the page and navigate to the new URL.
     window.location.href = url;
   };
   const handleHome=()=>{
-    navigate('/', { state: { user } });
+    navigate('/', { state: { user,houseInfo } });
   }
   const handleFavourites=()=>{
     if(user === undefined || user === ""){
-      navigate('/login', { state: { user } });
+      navigate('/login', { state: { user,houseInfo } });
     }
     else{
-    navigate('/favourites', { state: { user } });
+    navigate('/favourites', { state: { user,houseInfo } });
     }
   }
   const handleBack=()=>{
-    navigate(-1, { state: { user} });
+    navigate(-1, { state: { user,houseInfo} });
   }
   const handleProfile=()=>{
     if(user === undefined || user === ""){
       console.log("User:", user);
-      navigate('/login', { state: { user } });
+      navigate('/login', { state: { user,houseInfo } });
     }
     else{
-      navigate('/profile', { state: { user } });
+      navigate('/profile', { state: { user,houseInfo } });
     }
 
   }
 
   const handleSearch=()=>{
-    navigate('/results', { state: { user } });
+    navigate('/results', { state: { user,houseInfo } });
   }
 
   return (

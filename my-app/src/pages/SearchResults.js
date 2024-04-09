@@ -5,7 +5,6 @@ import NavBar from "./NavBar.js";
 import searchIcon from "./Photos/searchIcon.png";
 import filterIcon from "./Photos/advance_icon.png";
 import HouseCard from "./HouseCard";
-import houseInfo from "./houseinfo.json";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -145,6 +144,10 @@ const MyMapComponent = ({ apiKey, listings, hoveredPropertyId, selectedPropertyI
 function SearchResults() {
   const apiKey = "AIzaSyBwFfcnAy4EsP1jo88dc4KV3OnGsEqX5ec";
 
+  const location = useLocation();
+  var {user, houseInfo} = location.state;
+  const navigate = useNavigate();
+
   // State to hold fileter/search listings
   const [displayedListings, setDisplayedListings] = useState(houseInfo);
   const [hoveredPropertyId, setHoveredPropertyId] = useState(null);
@@ -174,9 +177,6 @@ function SearchResults() {
   //for updating sort dropdown title
   const [sortTitle, setSortTitle] = useState("Sort By");
 
-  const location = useLocation();
-  const user = location.state?.user;
-  const navigate = useNavigate();
 
   const openModal = () => {
     setShowModal(true);
@@ -340,14 +340,14 @@ function SearchResults() {
     setDisplayedListings(filteredListings);
   };
 
-  //reset advance filter function 
+  //reset advance filter function
   const resetFilters = () => {
     // Reset all advanced filter states
     setNoiseLevel("");
     setSafety("");
     setTransportation("");
     setPool("");
-    
+
   };
 
   const navigateToPage = (url) => {
@@ -366,7 +366,7 @@ function SearchResults() {
   const handleViewHouse = () => {
     if (selectedPropertyId != null) {
       var id = selectedPropertyId;
-      navigate("/details", { state: { user, id } });
+      navigate("/details", { state: { user, houseInfo, id } });
     }
   };
 
@@ -513,9 +513,9 @@ function SearchResults() {
             {/* Dynamic badge that appears only if at least one filter is active */}
               {(noiseLevel || safety || transportation || pool) && (
                 <span className="position-absolute translate-middle badge rounded-pill text-bg-secondary" style={{
-                  top: 0, 
-                  right: -20, 
-                  transform: 'scale(0.7) translate(50%, -50%)', 
+                  top: 0,
+                  right: -20,
+                  transform: 'scale(0.7) translate(50%, -50%)',
                   zIndex: 1
                 }}>
                   {/* Calculate the number of active filters */}
@@ -602,12 +602,12 @@ function SearchResults() {
             <Modal.Footer>
               <Container>
                 <Row>
-                  <Col> 
+                  <Col>
                     <Button variant="secondary" onClick={resetFilters}>
                       Reset Filters
                     </Button>
                   </Col>
-                  <Col xs={8}> 
+                  <Col xs={8}>
                     <Button variant="primary" onClick={applyAdvancedFilters}>
                       Add Search Filter
                     </Button>
@@ -683,7 +683,7 @@ function SearchResults() {
                     hoveredPropertyId={hoveredPropertyId}
                     selectedPropertyId={selectedPropertyId}
                     // Store the map instance when loaded
-                    onMapLoad={(map) => (mapInstanceRef.current = map)} 
+                    onMapLoad={(map) => (mapInstanceRef.current = map)}
                   />
                 </Wrapper>
               </div>

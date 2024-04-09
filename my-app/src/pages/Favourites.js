@@ -3,14 +3,13 @@ import "./Favourites.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Row, Col, Card, Modal, Button } from "react-bootstrap";
 import NavBar from "./NavBar.js";
-import houseInfo from "./houseinfo.json";
 import HouseCardFav from "./HouseCardFav.js";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 
 function Favourites() {
   const location = useLocation();
-  const { user } = location.state;
+  var { user,houseInfo } = location.state;
   const navigate = useNavigate();
 
   const [show, setShow] = useState(false);
@@ -24,29 +23,17 @@ function Favourites() {
   };
 
   const handleNavigateDetails = (id) => {
-    navigate("/details", { state: { user, id } });
+    navigate("/details", { state: { user, houseInfo, id } });
   };
 
   const handleDeleteFavourite = async (id) => {
     try {
-      const response = await fetch("http://localhost:5000/update-house-info", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          id: String(id),
-          updates: { jackFavourite: "no" },
-        }),
-      });
+      houseInfo.at(id-1).jackFavourite = "no"
+      handleClose();
 
-      if (response.ok) {
-        console.log("Success:", await response.json());
-        handleClose();
-      } else {
-        throw new Error("Failed to update Jack's favorite status.");
-      }
     } catch (error) {
       console.error("Error:", error);
-      navigate("/favourites", { state: { user } });
+      navigate("/favourites", { state: { user,houseInfo } });
     }
   };
 
@@ -113,7 +100,7 @@ function Favourites() {
         <div className="w-100 h-100 text-center d-flex flex-column justify-content-center align-items-center">
           <h1>There are no favourites yet.</h1>
           <div style={{ width: "15%", minWidth: "150px" }} className="mx-auto">
-            <Button onClick={() => navigate("/search", { state: { user } })}>Search for houses</Button>
+            <Button onClick={() => navigate("/search", { state: { user, houseInfo } })}>Search for houses</Button>
           </div>
         </div>
       )}

@@ -12,7 +12,6 @@ import { Modal, Form } from "react-bootstrap";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Carousel } from "react-bootstrap";
-import houseInfo from "./houseinfo.json";
 import HouseCard from "./HouseCard.js";
 import house1 from "./Photos/house1.png";
 import { useMemo } from "react";
@@ -35,7 +34,7 @@ function ProfilePage() {
   };
 
   const location = useLocation();
-  const user = location.state?.user;
+  const {user,houseInfo} = location.state;
   const navigate = useNavigate();
 
   const navigateToPage = (url) => {
@@ -44,7 +43,7 @@ function ProfilePage() {
 
   useEffect(() => {
     if (user === undefined || user === "") {
-      navigateToPage("./login");
+      navigateToPage("./login",{undefined,houseInfo});
     } else if (user === "Jack") {
       setEmail("JackH88@gmail.com");
       setPhone("403-787-9987");
@@ -60,7 +59,7 @@ function ProfilePage() {
     handleClose();
   };
   const handleLogout = () => {
-    navigate("/login", { state: { user: "" } });
+    navigate("/login", { state: { user: "",houseInfo } });
   };
   const filteredHouseIds = useMemo(() => houseInfo.filter((house) => house.jackBooking === "yes").map((house) => house.id), [houseInfo]);
 
@@ -70,7 +69,7 @@ function ProfilePage() {
   };
   const handleClickedHouse = (num) => {
     console.log("WHATTTT");
-    navigate("/details", { state: { user, id: num } });
+    navigate("/details", { state: { user, houseInfo,id: num } });
   };
 
   console.log(

@@ -5,7 +5,6 @@ import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import realtor from "./Photos/realtor.png";
-import houseInfo from "./houseinfo.json";
 import HouseCard from "./HouseCard.js";
 
 const RealtorCard = ({ imageSrc, name, number, email }) => {
@@ -23,7 +22,7 @@ const RealtorCard = ({ imageSrc, name, number, email }) => {
 
 function Appointment() {
   const location = useLocation();
-  const { user, id } = location.state || {};
+  var { user, houseInfo,id } = location.state || {};
   let houseId = String(id);
   console.log("id:", id);
   const navigate = useNavigate();
@@ -138,11 +137,11 @@ function Appointment() {
     event.preventDefault();
     if (user!="Jack"){
       alert("A request to view this house has been submitted. A realtor will verify your request and email a confirmation shortly.")
-      navigate("/", { state: { user } })
+      navigate("/", { state: { user,houseInfo } })
     }
     if (houseDetails.jackBooking == "yes") {
       alert("A booking for this house already exists");
-      navigate("/", { state: { user } })
+      navigate("/", { state: { user,houseInfo } })
     } else {
       var timePieces = time.split(":").map(Number);
       if (timePieces[0] > 12) {
@@ -152,28 +151,11 @@ function Appointment() {
         var bookTime = date + "T" + timePieces[0] + ":" + timePieces[1] + " AM";
       }
       try {
-        const response = await fetch("http://localhost:5000/update-house-info", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            id: houseId,
-            updates: {
-              jackBooking: "yes",
-              timeOfBooking: bookTime,
-            },
-          }),
-        });
+        houseInfo.at(houseId-1).jackBooking="yes"
+        houseInfo.at(houseId-1).timeOfBooking=bookTime
+        alert("A request to view this house has been submitted. A realtor will verify your request and email a confirmation shortly.")
 
-        if (response.ok) {
-          console.log("Success:", await response.json());
-          alert("A request to view this house has been submitted. A realtor will verify your request and email a confirmation shortly.")
-
-        } else {
-          throw new Error("Failed to update Jack's favorite status.");
-        }
-        navigate("/", { state: { user } })
+        navigate("/", { state: { user,houseInfo } })
 
       } catch (error) {
         console.error("Error:", error);

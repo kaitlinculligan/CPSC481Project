@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import NavBar from "./NavBar.js";
 import hypeImage from "./Photos/hype.png";
 import { useNavigate } from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
+import houseInfo from "./houseInfo.js";
 
 function CreatePage() {
   const [email, setEmail] = useState("");
@@ -14,6 +16,7 @@ function CreatePage() {
   const [phonePart3, setPhonePart3] = useState("");
   const [validationMessage, setValidationMessage] = useState("");
   const navigate = useNavigate();
+
   const navigateToPage = (url) => {
     window.location.href = url;
   };
@@ -42,7 +45,7 @@ function CreatePage() {
       return;
     }
     alert("Account creation successful!");
-    navigate( "/profile", { state: { user: firstName } });
+    navigate( "/profile", { state: { user: firstName,houseInfo } });
   };
 
   return (

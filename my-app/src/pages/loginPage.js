@@ -4,10 +4,12 @@ import hypeImage from "./Photos/hype.png";
 import NavBar from './NavBar.js';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 function LoginPage() {
     const navigate = useNavigate();
-
-
+    const location = useLocation();
+    var houseInfo = location.state?.houseInfo;
+    var user = location.state?.user;
       // State variables to store the email and password
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -18,7 +20,7 @@ function LoginPage() {
     }
 
     const handleCreateAccount = () => {
-        navigate("/create");
+        navigate("/create",{undefined,houseInfo});
     }
 
     // Function to handle the password input change
@@ -43,7 +45,7 @@ function LoginPage() {
         }
         if(email === "JackH88@gmail.com" && password === "password") {
             alert('Login successful');
-            navigate('/profile', { state: { user: 'Jack' } });
+            navigate('/profile', { state: { user: 'Jack',houseInfo } });
         }
         else {
             alert('Incorrect email or password');

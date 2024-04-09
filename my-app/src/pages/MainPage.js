@@ -14,33 +14,42 @@ import HouseCard from "./HouseCard";
 import TypingAnimation from "./TypingAnimation.js";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import jackImage from "./Photos/profile2.jpg";
+import houseinfo from "./houseinfo.json"
 
 function MainPage() {
   const location = useLocation();
-  const user = location.state?.user;
+  var {user,houseInfo} = location.state || {undefined, houseinfo};
+
+
   const navigate = useNavigate();
   const navigateToPage = (url) => {
     window.location.href = url;
   };
   const handleFavourites = () => {
-    navigate("/favourites", { state: { user } });
+    navigate("/favourites", { state: { user,houseInfo } });
   }
   const handleProfile = () => {
-    navigate("/profile", { state: { user } });
+    navigate("/profile", { state: { user,houseInfo } });
   }
   const handleLogin = () => {
-    navigate("/login", { state: { user: "" } });
+    navigate("/login", { state: { user: "",houseInfo } });
   }
 
   const handleSearch = () => {
-    navigate("/search", { state: { user} });
+    navigate("/search", { state: { user,houseInfo} });
   }
   const handleHouseNav = (num) => {
     console.log("House Number:", num);
-    navigate("/details", { state: { user , id: num} });
+    navigate("/details", { state: { user ,houseInfo, id: num} });
   }
 
+  useEffect(() => {
+    if (houseInfo === undefined || houseInfo === "") {
+      houseInfo = houseinfo
+    }
+  }, [houseInfo]);
 
   const textForAnimation = "Find Your Dream Home Today!";
   console.log("User:", user);
