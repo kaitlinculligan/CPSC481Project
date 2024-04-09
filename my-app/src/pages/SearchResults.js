@@ -548,7 +548,7 @@ function SearchResults() {
 
                 {/* Safety Filter */}
                 <Form.Group controlId="safety">
-                  <Form.Label>Safety</Form.Label>
+                  <Form.Label>Crime Level</Form.Label>
                   <Form.Select aria-label="Safety" onChange={(e) => setSafety(e.target.value)} value={safety}>
                     <option value="">Select Crime Level</option>
                     {[1, 2, 3, 4, 5].map((level) => (
@@ -570,7 +570,7 @@ function SearchResults() {
 
                 {/* Transportation Filter */}
                 <Form.Group controlId="transportation">
-                  <Form.Label>Transportation</Form.Label>
+                  <Form.Label>Transportation Level </Form.Label>
                   <Form.Select aria-label="Transportation" onChange={(e) => setTransportation(e.target.value)} value={transportation}>
                     <option value="">Select Transportation Accessibility</option>
                     {[1, 2, 3, 4, 5].map((level) => (
