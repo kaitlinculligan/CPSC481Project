@@ -3,7 +3,7 @@ import "./SearchResults.css";
 import { Row, Col, FormControl, InputGroup, Navbar, Container, Dropdown, Button, DropdownButton, Modal, Form } from "react-bootstrap";
 import NavBar from "./NavBar.js";
 import searchIcon from "./Photos/searchIcon.png";
-import filterIcon from "./Photos/filterIcon.png";
+import filterIcon from "./Photos/advance_icon.png";
 import HouseCard from "./HouseCard";
 import houseInfo from "./houseinfo.json";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
@@ -304,11 +304,15 @@ function SearchResults() {
   const applyAdvancedFilters = () => {
     closeModal();
 
-    // You must define these values inside the function to use them
+    // values to be used inside the function and parse them accordingly
     const minPriceValue = minPrice ? parseInt(minPrice.replace(/[,]/g, ""), 10) : 0;
     const maxPriceValue = maxPrice ? parseInt(maxPrice.replace(/[,]/g, ""), 10) : Infinity;
     const bedroomsValue = bedrooms ? parseInt(bedrooms, 10) : 0;
     const bathroomsValue = bathrooms ? parseInt(bathrooms, 10) : 0;
+    const noiseLevelValue = noiseLevel ? parseInt(noiseLevel, 10) : 0;
+    const transportationValue = transportation ? parseInt(transportation, 10) : 0;
+    const safetyValue = safety ? parseInt(safety, 10) : 0;
+    const poolValue = pool ? parseInt(pool, 10) : 0;
 
     const filteredListings = houseInfo.filter((listing) => {
       const price = parseInt(listing.price.replace(/[$,]/g, ""), 10);
@@ -326,14 +330,24 @@ function SearchResults() {
         price <= maxPriceValue &&
         listingBedrooms >= bedroomsValue &&
         listingBathrooms >= bathroomsValue &&
-        (!noiseLevel || listingNoiseLevel === noiseLevel) &&
-        (!transportation || listingTransportation === transportation) &&
-        (!safety || listingSafety === safety) &&
+        (noiseLevel === 0 || listingNoiseLevel >= noiseLevelValue) &&
+        (transportationValue === 0 || listingTransportation>= transportationValue) &&
+        (safetyValue === 0 || listingSafety === safetyValue) &&
         (!pool || listingPool === pool)
       );
     });
 
     setDisplayedListings(filteredListings);
+  };
+
+  //reset advance filter function 
+  const resetFilters = () => {
+    // Reset all advanced filter states
+    setNoiseLevel("");
+    setSafety("");
+    setTransportation("");
+    setPool("");
+    
   };
 
   const navigateToPage = (url) => {
@@ -493,9 +507,25 @@ function SearchResults() {
               <img src={searchIcon} alt="Search" width="24" height="24" />
             </Button>
           </InputGroup>
-          <Button variant="outline-secondary" onClick={openModal}>
+          <Button variant="outline-secondary" onClick={openModal} className="position-relative d-inline-block">
             <img src={filterIcon} alt="Filter" width="24" height="24" />
-          </Button>
+
+            {/* Dynamic badge that appears only if at least one filter is active */}
+              {(noiseLevel || safety || transportation || pool) && (
+                <span className="position-absolute translate-middle badge rounded-pill text-bg-secondary" style={{
+                  top: 0, 
+                  right: -20, 
+                  transform: 'scale(0.7) translate(50%, -50%)', 
+                  zIndex: 1
+                }}>
+                  {/* Calculate the number of active filters */}
+                  {
+                    [noiseLevel, safety, transportation, pool].reduce((acc, current) => acc + (current ? 1 : 0), 0)
+                  }
+                  <span className="visually-hidden">active filters</span>
+                </span>
+              )}
+            </Button>
 
           <Modal show={showModal} onHide={closeModal} size="md" centered>
             <Modal.Header closeButton>
@@ -520,7 +550,7 @@ function SearchResults() {
                 <Form.Group controlId="safety">
                   <Form.Label>Safety</Form.Label>
                   <Form.Select aria-label="Safety" onChange={(e) => setSafety(e.target.value)} value={safety}>
-                    <option value="">Select Safety Level</option>
+                    <option value="">Select Crime Level</option>
                     {[1, 2, 3, 4, 5].map((level) => (
                       <option key={level} value={level}>
                         {level} - {safetyTable[level]}
@@ -570,9 +600,20 @@ function SearchResults() {
               </Form>
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="primary" onClick={() => applyAdvancedFilters()}>
-                Add Search Filter
-              </Button>
+              <Container>
+                <Row>
+                  <Col> 
+                    <Button variant="secondary" onClick={resetFilters}>
+                      Reset Filters
+                    </Button>
+                  </Col>
+                  <Col xs={8}> 
+                    <Button variant="primary" onClick={applyAdvancedFilters}>
+                      Add Search Filter
+                    </Button>
+                  </Col>
+                </Row>
+              </Container>
             </Modal.Footer>
           </Modal>
         </Container>
@@ -641,7 +682,8 @@ function SearchResults() {
                     listings={displayedListings}
                     hoveredPropertyId={hoveredPropertyId}
                     selectedPropertyId={selectedPropertyId}
-                    onMapLoad={(map) => (mapInstanceRef.current = map)} // Store the map instance when loaded
+                    // Store the map instance when loaded
+                    onMapLoad={(map) => (mapInstanceRef.current = map)} 
                   />
                 </Wrapper>
               </div>
