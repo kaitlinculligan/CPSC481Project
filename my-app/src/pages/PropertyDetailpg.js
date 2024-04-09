@@ -393,7 +393,7 @@ function PropertyDetailPage() {
       } catch (error) {
         console.error("Error:", error);
         setAlertColor("#b03c30")
-        showAlert(error.toString());
+        showAlert("Favourites functionality failed to function");
       }
       return;
     }
